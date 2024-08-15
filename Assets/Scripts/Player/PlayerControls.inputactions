@@ -24,9 +24,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Beach Movement",
+                    "name": "BeachForward",
                     "type": "Button",
-                    "id": "f8ad3f4c-3578-4e98-8b74-b0726a4da3c0",
+                    "id": "67e1b31b-98ab-4ed8-8fe1-3acbc59d9a81",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BeachLeft",
+                    "type": "Button",
+                    "id": "36840d39-2df7-47f2-8da6-963e42dfcb9a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BeachRight",
+                    "type": "Button",
+                    "id": "dd51d35f-b66c-4f08-be14-f07e3a19d3e5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -102,34 +120,34 @@
                 },
                 {
                     "name": "",
-                    "id": "2e72fc81-50d3-40b6-92fd-e91a94823fba",
+                    "id": "5a2729c4-45ef-43a8-a2ba-8d81500875eb",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Beach Movement",
+                    "action": "BeachForward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "2241c8b6-542c-4508-9884-03eb488d0a38",
+                    "id": "b507c1d2-a50f-4b78-91fc-06581d6df416",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Beach Movement",
+                    "action": "BeachLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "fa0cc8a3-a533-46b4-9342-1a430e243ddd",
+                    "id": "ddef459e-990c-4730-bcec-c1d97e22e26f",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Beach Movement",
+                    "action": "BeachRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

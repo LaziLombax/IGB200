@@ -6,7 +6,7 @@ public abstract class Entity : MonoBehaviour
 {
     [Header("Entity Variables")]
     public int health = 1;
-    public GameHandler gameHandler;
+    [HideInInspector] public GameHandler gameHandler;
     // VFXDeath
     // VFXHit
     private void Awake()

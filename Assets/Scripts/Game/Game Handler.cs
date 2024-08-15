@@ -13,4 +13,13 @@ public class GameHandler : MonoBehaviour
             return _instance;
         }
     }
+
+
+    #region Game Variables
+    [Header("Beach")]
+    public int numOfRows;
+    public float rowHeight;
+    public float rowWidth;
+    public List<GameObject> rowList = new List<GameObject>();
+    #endregion
 }
