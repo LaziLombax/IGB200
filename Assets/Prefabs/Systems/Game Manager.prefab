@@ -45,6 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801066e8a4091f44cab1020f7cbe4486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfRows: 30
+  rowHeight: 4
+  rowWidth: 12
+  rowList:
+  - {fileID: 5984137651008251359, guid: 1d958795612c9c04a82a1cdcc72cc85c, type: 3}
+  - {fileID: 3146694958185421144, guid: dc57f109c01a80e4eafcd096eb8c9b7c, type: 3}
+  - {fileID: 6425431271637736410, guid: 0eeb90a9f7ef0324ca9ed223ea58ac3a, type: 3}
+  - {fileID: 3200868662483362531, guid: df372a13c12ecf64f867d55e316422a3, type: 3}
 --- !u!114 &2124004775711337087
 MonoBehaviour:
   m_ObjectHideFlags: 0

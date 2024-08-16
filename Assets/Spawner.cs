@@ -8,6 +8,7 @@ public class Spawner : MonoBehaviour
     public float objectSpeed;
     public float spawnTimer;
     public float spawnTime;
+    public Vector3 objectDir;
 
     // Update is called once per frame
     void Update()
@@ -25,7 +26,7 @@ public class Spawner : MonoBehaviour
     private void SpawnHazzard()
     {
         GameObject newObject = Instantiate(objectToSpawn, transform.position, transform.rotation);
-        newObject.GetComponent<Rigidbody>().velocity = Vector3.right * objectSpeed;
+        newObject.GetComponent<Rigidbody>().velocity = objectDir * objectSpeed;
         Destroy(newObject,10f);
     }
 }

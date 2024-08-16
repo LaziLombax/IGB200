@@ -21,5 +21,21 @@ public class GameHandler : MonoBehaviour
     public float rowHeight;
     public float rowWidth;
     public List<GameObject> rowList = new List<GameObject>();
+
+    [Space(10)]
+    [Header("Reef")]
+    public float stageTop;
+    public float stageSpeed;
+    public GameObject reefStage;
+
+    private void Update()
+    {
+        if (reefStage != null) MoveReefStage();
+    }
+    private void MoveReefStage()
+    {
+        reefStage.GetComponent<Rigidbody>().velocity = new Vector3(0f,0f,stageSpeed);
+    }
+
     #endregion
 }

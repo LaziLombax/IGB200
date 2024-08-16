@@ -10,6 +10,13 @@ public abstract class PlayerController : Entity
     [Header("Player Movement Variables")]
     public float moveSpeed = 20f;
     public Rigidbody rb;
+    public bool gotHit;
+    public MovementState state;
+    public enum MovementState
+    {
+        moving,
+        damaged
+    };
     [HideInInspector] public InputHandler inputHandler;
 
     //etc.
@@ -36,14 +43,8 @@ public abstract class PlayerController : Entity
     {
         PlayerInput();
     }
-    private void FixedUpdate()
-    {
-        //MovePlayer();
-    }
 
     public abstract void PlayerInput();
     public abstract void MovePlayer();
 
-    //Vector2 playerMovement = inputHandler.GetPlayerMovement();
-    //moveInput = new Vector3(playerMovement.x, 0f, playerMovement.y);
 }
