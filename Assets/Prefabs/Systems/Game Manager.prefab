@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4525806017011496740}
   - component: {fileID: -8404411838091709831}
   - component: {fileID: 2124004775711337087}
+  - component: {fileID: 4126827585878335480}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -45,14 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801066e8a4091f44cab1020f7cbe4486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numOfRows: 30
-  rowHeight: 4
-  rowWidth: 12
-  rowList:
-  - {fileID: 5984137651008251359, guid: 1d958795612c9c04a82a1cdcc72cc85c, type: 3}
-  - {fileID: 3146694958185421144, guid: dc57f109c01a80e4eafcd096eb8c9b7c, type: 3}
-  - {fileID: 6425431271637736410, guid: 0eeb90a9f7ef0324ca9ed223ea58ac3a, type: 3}
-  - {fileID: 3200868662483362531, guid: df372a13c12ecf64f867d55e316422a3, type: 3}
+  currentLevelData: {fileID: 0}
+  stageName: 
+  spawnPos: {fileID: 0}
+  initialSpawnNum: 0
+  beachSize: 0
+  stageTop: 0
+  stageSpeed: 0
+  reefStage: {fileID: 0}
 --- !u!114 &2124004775711337087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,3 +66,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e316d8337e89b374184356d5a648013d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4126827585878335480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3851411194794639680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeae247ae18479f4e8b8ce75819ed5df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameHandler: {fileID: 0}
+  exampleInt: 0
+  exampleFloat: 0

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f8a4ca9042c4d49af7a5a5f7b0da19, type: 3}
   m_Name: Beach example
   m_EditorClassIdentifier: 
+  levelName: 
   stageList:
   - name: Beach
     naturalHazards:
@@ -44,13 +45,13 @@ MonoBehaviour:
   - name: Reef
     naturalHazards:
     - name: Shark
-      hazardObject: {fileID: 0}
+      hazardObject: {fileID: 107635318230043208, guid: 0fcc4f1ad380c3f44b053dbbb40489d4, type: 3}
       maxChance: 10
       chance: 10
-      hazardSize: 0
+      hazardSize: 20
     humanHazards:
     - name: Oil
-      hazardObject: {fileID: 0}
+      hazardObject: {fileID: 783753377506269430, guid: 341c2651b736cf940845736bce809b7c, type: 3}
       maxChance: 15
       chance: 10
-      hazardSize: 0
+      hazardSize: 20
