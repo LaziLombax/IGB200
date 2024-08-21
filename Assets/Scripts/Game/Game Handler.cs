@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class GameHandler : MonoBehaviour
@@ -13,14 +14,15 @@ public class GameHandler : MonoBehaviour
             return _instance;
         }
     }
-
-
     #region Game Variables
+    [Header("Level Data")]
+    public LevelData currentLevelData;
+    public string stageName;
+    public Transform spawnPos;
+    public int initialSpawnNum;
+    [Space(10)]
     [Header("Beach")]
-    public int numOfRows;
-    public float rowHeight;
-    public float rowWidth;
-    public List<GameObject> rowList = new List<GameObject>();
+    public int beachSize;
 
     [Space(10)]
     [Header("Reef")]
@@ -28,14 +30,45 @@ public class GameHandler : MonoBehaviour
     public float stageSpeed;
     public GameObject reefStage;
 
+
+    #endregion
+
+    private void Start()
+    {
+        if(stageName == "Beach")
+        {
+            GenerateBeach();
+        }
+        else
+        {
+            for (int i = 0; i < initialSpawnNum; i++)
+            {
+                SpawnHazard();
+            }
+        }
+    }
+
+    public void SpawnHazard()
+    {
+        GameObject spawnObj = currentLevelData.RandomHazard(stageName);
+        Vector3 newPos = new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z + currentLevelData.HazardSize(stageName, spawnObj));
+        spawnPos.position = newPos;
+        Instantiate(spawnObj, newPos, Quaternion.identity);
+    }
     private void Update()
     {
         if (reefStage != null) MoveReefStage();
     }
     private void MoveReefStage()
     {
-        reefStage.GetComponent<Rigidbody>().velocity = new Vector3(0f,0f,stageSpeed);
+        reefStage.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, stageSpeed);
     }
 
-    #endregion
+    private void GenerateBeach()
+    {
+        for (int i = 0; i < beachSize; i++)
+        {
+            SpawnHazard();
+        }
+    }
 }

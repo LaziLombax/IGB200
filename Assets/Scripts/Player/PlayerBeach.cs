@@ -46,13 +46,13 @@ public class PlayerBeach : PlayerController
 
         if (inputHandler.BeachMoveLeft() && !isMoving)
         {
-            if (moveDir.x - moveDistance < gameHandler.rowWidth *-1) return;
+            if (moveDir.x - moveDistance < 4f *-1) return;
             isMoving = true;
             moveDir += Vector3.left * moveDistance;
         }
         if (inputHandler.BeachMoveRight() && !isMoving)
         {
-            if (moveDir.x + moveDistance > gameHandler.rowWidth) return;
+            if (moveDir.x + moveDistance > 4f) return;
             isMoving = true;
             moveDir += Vector3.right * moveDistance;
         }
