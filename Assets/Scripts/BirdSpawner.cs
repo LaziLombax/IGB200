@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BirdSpawner : MonoBehaviour
+{
+    public GameObject objectToSpawn;
+    public float minSpawnTimer;
+    public float maxSpawnTimer;
+    private float spawnTime;
+    public float AmountToSpawn;
+
+    void Start(){
+        StartCoroutine(SpawnTimer(5));
+    }
+    void SpawnBird(){
+        Vector3 offsetpos = new Vector3((3*Random.Range(-4,4)),0,(4*Random.Range(-2,10)));
+        GameObject newObject = Instantiate(objectToSpawn, transform.position + offsetpos, objectToSpawn.transform.rotation);
+    }
+    IEnumerator SpawnTimer(float WaitTime){
+        yield return new WaitForSeconds(WaitTime);
+        for (float i = 0; i <= AmountToSpawn; i++){
+            SpawnBird();
+            yield return new WaitForSeconds(Random.Range(2,4));
+        }
+        spawnTime = Random.Range(minSpawnTimer, maxSpawnTimer);
+        StartCoroutine(SpawnTimer(spawnTime));
+    }
+}
