@@ -46,14 +46,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801066e8a4091f44cab1020f7cbe4486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevelData: {fileID: 0}
-  stageName: 
+  currentLevelData: {fileID: 11400000, guid: af658ced7c1478b41a05e624c75f7f9f, type: 2}
+  stageName: Beach
   spawnPos: {fileID: 0}
-  initialSpawnNum: 0
-  beachSize: 0
+  initialSpawnNum: 5
+  beachSize: 40
+  beachEnd: {fileID: 3200868662483362531, guid: dbbe193804e74e24aa02d4e4be011b7f, type: 3}
   stageTop: 0
   stageSpeed: 0
   reefStage: {fileID: 0}
+  EndGamePanel: {fileID: 0}
 --- !u!114 &2124004775711337087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,5 +81,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameHandler: {fileID: 0}
-  exampleInt: 0
+  startMenuPanel: {fileID: 0}
+  infoPanel: {fileID: 0}
+  settingPanel: {fileID: 0}
+  pauseMenuPanel: {fileID: 0}
+  pauseButton: {fileID: 0}
+  resumeButton: {fileID: 0}
+  exitButtonInPause: {fileID: 0}
+  backToMenuButton: {fileID: 0}
+  startButton: {fileID: 0}
+  settingsButton: {fileID: 0}
+  infoButton: {fileID: 0}
+  exitButton: {fileID: 0}
+  backFromInfoButton: {fileID: 0}
+  backFromSettingsButton: {fileID: 0}
   exampleFloat: 0

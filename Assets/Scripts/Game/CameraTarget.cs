@@ -16,7 +16,7 @@ public class CameraTarget : MonoBehaviour
     private void Start()
     {
         if (GameHandler.Instance.reefStage != null)
-            reefStage =GameHandler.Instance.reefStage;
+            reefStage = GameHandler.Instance.reefStage;
         player = PlayerController.Instance.transform;
     }
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class CameraTarget : MonoBehaviour
         }
         else
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, reefStage.transform.position.z + offset);
+            //transform.position = new Vector3(transform.position.x, transform.position.y, GameHandler.Instance.player);
         }
     }
 }

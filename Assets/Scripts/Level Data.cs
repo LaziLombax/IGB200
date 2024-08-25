@@ -45,7 +45,6 @@ public class LevelData : ScriptableObject
     public GameObject RandomHazard(string stageName)
     {
         float currentChance = CalcutaleStageHazards(stageName);
-        Debug.Log(currentChance.ToString() + " generated chance");
         foreach (var stage in stageList)
         {
             if (stageName == stage.name)
@@ -54,7 +53,6 @@ public class LevelData : ScriptableObject
                 {
                     if (currentChance - hazard.chance <= 0)
                     {
-                        Debug.Log("Hazard Generated " + currentChance.ToString() + " chance hazard " + hazard.name);
                         return hazard.hazardObject;
                     }
                     currentChance -= hazard.chance;
@@ -63,7 +61,6 @@ public class LevelData : ScriptableObject
                 {
                     if (currentChance - hazard.chance <= 0)
                     {
-                        Debug.Log("Hazard Generated " + currentChance.ToString() + " chance hazard " + hazard.name);
                         return hazard.hazardObject;
                     }
                     currentChance -= hazard.chance;

@@ -11,6 +11,7 @@ public class PlayerBeach : PlayerController
     public Vector3 moveDir;
     public float moveTime = 0.1f;
     public float moveDistance;
+    public float horizontalSpaces;
 
     private void Start()
     {
@@ -46,22 +47,15 @@ public class PlayerBeach : PlayerController
 
         if (inputHandler.BeachMoveLeft() && !isMoving)
         {
-            if (moveDir.x - moveDistance < 4f *-1) return;
+            if (moveDir.x - moveDistance < horizontalSpaces * moveDistance * -1) return;
             isMoving = true;
             moveDir += Vector3.left * moveDistance;
         }
         if (inputHandler.BeachMoveRight() && !isMoving)
         {
-            if (moveDir.x + moveDistance > 4f) return;
+            if (moveDir.x + moveDistance > horizontalSpaces * moveDistance) return;
             isMoving = true;
             moveDir += Vector3.right * moveDistance;
-        }
-    }
-
-    public void OnTriggerEnter(Collider other){
-        if (other.gameObject.tag == "Enemy"){
-            TakeDamage(1);
-            Destroy(other.gameObject);
         }
     }
 }

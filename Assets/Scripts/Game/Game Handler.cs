@@ -21,9 +21,11 @@ public class GameHandler : MonoBehaviour
     public string stageName;
     public Transform spawnPos;
     public int initialSpawnNum;
+    public GameObject player;
     [Space(10)]
     [Header("Beach")]
     public int beachSize;
+    public GameObject beachEnd;
 
     [Space(10)]
     [Header("Reef")]
@@ -39,6 +41,7 @@ public class GameHandler : MonoBehaviour
         if(stageName == "Beach")
         {
             GenerateBeach();
+            SpawnBeachEnd();
         }
         else
         {
@@ -49,20 +52,30 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-    public void SpawnHazard()
+    public void SpawnBeachEnd()
+    {
+        GameObject spawnObj = beachEnd;
+        Vector3 newPos = new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z + 4f);
+        spawnPos.position = newPos;
+        Instantiate(spawnObj, newPos, Quaternion.identity);
+    }
+    private void SpawnHazard()
     {
         GameObject spawnObj = currentLevelData.RandomHazard(stageName);
         Vector3 newPos = new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z + currentLevelData.HazardSize(stageName, spawnObj));
         spawnPos.position = newPos;
         Instantiate(spawnObj, newPos, Quaternion.identity);
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (reefStage != null) MoveReefStage();
     }
     private void MoveReefStage()
     {
-        reefStage.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, stageSpeed);
+        Rigidbody reefRb = reefStage.GetComponent<Rigidbody>();
+
+        Vector3 screenMove = new Vector3(0, 0, stageSpeed * Time.fixedDeltaTime);
+        reefRb.MovePosition(reefRb.position + screenMove);
     }
 
     private void GenerateBeach()
@@ -77,5 +90,16 @@ public class GameHandler : MonoBehaviour
     public void EndGame(){
         EndGamePanel.SetActive(true);
         Time.timeScale = 0;
+    }
+    public void CompleteLevel()
+    {
+        if (stageName == "Beach")
+        {
+            SceneManager.LoadScene("Reef");
+        }
+        else
+        {
+            //Beat the Run
+        }
     }
 }

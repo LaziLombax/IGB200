@@ -7,16 +7,15 @@ public class PlayerReef : PlayerController
     [Space(10)]
     [Header("Reef Movement Variables")]
     public Vector3 moveInput;
-    public float speedChangeFactor;
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
     private MovementState lastState;
-
 
     private void FixedUpdate()
     {
         MovePlayer();
         SpeedControl();
+
     }
 
 
@@ -34,8 +33,12 @@ public class PlayerReef : PlayerController
 
     public override void MovePlayer()
     {
+
+        Vector3 screenMove = new Vector3(0, 0, gameHandler.stageSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + screenMove);
         Vector3 force = moveInput * moveSpeed * 10;
         rb.AddForce(force, ForceMode.Force);
+        Debug.Log(rb.velocity);
     }
 
     public override void PlayerInput()

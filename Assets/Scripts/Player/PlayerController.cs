@@ -44,6 +44,15 @@ public abstract class PlayerController : Entity
         PlayerInput();
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            TakeDamage(1);
+            Destroy(other.gameObject);
+        }
+    }
+
     public abstract void PlayerInput();
     public abstract void MovePlayer();
 

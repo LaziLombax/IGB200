@@ -55,7 +55,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Beach Left"",
+                    ""name"": ""BeachLeft"",
                     ""type"": ""Button"",
                     ""id"": ""36840d39-2df7-47f2-8da6-963e42dfcb9a"",
                     ""expectedControlType"": ""Button"",
@@ -64,9 +64,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Beach Right"",
+                    ""name"": ""BeachRight"",
                     ""type"": ""Button"",
                     ""id"": ""dd51d35f-b66c-4f08-be14-f07e3a19d3e5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""89022aa3-c82d-42f6-937b-37205308b03a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -158,7 +167,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Beach Left"",
+                    ""action"": ""BeachLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -169,7 +178,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Beach Right"",
+                    ""action"": ""BeachRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a285473a-8eb9-4b3a-861a-3a06f4bc7e09"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -183,8 +203,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_SpeedUp = m_Player.FindAction("Speed-Up", throwIfNotFound: true);
         m_Player_BeachForward = m_Player.FindAction("BeachForward", throwIfNotFound: true);
-        m_Player_BeachLeft = m_Player.FindAction("Beach Left", throwIfNotFound: true);
-        m_Player_BeachRight = m_Player.FindAction("Beach Right", throwIfNotFound: true);
+        m_Player_BeachLeft = m_Player.FindAction("BeachLeft", throwIfNotFound: true);
+        m_Player_BeachRight = m_Player.FindAction("BeachRight", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,6 +272,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_BeachForward;
     private readonly InputAction m_Player_BeachLeft;
     private readonly InputAction m_Player_BeachRight;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -260,6 +282,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @BeachForward => m_Wrapper.m_Player_BeachForward;
         public InputAction @BeachLeft => m_Wrapper.m_Player_BeachLeft;
         public InputAction @BeachRight => m_Wrapper.m_Player_BeachRight;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -284,6 +307,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @BeachRight.started += instance.OnBeachRight;
             @BeachRight.performed += instance.OnBeachRight;
             @BeachRight.canceled += instance.OnBeachRight;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -303,6 +329,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @BeachRight.started -= instance.OnBeachRight;
             @BeachRight.performed -= instance.OnBeachRight;
             @BeachRight.canceled -= instance.OnBeachRight;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -327,5 +356,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnBeachForward(InputAction.CallbackContext context);
         void OnBeachLeft(InputAction.CallbackContext context);
         void OnBeachRight(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
