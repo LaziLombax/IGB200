@@ -148,4 +148,8 @@ public class UIHandler : MonoBehaviour
         if (settingPanel != null)
             settingPanel.SetActive(false);
     }
+    public void RestartLevel(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+    }
 }

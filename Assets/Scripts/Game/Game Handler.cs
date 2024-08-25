@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameHandler : MonoBehaviour
 {
@@ -70,5 +71,11 @@ public class GameHandler : MonoBehaviour
         {
             SpawnHazard();
         }
+    }
+
+    public GameObject EndGamePanel;
+    public void EndGame(){
+        EndGamePanel.SetActive(true);
+        Time.timeScale = 0;
     }
 }

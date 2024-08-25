@@ -57,4 +57,11 @@ public class PlayerBeach : PlayerController
             moveDir += Vector3.right * moveDistance;
         }
     }
+
+    public void OnTriggerEnter(Collider other){
+        if (other.gameObject.tag == "Enemy"){
+            TakeDamage(1);
+            Destroy(other.gameObject);
+        }
+    }
 }
