@@ -20,7 +20,7 @@ public class CameraTarget : MonoBehaviour
         player = PlayerController.Instance.transform;
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (currentStage == Stage.beach)
         {
@@ -29,7 +29,7 @@ public class CameraTarget : MonoBehaviour
         }
         else
         {
-            //transform.position = new Vector3(transform.position.x, transform.position.y, GameHandler.Instance.player);
+            transform.position = new Vector3(transform.position.x, transform.position.y, reefStage.transform.position.z + offset);
         }
     }
 }

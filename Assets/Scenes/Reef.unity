@@ -2002,7 +2002,6 @@ GameObject:
   m_Component:
   - component: {fileID: 743158024}
   - component: {fileID: 743158025}
-  - component: {fileID: 743158026}
   m_Layer: 0
   m_Name: ReefStage
   m_TagString: Untagged
@@ -2049,24 +2048,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &743158026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 743158023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27455785e87d5074cbe6cf30a0b6a660, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reefStage: {fileID: 0}
-  offset: 0
-  currentStage: 0
 --- !u!1 &751838159
 GameObject:
   m_ObjectHideFlags: 0
@@ -6532,6 +6516,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Reef
       objectReference: {fileID: 0}
+    - target: {fileID: 3071849472072582931, guid: f305aa39139a34847995c8f8048d9b91, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6907864647249952619, guid: f305aa39139a34847995c8f8048d9b91, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -6667,7 +6655,7 @@ PrefabInstance:
       objectReference: {fileID: 665418973}
     - target: {fileID: -8404411838091709831, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: initialSpawnNum
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8404411838091709831, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: currentLevelData

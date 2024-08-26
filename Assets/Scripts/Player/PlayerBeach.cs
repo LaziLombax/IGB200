@@ -83,12 +83,6 @@ public class PlayerBeach : PlayerController
         }
     }
 
-    public void OnTriggerEnter(Collider other){
-        if (other.gameObject.tag == "Enemy"){
-            TakeDamage(1);
-            Destroy(other.gameObject);
-        }
-    }
 
     IEnumerator rotateObject(GameObject gameObjectToMove, Quaternion newRot, float duration){
         if (rotating)

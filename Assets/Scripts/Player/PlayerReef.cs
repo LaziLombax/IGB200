@@ -38,7 +38,6 @@ public class PlayerReef : PlayerController
         rb.MovePosition(rb.position + screenMove);
         Vector3 force = moveInput * moveSpeed * 10;
         rb.AddForce(force, ForceMode.Force);
-        Debug.Log(rb.velocity);
     }
 
     public override void PlayerInput()

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 464613273676963401}
   - component: {fileID: 157287715744871018}
   m_Layer: 0
-  m_Name: EnemyPlaceHolder
+  m_Name: Fox
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

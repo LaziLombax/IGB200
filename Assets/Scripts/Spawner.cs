@@ -26,7 +26,6 @@ public class Spawner : MonoBehaviour
     private void SpawnHazzard()
     {
         GameObject newObject = Instantiate(objectToSpawn, transform.position, transform.rotation);
-        newObject.GetComponent<Rigidbody>().velocity = objectDir * objectSpeed;
         Destroy(newObject,10f);
     }
 }
