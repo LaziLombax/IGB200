@@ -4,19 +4,16 @@ using UnityEngine;
 public class BirdDive : MonoBehaviour
 {
     public Vector3 DivePosition; // Made public to set in Inspector
-    private Vector3 startPosition;
+    public Vector3 startPosition;
+    public Vector3 EndPosition;
     private bool movingToDivePosition = true;
     public float speed = 2f; // Movement speed
 
     void Awake()
     {
+        startPosition = transform.position;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        DivePosition = new Vector3((3 * Random.Range(-4, 4)), 0.5f, (player.transform.position.z + (4 * Random.Range(0, 8))));
-    }
-
-    void Start()
-    {
-        startPosition = transform.position; // Set initial position
+        DivePosition = new Vector3((3 * Random.Range(-4, 4)), 0.2f, gameObject.transform.position.z);
         StartCoroutine(MoveRoutine());
     }
 
@@ -24,7 +21,7 @@ public class BirdDive : MonoBehaviour
     {
         float journeyLength = Vector3.Distance(startPosition, DivePosition);
         float startTime = Time.time;
-
+        EndPosition = new Vector3(startPosition.x * -1, startPosition.y, startPosition.z);
         while (true)
         {
             float distanceCovered = (Time.time - startTime) * speed;
@@ -42,7 +39,7 @@ public class BirdDive : MonoBehaviour
             }
             else
             {
-                transform.position = Vector3.Lerp(DivePosition, startPosition, fractionOfJourney);
+                transform.position = Vector3.Lerp(DivePosition, EndPosition, fractionOfJourney);
                 if (fractionOfJourney >= 1.0f)
                 {
                     // The object has returned to its original position
@@ -61,7 +58,7 @@ public class BirdDive : MonoBehaviour
             // Draw the path
             Gizmos.color = Color.red;
             Gizmos.DrawLine(startPosition, DivePosition);
-            Gizmos.DrawLine(DivePosition, startPosition);
+            Gizmos.DrawLine(DivePosition, EndPosition);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BirdSpawner : MonoBehaviour
@@ -13,9 +14,23 @@ public class BirdSpawner : MonoBehaviour
     void Start(){
         StartCoroutine(SpawnTimer(5));
     }
-    void SpawnBird(){
-        Vector3 offsetpos = new Vector3((3*Random.Range(-4,4)),0,(4*Random.Range(-2,10)));
-        GameObject newObject = Instantiate(objectToSpawn, transform.position + offsetpos, objectToSpawn.transform.rotation);
+    void SpawnBird()
+    {
+        float xspawn = 0;
+        float roty = 0;
+        float random = Random.Range(0,1);
+        if (random == 0)
+        {
+            xspawn = 18;
+            roty = -90;
+        }
+        else if (random == 1)
+        {
+            xspawn = -18;
+            roty = 90;
+        }
+        Vector3 offsetpos = new Vector3(xspawn,0,(4*Random.Range(-2,10)));
+        GameObject newObject = Instantiate(objectToSpawn, transform.position + offsetpos, Quaternion.EulerAngles(objectToSpawn.transform.rotation.x, 90, objectToSpawn.transform.rotation.z));
     }
     IEnumerator SpawnTimer(float WaitTime){
         yield return new WaitForSeconds(WaitTime);

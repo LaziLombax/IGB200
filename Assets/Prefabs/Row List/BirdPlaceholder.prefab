@@ -358,7 +358,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DivePosition: {x: 0, y: 0, z: 0}
-  speed: 4
+  startPosition: {x: 0, y: 0, z: 0}
+  EndPosition: {x: 0, y: 0, z: 0}
+  speed: 10
 --- !u!1 &5656624042153760066
 GameObject:
   m_ObjectHideFlags: 0
