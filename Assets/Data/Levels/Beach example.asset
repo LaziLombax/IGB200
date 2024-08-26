@@ -40,7 +40,7 @@ MonoBehaviour:
     - name: Car
       hazardObject: {fileID: 5984137651008251359, guid: 1d958795612c9c04a82a1cdcc72cc85c, type: 3}
       maxChance: 10
-      chance: 8
+      chance: 10
       hazardSize: 4
   - name: Reef
     naturalHazards:

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4525806017011496740}
   - component: {fileID: -8404411838091709831}
   - component: {fileID: 2124004775711337087}
-  - component: {fileID: 4126827585878335480}
+  - component: {fileID: 7454125927417385915}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -50,6 +50,7 @@ MonoBehaviour:
   stageName: Beach
   spawnPos: {fileID: 0}
   initialSpawnNum: 5
+  player: {fileID: 0}
   beachSize: 40
   beachEnd: {fileID: 3200868662483362531, guid: dbbe193804e74e24aa02d4e4be011b7f, type: 3}
   stageTop: 0
@@ -68,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e316d8337e89b374184356d5a648013d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4126827585878335480
+--- !u!114 &7454125927417385915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -10,6 +10,9 @@ public class UIHandler : MonoBehaviour
     #region UI Variables
     [Header("UI Data")]
     public GameHandler gameHandler;
+    public Text levelTimer;
+    public Text levelGold;
+    public Text goldGained;
 
     [Header("Start Menu")]
     public GameObject startMenuPanel;
@@ -73,8 +76,23 @@ public class UIHandler : MonoBehaviour
     }
     #endregion
 
+    private void Update()
+    {
+        if (gameHandler.timerOn && levelTimer != null)
+        {
+            float minutes = Mathf.FloorToInt(gameHandler.currentTimer / 60);
+            float seconds = Mathf.FloorToInt(gameHandler.currentTimer % 60);
+
+            levelTimer.text = string.Format("{0:00} : {1:00}", minutes, seconds);
+        }
+        if (gameHandler.gameEnded)
+        {
+            EndGameScreen();
+        }
+    }
     private void OnPauseButtonClick()
     {
+        gameHandler.currentLevelData.UpgradeHazard(gameHandler.stageName, "Car");
         isPaused = !isPaused;
 
         if (isPaused)
@@ -87,7 +105,7 @@ public class UIHandler : MonoBehaviour
         }
     }
 
-    private void PauseGame()
+    public void PauseGame()
     {
         if (pauseMenuPanel != null)
             pauseMenuPanel.SetActive(true); // Show the pause panel
@@ -148,8 +166,18 @@ public class UIHandler : MonoBehaviour
         if (settingPanel != null)
             settingPanel.SetActive(false);
     }
-    public void RestartLevel(){
+    public void RestartLevel()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
+    }
+
+    public GameObject endGamePanel;
+    public void EndGameScreen()
+    {
+        endGamePanel.SetActive(true);
+        levelGold.text = "Beach Gold: " +  gameHandler.currentLevelData.levelGold.ToString();
+        float gold = Mathf.Lerp(0, gameHandler.goldGained, Time.deltaTime);
+        goldGained.text = "Gold Gained: " + gold.ToString();
     }
 }

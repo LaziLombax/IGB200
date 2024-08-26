@@ -25,6 +25,7 @@ public class LevelData : ScriptableObject
     }
     [Header("Level Data")]
     public string levelName;
+    public int levelGold;
     public List<StageData> stageList = new List<StageData>();
 
     public string CleanProgression()
@@ -113,5 +114,39 @@ public class LevelData : ScriptableObject
             }
         }
         return 0f;
+    }
+
+    public void UpgradeHazard(string stageName, string hazardName)
+    {
+        foreach (var stage in stageList)
+        {
+            if (stageName == stage.name)
+            {
+                foreach (var hazard in stage.humanHazards)
+                {
+                    if (hazardName == hazard.name && hazard.chance != 0)
+                    {
+                        hazard.chance--;
+                    }
+                }
+            }
+        }
+    }
+    public float UpgradeCount(string stageName, string hazardName)
+    {
+        foreach (var stage in stageList)
+        {
+            if (stageName == stage.name)
+            {
+                foreach (var hazard in stage.humanHazards)
+                {
+                    if (hazardName == hazard.name)
+                    {
+                        return hazard.maxChance - hazard.chance;
+                    }
+                }
+            }
+        }
+        return 0;
     }
 }

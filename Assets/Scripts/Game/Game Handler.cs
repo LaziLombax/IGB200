@@ -22,6 +22,11 @@ public class GameHandler : MonoBehaviour
     public Transform spawnPos;
     public int initialSpawnNum;
     public GameObject player;
+    public bool timerOn;
+    public float currentTimer;
+    public float loadTimer = 3f;
+    public int goldGained;
+    public bool gameEnded;
     [Space(10)]
     [Header("Beach")]
     public int beachSize;
@@ -38,6 +43,8 @@ public class GameHandler : MonoBehaviour
 
     private void Start()
     {
+        timerOn = true;
+        gameEnded = false;
         if(stageName == "Beach")
         {
             GenerateBeach();
@@ -52,20 +59,14 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-    public void SpawnBeachEnd()
+    private void Update()
     {
-        GameObject spawnObj = beachEnd;
-        Vector3 newPos = new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z + 4f);
-        spawnPos.position = newPos;
-        Instantiate(spawnObj, newPos, Quaternion.identity);
+        if (timerOn)
+        {
+            currentTimer += Time.deltaTime;
+        }
     }
-    private void SpawnHazard()
-    {
-        GameObject spawnObj = currentLevelData.RandomHazard(stageName);
-        Vector3 newPos = new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z + currentLevelData.HazardSize(stageName, spawnObj));
-        spawnPos.position = newPos;
-        Instantiate(spawnObj, newPos, Quaternion.identity);
-    }
+
     private void FixedUpdate()
     {
         if (reefStage != null) MoveReefStage();
@@ -86,20 +87,43 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-    public GameObject EndGamePanel;
-    public void EndGame(){
-        EndGamePanel.SetActive(true);
+    public void EndGame()
+    {
+        currentLevelData.levelGold += Mathf.FloorToInt(currentTimer / 2);
+        goldGained = Mathf.FloorToInt(currentTimer / 2);
+        currentTimer = 0f;
+        gameEnded = true;
         Time.timeScale = 0;
     }
     public void CompleteLevel()
     {
+        timerOn = false;
         if (stageName == "Beach")
         {
-            SceneManager.LoadScene("Reef");
+            Invoke(nameof(LoadReef), loadTimer);
         }
         else
         {
             //Beat the Run
         }
+    }
+
+    public void LoadReef()
+    {
+        SceneManager.LoadScene("Reef");
+    }
+    public void SpawnBeachEnd()
+    {
+        GameObject spawnObj = beachEnd;
+        Vector3 newPos = new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z + 4f);
+        spawnPos.position = newPos;
+        Instantiate(spawnObj, newPos, Quaternion.identity);
+    }
+    private void SpawnHazard()
+    {
+        GameObject spawnObj = currentLevelData.RandomHazard(stageName);
+        Vector3 newPos = new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z + currentLevelData.HazardSize(stageName, spawnObj));
+        spawnPos.position = newPos;
+        Instantiate(spawnObj, newPos, Quaternion.identity);
     }
 }
