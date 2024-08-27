@@ -30,7 +30,7 @@ public class BirdSpawner : MonoBehaviour
             roty = 90;
         }
         Vector3 offsetpos = new Vector3(xspawn,0,(4*Random.Range(-2,10)));
-        GameObject newObject = Instantiate(objectToSpawn, transform.position + offsetpos, Quaternion.EulerAngles(objectToSpawn.transform.rotation.x, 90, objectToSpawn.transform.rotation.z));
+        GameObject newObject = Instantiate(objectToSpawn, transform.position + offsetpos, objectToSpawn.transform.rotation);
     }
     IEnumerator SpawnTimer(float WaitTime){
         yield return new WaitForSeconds(WaitTime);

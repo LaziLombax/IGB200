@@ -30,6 +30,9 @@ public class BirdDive : MonoBehaviour
             if (movingToDivePosition)
             {
                 transform.position = Vector3.Lerp(startPosition, DivePosition, fractionOfJourney);
+                Vector3 targetDirection = DivePosition - transform.position;
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection,(2.0f*Time.deltaTime),0);
+                transform.rotation = Quaternion.LookRotation(newDirection);
                 if (fractionOfJourney >= 1.0f)
                 {
                     movingToDivePosition = false;
@@ -40,6 +43,9 @@ public class BirdDive : MonoBehaviour
             else
             {
                 transform.position = Vector3.Lerp(DivePosition, EndPosition, fractionOfJourney);
+                Vector3 targetDirection = DivePosition - transform.position;
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection,(1.0f*Time.deltaTime),0);
+                transform.rotation = Quaternion.LookRotation(newDirection);
                 if (fractionOfJourney >= 1.0f)
                 {
                     // The object has returned to its original position
