@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &13124235 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 613235424022982734, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+  m_PrefabInstance: {fileID: 881944022}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &13336388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,6 +1597,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622746286}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &629839331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1738037659611512623, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+  m_PrefabInstance: {fileID: 881944022}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &648150954
 GameObject:
   m_ObjectHideFlags: 0
@@ -2523,6 +2545,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7984071136937930077, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665804026961142837, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4093,6 +4119,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238496109}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1278342729 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3086127818274750183, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+  m_PrefabInstance: {fileID: 881944022}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1286044991 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1152374923167057860, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
@@ -6714,6 +6751,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 755781233}
     - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: homeButton
+      value: 
+      objectReference: {fileID: 13124235}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: levelTimer
       value: 
       objectReference: {fileID: 656192537}
@@ -6726,13 +6767,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 665418973}
     - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: endgamePanel
+      value: 
+      objectReference: {fileID: 665418973}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: resumeButton
       value: 
       objectReference: {fileID: 151416729}
     - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: restartButton
+      value: 
+      objectReference: {fileID: 629839331}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: pauseMenuPanel
       value: 
       objectReference: {fileID: 496729906}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: exitButtonInEnd
+      value: 
+      objectReference: {fileID: 1278342729}
     - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: backToMenuButton
       value: 

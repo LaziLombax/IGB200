@@ -445,6 +445,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8665804026961142837, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+      propertyPath: m_Name
+      value: endGamePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665804026961142837, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -752,6 +756,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 881547991}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &471594986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1738037659611512623, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+  m_PrefabInstance: {fileID: 100273675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &698508488
 GameObject:
   m_ObjectHideFlags: 3
@@ -1768,6 +1783,28 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1105418014 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3086127818274750183, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+  m_PrefabInstance: {fileID: 100273675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1380974161 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 613235424022982734, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+  m_PrefabInstance: {fileID: 100273675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1566955788
 GameObject:
   m_ObjectHideFlags: 0
@@ -2368,6 +2405,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 100273677}
     - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: homeButton
+      value: 
+      objectReference: {fileID: 1380974161}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: levelTimer
       value: 
       objectReference: {fileID: 100273676}
@@ -2380,13 +2421,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 100273679}
     - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: endgamePanel
+      value: 
+      objectReference: {fileID: 100273679}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: resumeButton
       value: 
       objectReference: {fileID: 100273681}
     - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: restartButton
+      value: 
+      objectReference: {fileID: 471594986}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: pauseMenuPanel
       value: 
       objectReference: {fileID: 100273683}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: exitButtonInEnd
+      value: 
+      objectReference: {fileID: 1105418014}
     - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: backToMenuButton
       value: 
@@ -2395,6 +2448,10 @@ PrefabInstance:
       propertyPath: exitButtonInPause
       value: 
       objectReference: {fileID: 100273680}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: exitButtonInEndgame
+      value: 
+      objectReference: {fileID: 1105418014}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
