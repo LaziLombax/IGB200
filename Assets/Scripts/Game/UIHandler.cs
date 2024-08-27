@@ -26,6 +26,12 @@ public class UIHandler : MonoBehaviour
     public Button exitButtonInPause;
     public Button backToMenuButton;
 
+    [Header("EndGame Menu")]
+    public GameObject endgamePanel; 
+    public Button restartButton;
+    public Button homeButton;
+    public Button exitButtonInEnd;
+
     [Space(10)]
     [Header("Buttons")]
     public Button startButton;
@@ -44,7 +50,10 @@ public class UIHandler : MonoBehaviour
     private void Awake()
     {
         gameHandler = GameHandler.Instance;
-
+        AssignButtonListeners();
+    }
+    private void AssignButtonListeners()
+    {
         // Assign listeners for the pause menu buttons
         if (pauseButton != null)
             pauseButton.onClick.AddListener(OnPauseButtonClick);
@@ -69,6 +78,17 @@ public class UIHandler : MonoBehaviour
             backFromInfoButton.onClick.AddListener(OnBackButtonClick);
         if (backFromSettingsButton != null)
             backFromSettingsButton.onClick.AddListener(OnBackButtonClick);
+
+        // Ensure Endgame Panel is initially hidden
+        if (endgamePanel != null)
+            endgamePanel.SetActive(false);
+        if (restartButton != null)
+            restartButton.onClick.AddListener(OnRestartButtonClick);
+        if (homeButton != null)
+            homeButton.onClick.AddListener(OnBackToMenuButtonClick);
+        if (exitButtonInEnd != null)
+            exitButtonInEnd.onClick.AddListener(OnExitButtonClick);
+
 
         // Hide the pause menu initially
         if (pauseMenuPanel != null)
@@ -141,6 +161,17 @@ public class UIHandler : MonoBehaviour
         SceneManager.LoadScene("Beach");
     }
 
+    private void OnRestartButtonClick()
+    {
+        if (gameHandler != null)
+        {
+            gameHandler.ResetGameState();
+        }
+
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private void OnSettingsButtonClick()
     {
         if (startMenuPanel != null)
@@ -172,10 +203,9 @@ public class UIHandler : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public GameObject endGamePanel;
     public void EndGameScreen()
     {
-        endGamePanel.SetActive(true);
+        endgamePanel.SetActive(true);
         levelGold.text = "Beach Gold: " +  gameHandler.currentLevelData.levelGold.ToString();
         float gold = Mathf.Lerp(0, gameHandler.goldGained, Time.deltaTime);
         goldGained.text = "Gold Gained: " + gold.ToString();

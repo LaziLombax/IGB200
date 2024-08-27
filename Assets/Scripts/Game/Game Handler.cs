@@ -45,7 +45,8 @@ public class GameHandler : MonoBehaviour
     {
         timerOn = true;
         gameEnded = false;
-        if(stageName == "Beach")
+        currentTimer = 0f;
+        if (stageName == "Beach")
         {
             GenerateBeach();
             SpawnBeachEnd();
@@ -58,6 +59,15 @@ public class GameHandler : MonoBehaviour
             }
         }
     }
+
+    public void ResetGameState()
+    {
+        timerOn = true;
+        gameEnded = false;
+        currentTimer = 0f;
+        goldGained = 0;
+    }
+
 
     private void Update()
     {
