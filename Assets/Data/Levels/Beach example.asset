@@ -32,8 +32,8 @@ MonoBehaviour:
       maxChance: 10
       chance: 10
       hazardSize: 4
-    - name: Car
-      hazardObject: {fileID: 3200868662483362531, guid: cee494e92333d994bbbeb09711efb373, type: 3}
+    - name: Rock
+      hazardObject: {fileID: 3200868662483362531, guid: e48f37719fb035840b92a6f54a360040, type: 3}
       maxChance: 10
       chance: 10
       hazardSize: 4
@@ -44,7 +44,7 @@ MonoBehaviour:
       chance: 10
       hazardSize: 4
     - name: Car
-      hazardObject: {fileID: 5984137651008251359, guid: 1d958795612c9c04a82a1cdcc72cc85c, type: 3}
+      hazardObject: {fileID: 3200868662483362531, guid: cee494e92333d994bbbeb09711efb373, type: 3}
       maxChance: 10
       chance: 10
       hazardSize: 4
