@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -25,7 +24,8 @@ public class Spawner : MonoBehaviour
     }
     private void SpawnHazzard()
     {
-        GameObject newObject = Instantiate(objectToSpawn, transform.position, transform.rotation);
+        GameObject newObject = Instantiate(objectToSpawn, new Vector3(transform.position.x, objectToSpawn.transform.position.y, transform.position.z), transform.rotation);
+        newObject.GetComponent<Rigidbody>().AddForce(transform.forward * objectSpeed, ForceMode.VelocityChange);
         Destroy(newObject,10f);
     }
 }
