@@ -27,10 +27,15 @@ public class UIHandler : MonoBehaviour
     public Button backToMenuButton;
 
     [Header("EndGame Menu")]
-    public GameObject endgamePanel; 
+    public GameObject endgamePanel;
     public Button restartButton;
     public Button homeButton;
     public Button exitButtonInEnd;
+    public Button upgradeButton;
+
+    [Header("Upgrade Menu")]
+    public GameObject upgradePanel;
+    public Button homeButtonInUpgrade;
 
     [Space(10)]
     [Header("Buttons")]
@@ -88,7 +93,10 @@ public class UIHandler : MonoBehaviour
             homeButton.onClick.AddListener(OnBackToMenuButtonClick);
         if (exitButtonInEnd != null)
             exitButtonInEnd.onClick.AddListener(OnExitButtonClick);
-
+        if (upgradeButton != null)
+            upgradeButton.onClick.AddListener(OnUpgradeButtonClick);
+        if (homeButtonInUpgrade != null)
+            homeButtonInUpgrade.onClick.AddListener(OnBackToMenuButtonClick);
 
         // Hide the pause menu initially
         if (pauseMenuPanel != null)
@@ -186,6 +194,14 @@ public class UIHandler : MonoBehaviour
             startMenuPanel.SetActive(false);
         if (infoPanel != null)
             infoPanel.SetActive(true);
+    }
+
+    private void OnUpgradeButtonClick()
+    {
+        if (endgamePanel != null)
+            endgamePanel.SetActive(false);
+        if (upgradePanel != null)
+            upgradePanel.SetActive(true);
     }
 
     private void OnBackButtonClick()
