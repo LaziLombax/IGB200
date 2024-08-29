@@ -9,7 +9,7 @@ public class BirdDive : MonoBehaviour
     private bool movingToDivePosition = true;
     public float speed = 2f; // Movement speed
 
-    void Awake()
+    void Start()
     {
         startPosition = transform.position;
         GameObject player = GameObject.FindGameObjectWithTag("Player");

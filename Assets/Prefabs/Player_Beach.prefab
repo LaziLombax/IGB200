@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6738013652250372936}
   - component: {fileID: 7803303985876971937}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,8 +182,15 @@ MonoBehaviour:
   gameHandler: {fileID: 0}
   moveSpeed: 6
   rb: {fileID: 0}
+  gotHit: 0
+  model: {fileID: 7803303985876971937}
+  state: 0
   inputHandler: {fileID: 0}
   isMoving: 0
   moveDir: {x: 0, y: 0, z: 0}
   moveTime: 4
   moveDistance: 4
+  horizontalSpaces: 0
+  rotationTime: 0
+  hitBarrier: 0
+  lastPosition: {x: 0, y: 0, z: 0}

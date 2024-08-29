@@ -6447,6 +6447,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 881547991}
     m_Modifications:
     - target: {fileID: -8404411838091709831, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: gameData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3daeaaeb13e334346a94606f3c259fc1, type: 2}
+    - target: {fileID: -8404411838091709831, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: spawnPos
       value: 
       objectReference: {fileID: 268970238}

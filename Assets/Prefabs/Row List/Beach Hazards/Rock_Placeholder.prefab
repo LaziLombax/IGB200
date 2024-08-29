@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5452652975522129536}
   - component: {fileID: 4283177478142202648}
   - component: {fileID: 618350393662486748}
+  - component: {fileID: 2365203326419066972}
   m_Layer: 0
   m_Name: Rock (1)
   m_TagString: Untagged
@@ -107,6 +108,24 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2365203326419066972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186653784181301729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 6
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1373343027774128197
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,6 +138,7 @@ GameObject:
   - component: {fileID: 5615124384775369392}
   - component: {fileID: 7321225925461583704}
   - component: {fileID: 2679035557786189890}
+  - component: {fileID: 2046534352285703900}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -214,6 +234,24 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2046534352285703900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373343027774128197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 6
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8651506129391847206
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6193251662601269317}
   - component: {fileID: -739115224356219814}
+  - component: {fileID: 6112430635335160582}
   m_Layer: 0
   m_Name: Rock_Placeholder
   m_TagString: Untagged
@@ -268,8 +307,20 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 3, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3, y: 3, z: 2}
+  m_Center: {x: 0, y: 0, z: -0.1}
+--- !u!114 &6112430635335160582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8651506129391847206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5159b35144968c4ca8651d70a6bc434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9120750791236758632
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +333,7 @@ GameObject:
   - component: {fileID: 6113285072370778748}
   - component: {fileID: 554016061008847306}
   - component: {fileID: 8537741810483024480}
+  - component: {fileID: 8798790386393773425}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -377,3 +429,21 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8798790386393773425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9120750791236758632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 6
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

@@ -15,6 +15,8 @@ public class PlayerBeach : PlayerController
     public float horizontalSpaces;
     public float rotationTime;
     bool rotating = false;
+    public bool hitBarrier;
+    public Vector3 lastPosition;
 
     private void Start()
     {
@@ -34,6 +36,7 @@ public class PlayerBeach : PlayerController
 
         if (Vector3.Distance(transform.position, moveDir) <= 0.01f)
         {
+            if (hitBarrier) hitBarrier = false; 
             rb.MovePosition(moveDir);
             isMoving = false;
         }
@@ -44,6 +47,7 @@ public class PlayerBeach : PlayerController
         
         if (inputHandler.BeachMoveForward() && !isMoving)
         {
+            lastPosition = transform.position;
             Quaternion rotation2 = Quaternion.Euler(new Vector3(0, 0, 0));
             StartCoroutine(rotateObject(gameObject, rotation2, rotationTime));
             isMoving = true;
@@ -54,7 +58,8 @@ public class PlayerBeach : PlayerController
         {
             if (moveDir.x - moveDistance < horizontalSpaces * moveDistance * -1) return;
             if (moveDir.x - moveDistance < -12.0f) return;
-            
+            lastPosition = transform.position;
+
             Quaternion rotation2 = Quaternion.Euler(new Vector3(0, -90, 0));
             if(gameObject.transform.rotation.y > 0){
                 StartCoroutine(rotateObject(gameObject, rotation2, 2 * rotationTime));
@@ -70,7 +75,8 @@ public class PlayerBeach : PlayerController
         {
             if (moveDir.x + moveDistance > horizontalSpaces * moveDistance) return;
             if (moveDir.x - moveDistance > 12.0f) return;
-            
+
+            lastPosition = transform.position;
             Quaternion rotation2 = Quaternion.Euler(new Vector3(0, 90, 0));
             if(gameObject.transform.rotation.y < 0){
                 StartCoroutine(rotateObject(gameObject, rotation2, 2 * rotationTime));

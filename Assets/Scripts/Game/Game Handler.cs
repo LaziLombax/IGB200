@@ -18,6 +18,8 @@ public class GameHandler : MonoBehaviour
     #region Game Variables
     [Header("Level Data")]
     public LevelData currentLevelData;
+    public UIHandler uiHandler;
+    public GameData gameData;
     public string stageName;
     public Transform spawnPos;
     public int initialSpawnNum;
@@ -43,6 +45,7 @@ public class GameHandler : MonoBehaviour
 
     private void Start()
     {
+        currentLevelData = gameData.currentLevel;
         timerOn = true;
         gameEnded = false;
         currentTimer = 0f;
@@ -110,17 +113,13 @@ public class GameHandler : MonoBehaviour
         timerOn = false;
         if (stageName == "Beach")
         {
-            Invoke(nameof(LoadReef), loadTimer);
+            uiHandler.isLoading = true;
+            PlayerController.Instance.GetComponent<Rigidbody>().useGravity = true;
         }
         else
         {
-            //Beat the Run
+            EndGame();
         }
-    }
-
-    public void LoadReef()
-    {
-        SceneManager.LoadScene("Reef");
     }
     public void SpawnBeachEnd()
     {

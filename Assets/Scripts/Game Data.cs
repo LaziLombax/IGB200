@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameData : MonoBehaviour
+[CreateAssetMenu(fileName = "New Save", menuName = "Game Data")]
+public class GameData : ScriptableObject
 {
     [Header("Game Data")]
     public List<LevelData> levelDatas = new List<LevelData>();

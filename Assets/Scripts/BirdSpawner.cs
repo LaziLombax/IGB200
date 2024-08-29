@@ -12,7 +12,7 @@ public class BirdSpawner : MonoBehaviour
     public float AmountToSpawn;
 
     void Start(){
-        StartCoroutine(SpawnTimer(5));
+        StartCoroutine(SpawnTimer(2));
     }
     void SpawnBird()
     {

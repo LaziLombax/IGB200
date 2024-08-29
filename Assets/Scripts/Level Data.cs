@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
@@ -22,9 +23,13 @@ public class LevelData : ScriptableObject
         public float maxChance;
         public float chance;
         public float hazardSize;
+        [TextArea(15, 20)]
+        public string description = "Hazard turtle Fact";
     }
     [Header("Level Data")]
     public string levelName;
+    [TextArea(5, 10)]
+    public string description = "Beach Description";
     public int levelGold;
     public List<StageData> stageList = new List<StageData>();
 
@@ -148,5 +153,30 @@ public class LevelData : ScriptableObject
             }
         }
         return 0;
+    }
+    public string HazardFact(string stageName, string hazardName)
+    {
+        string text = "";
+        foreach (var stage in stageList)
+        {
+            if (stageName == stage.name)
+            {
+                foreach (var hazard in stage.humanHazards)
+                {
+                    if (hazardName == hazard.name)
+                    {
+                        text = hazard.description;
+                    }
+                }
+                foreach (var hazard in stage.naturalHazards)
+                {
+                    if (hazardName == hazard.name)
+                    {
+                        text = hazard.description;
+                    }
+                }
+            }
+        }
+        return text;
     }
 }

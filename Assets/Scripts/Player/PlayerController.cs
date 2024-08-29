@@ -11,6 +11,9 @@ public abstract class PlayerController : Entity
     public float moveSpeed = 20f;
     public Rigidbody rb;
     public bool gotHit;
+    public bool isRed;
+    public float flashCount = 5f;
+    public Renderer model;
     public MovementState state;
     public enum MovementState
     {
@@ -46,13 +49,43 @@ public abstract class PlayerController : Entity
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && !gotHit)
         {
+            gameHandler.uiHandler.factToDisplay = gameHandler.currentLevelData.HazardFact(gameHandler.stageName,other.GetComponent<Info>().hazardName);
             TakeDamage(1);
-            Destroy(other.gameObject);
+            gotHit = true;
+            StartCoroutine(Flash());
         }
     }
+    private IEnumerator Flash()
+    {
+        if (model != null && gotHit)
+        {
+            Color originalColour = model.material.GetColor("_Colour");
+            float elapsedTime = 0f;
 
+            while (elapsedTime < 2f)
+            {
+                if (!isRed)
+                {
+                    isRed = true;
+                    model.material.SetColor("_Colour", Color.red);
+                }
+                else
+                {
+                    isRed = false;
+                    model.material.SetColor("_Colour", originalColour);
+                }
+                // Wait for the next flash
+                yield return new WaitForSeconds(0.2f);
+                elapsedTime += 0.2f;
+            }
+
+            // Ensure the renderer is enabled at the end
+            model.material.SetColor("_Colour", originalColour);
+            gotHit = false;
+        }
+    }
     public abstract void PlayerInput();
     public abstract void MovePlayer();
 

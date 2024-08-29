@@ -4,20 +4,26 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.PlasticSCM.Editor.WebApi;
 
 public class UIHandler : MonoBehaviour
 {
     #region UI Variables
     [Header("UI Data")]
     public GameHandler gameHandler;
+    public GameData gameData;
     public Text levelTimer;
     public Text levelGold;
     public Text goldGained;
+    public Text factText;
+    public string factToDisplay;
 
     [Header("Start Menu")]
     public GameObject startMenuPanel;
     public GameObject infoPanel;
     public GameObject settingPanel;
+    public GameObject mapPanel;
+    public GameObject levelPanel;
 
     [Header("Pause Menu")]
     public GameObject pauseMenuPanel;
@@ -32,6 +38,17 @@ public class UIHandler : MonoBehaviour
     public Button homeButton;
     public Button exitButtonInEnd;
 
+    [Header("Location Menu")]
+    public Text locationName;
+    public Button levelButton;
+    public Button levelBackButton;
+
+    [Header("Loading Menu")]
+    public GameObject loadingPanel;
+    public Slider loadSlider;
+    public bool isLoading;
+    public float alphaTimer;
+    public float progressTimer;
     [Space(10)]
     [Header("Buttons")]
     public Button startButton;
@@ -41,6 +58,7 @@ public class UIHandler : MonoBehaviour
 
     public Button backFromInfoButton;
     public Button backFromSettingsButton;
+    public Button backFromMapButton;
 
     [Header("etc.")]
     public float exampleFloat;
@@ -50,6 +68,7 @@ public class UIHandler : MonoBehaviour
     private void Awake()
     {
         gameHandler = GameHandler.Instance;
+        gameHandler.uiHandler = this;
         AssignButtonListeners();
     }
     private void AssignButtonListeners()
@@ -73,11 +92,17 @@ public class UIHandler : MonoBehaviour
             infoButton.onClick.AddListener(OnInfoButtonClick);
         if (exitButton != null)
             exitButton.onClick.AddListener(OnExitButtonClick);
+        if (levelButton != null)
+            levelButton.onClick.AddListener(OnLevelButtonClick);
 
         if (backFromInfoButton != null)
             backFromInfoButton.onClick.AddListener(OnBackButtonClick);
         if (backFromSettingsButton != null)
             backFromSettingsButton.onClick.AddListener(OnBackButtonClick);
+        if (backFromMapButton != null)
+            backFromMapButton.onClick.AddListener(OnBackButtonClick);
+        if (levelBackButton != null)
+            levelBackButton.onClick.AddListener(OnLevelBackButtonClick);
 
         // Ensure Endgame Panel is initially hidden
         if (endgamePanel != null)
@@ -98,17 +123,26 @@ public class UIHandler : MonoBehaviour
 
     private void Update()
     {
-        if (gameHandler.timerOn && levelTimer != null)
+        if (isLoading)
         {
-            float minutes = Mathf.FloorToInt(gameHandler.currentTimer / 60);
-            float seconds = Mathf.FloorToInt(gameHandler.currentTimer % 60);
+            LoadingScreen();
+        }
+        if (gameHandler != null)
+        {
+            if (levelTimer != null)
+            {
+                if (!gameHandler.timerOn) return;
+                float minutes = Mathf.FloorToInt(gameHandler.currentTimer / 60);
+                float seconds = Mathf.FloorToInt(gameHandler.currentTimer % 60);
 
-            levelTimer.text = string.Format("{0:00} : {1:00}", minutes, seconds);
+                levelTimer.text = string.Format("{0:00} : {1:00}", minutes, seconds);
+            }
+            if (gameHandler.gameEnded)
+            {
+                EndGameScreen();
+            }
         }
-        if (gameHandler.gameEnded)
-        {
-            EndGameScreen();
-        }
+        
     }
     private void OnPauseButtonClick()
     {
@@ -158,7 +192,10 @@ public class UIHandler : MonoBehaviour
 
     private void OnStartButtonClick()
     {
-        SceneManager.LoadScene("Beach");
+        if (startMenuPanel != null)
+            startMenuPanel.SetActive(false);
+        if (mapPanel != null)
+            mapPanel.SetActive(true);
     }
 
     private void OnRestartButtonClick()
@@ -187,6 +224,24 @@ public class UIHandler : MonoBehaviour
         if (infoPanel != null)
             infoPanel.SetActive(true);
     }
+    public void OnMapPinClick(string levelName)
+    {
+        gameData.SetCurrentLevel(levelName);
+        locationName.text = levelName;
+        if (levelPanel != null)
+            levelPanel.SetActive(true);
+    }
+    private void OnLevelButtonClick()
+    {
+        SceneManager.LoadScene("Beach");
+    }
+
+
+    private void OnLevelBackButtonClick()
+    {
+        if (levelPanel != null)
+            levelPanel.SetActive(false);
+    }
 
     private void OnBackButtonClick()
     {
@@ -196,6 +251,10 @@ public class UIHandler : MonoBehaviour
             infoPanel.SetActive(false);
         if (settingPanel != null)
             settingPanel.SetActive(false);
+        if (mapPanel != null)
+            mapPanel.SetActive(false);
+        if (levelPanel != null)
+            levelPanel.SetActive(false);
     }
     public void RestartLevel()
     {
@@ -209,5 +268,21 @@ public class UIHandler : MonoBehaviour
         levelGold.text = "Beach Gold: " +  gameHandler.currentLevelData.levelGold.ToString();
         float gold = Mathf.Lerp(0, gameHandler.goldGained, Time.deltaTime);
         goldGained.text = "Gold Gained: " + gold.ToString();
+        factText.text = factToDisplay;
+    }
+
+    public void LoadingScreen()
+    {
+        loadingPanel.SetActive(true);
+        alphaTimer += Time.deltaTime * 0.002f;
+        float alpha = Mathf.Lerp(0, 255, alphaTimer);
+        Debug.Log(alpha.ToString());
+        loadingPanel.GetComponent<Image>().color = new Color(255, 255, 255, alpha);
+        if (alpha >= 1)
+            progressTimer +=  Time.deltaTime * 0.5f;
+        loadSlider.value = Mathf.Lerp(0, 100, progressTimer);
+
+        if (loadSlider.value >= 100)
+            SceneManager.LoadScene("Reef");
     }
 }
