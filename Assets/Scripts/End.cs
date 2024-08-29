@@ -6,7 +6,7 @@ public class End : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<PlayerController>())
+        if (other.gameObject == GameHandler.Instance.player)
         {
             GameHandler.Instance.CompleteLevel();
         }

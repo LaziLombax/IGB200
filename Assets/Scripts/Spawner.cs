@@ -25,6 +25,7 @@ public class Spawner : MonoBehaviour
     }
     void Update()
     {
+        if(GameHandler.Instance.gameEnded) return;
         if (!Obstacles){
             if (spawnTime < 0)
             {
@@ -39,7 +40,7 @@ public class Spawner : MonoBehaviour
     }
     private void SpawnHazzard()
     {
-        GameObject newObject = Instantiate(objectToSpawn, new Vector3(transform.position.x, objectToSpawn.transform.position.y, transform.position.z), transform.rotation);
+        GameObject newObject = Instantiate(objectToSpawn, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
         newObject.GetComponent<Rigidbody>().AddForce(transform.forward * objectSpeed, ForceMode.VelocityChange);
         Destroy(newObject,10f);
     }

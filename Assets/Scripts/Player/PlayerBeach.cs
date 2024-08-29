@@ -24,6 +24,7 @@ public class PlayerBeach : PlayerController
     }
     private void FixedUpdate()
     {
+        if (gameHandler.gameEnded) return;
         if (isMoving)
         {
             MovePlayer();

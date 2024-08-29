@@ -279,6 +279,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8331075112740128606, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1483,6 +1487,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f64c848849111704084b9e1883ace66b, type: 3}
+--- !u!1 &957869621 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8331075112740128606, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+  m_PrefabInstance: {fileID: 100273675}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1900,6 +1909,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1229680116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5306177222719153706, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+  m_PrefabInstance: {fileID: 100273675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1230882820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2519,6 +2539,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 284e1507de52cb148a5aa6525bf6bda4, type: 3}
+--- !u!114 &2004629449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6696150736871430574, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+  m_PrefabInstance: {fileID: 100273675}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2109931733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2826,9 +2857,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 100273681}
     - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: upgradePanel
+      value: 
+      objectReference: {fileID: 957869621}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: restartButton
       value: 
       objectReference: {fileID: 471594986}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: upgradeButton
+      value: 
+      objectReference: {fileID: 2004629449}
     - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: pauseMenuPanel
       value: 
@@ -2849,6 +2888,10 @@ PrefabInstance:
       propertyPath: exitButtonInEndgame
       value: 
       objectReference: {fileID: 1105418014}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: homeButtonInUpgrade
+      value: 
+      objectReference: {fileID: 1229680116}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

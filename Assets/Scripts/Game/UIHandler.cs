@@ -15,6 +15,7 @@ public class UIHandler : MonoBehaviour
     public Text levelTimer;
     public Text levelGold;
     public Text goldGained;
+    public float goldCount;
     public Text factText;
     public string factToDisplay;
 
@@ -73,7 +74,8 @@ public class UIHandler : MonoBehaviour
     private void Awake()
     {
         gameHandler = GameHandler.Instance;
-        gameHandler.uiHandler = this;
+        if (gameHandler != null)
+            gameHandler.uiHandler = this;
         AssignButtonListeners();
     }
     private void AssignButtonListeners()
@@ -137,6 +139,10 @@ public class UIHandler : MonoBehaviour
         }
         if (gameHandler != null)
         {
+            if (gameHandler.gameEnded)
+            {
+                EndGameScreen();
+            }
             if (levelTimer != null)
             {
                 if (!gameHandler.timerOn) return;
@@ -144,10 +150,6 @@ public class UIHandler : MonoBehaviour
                 float seconds = Mathf.FloorToInt(gameHandler.currentTimer % 60);
 
                 levelTimer.text = string.Format("{0:00} : {1:00}", minutes, seconds);
-            }
-            if (gameHandler.gameEnded)
-            {
-                EndGameScreen();
             }
         }
         
@@ -282,8 +284,9 @@ public class UIHandler : MonoBehaviour
     {
         endgamePanel.SetActive(true);
         levelGold.text = "Beach Gold: " +  gameHandler.currentLevelData.levelGold.ToString();
-        float gold = Mathf.Lerp(0, gameHandler.goldGained, Time.deltaTime);
-        goldGained.text = "Gold Gained: " + gold.ToString();
+        goldCount += Time.deltaTime * 0.5f;
+        float gold = Mathf.Lerp(0, gameHandler.goldGained, goldCount);
+        goldGained.text = "Gold Gained: " + gold.ToString("F2");
         factText.text = factToDisplay;
     }
 
@@ -301,4 +304,6 @@ public class UIHandler : MonoBehaviour
         if (loadSlider.value >= 100)
             SceneManager.LoadScene("Reef");
     }
+
+
 }

@@ -74,14 +74,20 @@ public class GameHandler : MonoBehaviour
 
     private void Update()
     {
+        if (gameEnded) return;
         if (timerOn)
         {
             currentTimer += Time.deltaTime;
+        }
+        if (stageName == "Reef" && spawnPos.position.z < player.transform.position.z + 20)
+        {
+            SpawnHazard();
         }
     }
 
     private void FixedUpdate()
     {
+        if (gameEnded) return;
         if (reefStage != null) MoveReefStage();
     }
     private void MoveReefStage()
@@ -102,11 +108,11 @@ public class GameHandler : MonoBehaviour
 
     public void EndGame()
     {
-        currentLevelData.levelGold += Mathf.FloorToInt(currentTimer / 2);
-        goldGained = Mathf.FloorToInt(currentTimer / 2);
+        currentLevelData.levelGold += Mathf.FloorToInt(currentTimer *3);
+        goldGained = Mathf.FloorToInt(currentTimer *3);
         currentTimer = 0f;
         gameEnded = true;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
     public void CompleteLevel()
     {

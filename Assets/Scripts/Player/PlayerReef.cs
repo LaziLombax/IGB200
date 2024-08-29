@@ -13,6 +13,7 @@ public class PlayerReef : PlayerController
 
     private void FixedUpdate()
     {
+        if (gameHandler.gameEnded) return;
         MovePlayer();
         SpeedControl();
 

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Lady Musgrave Island
   m_EditorClassIdentifier: 
   levelName: Lady Musgrave Island
-  levelGold: 30
+  description: Beach Description
+  levelGold: 0
   stageList:
   - name: Beach
     naturalHazards:
@@ -22,32 +23,38 @@ MonoBehaviour:
       maxChance: 9
       chance: 9
       hazardSize: 4
+      description: Hazard turtle Fact
     - name: Dog
       hazardObject: {fileID: 3200868662483362531, guid: df372a13c12ecf64f867d55e316422a3, type: 3}
       maxChance: 7
       chance: 7
       hazardSize: 4
+      description: Hazard turtle Fact
     - name: Crab
       hazardObject: {fileID: 3146694958185421144, guid: dc57f109c01a80e4eafcd096eb8c9b7c, type: 3}
       maxChance: 6
       chance: 6
       hazardSize: 4
+      description: Hazard turtle Fact
     - name: Bird
       hazardObject: {fileID: 3146694958185421144, guid: afab4767bc4aa9343b1ee19b27e87a89, type: 3}
       maxChance: 6
       chance: 6
       hazardSize: 4
+      description: Hazard turtle Fact
     - name: Rock
       hazardObject: {fileID: 3200868662483362531, guid: e48f37719fb035840b92a6f54a360040, type: 3}
       maxChance: 10
       chance: 10
       hazardSize: 4
+      description: Hazard turtle Fact
     humanHazards:
     - name: Car
       hazardObject: {fileID: 3200868662483362531, guid: cee494e92333d994bbbeb09711efb373, type: 3}
       maxChance: 5
       chance: 5
       hazardSize: 4
+      description: Hazard turtle Fact
   - name: Reef
     naturalHazards:
     - name: Sharks
@@ -55,9 +62,17 @@ MonoBehaviour:
       maxChance: 10
       chance: 10
       hazardSize: 8
+      description: Hazard turtle Fact
+    - name: Clear
+      hazardObject: {fileID: 0}
+      maxChance: 2
+      chance: 2
+      hazardSize: 8
+      description: Hazard turtle Fact
     humanHazards:
     - name: Oil
       hazardObject: {fileID: 783753377506269430, guid: 341c2651b736cf940845736bce809b7c, type: 3}
       maxChance: 10
       chance: 10
       hazardSize: 8
+      description: Hazard turtle Fact
