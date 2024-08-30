@@ -820,6 +820,9 @@ MonoBehaviour:
   levelTimer: {fileID: 0}
   levelGold: {fileID: 0}
   goldGained: {fileID: 0}
+  goldCount: 0
+  factText: {fileID: 0}
+  factToDisplay: 
   startMenuPanel: {fileID: 1872425719}
   infoPanel: {fileID: 1273535038}
   settingPanel: {fileID: 1901691914}
@@ -834,9 +837,20 @@ MonoBehaviour:
   restartButton: {fileID: 0}
   homeButton: {fileID: 0}
   exitButtonInEnd: {fileID: 0}
+  upgradeButton: {fileID: 0}
+  upgradePanel: {fileID: 0}
+  homeButtonInUpgrade: {fileID: 0}
+  cleanProgress: {fileID: 0}
+  upgradeToHide: {fileID: 0}
+  upgradeName: 
   locationName: {fileID: 1974707972}
   levelButton: {fileID: 855013206}
   levelBackButton: {fileID: 374187465}
+  loadingPanel: {fileID: 0}
+  loadSlider: {fileID: 0}
+  isLoading: 0
+  alphaTimer: 0
+  progressTimer: 0
   startButton: {fileID: 765958698}
   settingsButton: {fileID: 589081523}
   infoButton: {fileID: 488179737}
@@ -2084,7 +2098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -187.26}
+  m_AnchoredPosition: {x: 0, y: -220}
   m_SizeDelta: {x: 0, y: 317.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1185475666
