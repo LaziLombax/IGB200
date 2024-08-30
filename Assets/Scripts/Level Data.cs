@@ -33,7 +33,7 @@ public class LevelData : ScriptableObject
     public int levelGold;
     public List<StageData> stageList = new List<StageData>();
 
-    public string CleanProgression()
+    public float CleanProgression()
     {
         float totalMaxChances = 0f;
         float totalCurrentChances = 0f;
@@ -45,7 +45,7 @@ public class LevelData : ScriptableObject
                 totalCurrentChances += hazard.chance;
             }
         }
-        return (totalCurrentChances/totalMaxChances).ToString("F1");
+        return (totalMaxChances - totalCurrentChances)/totalMaxChances;
     }
 
     public GameObject RandomHazard(string stageName)
@@ -178,5 +178,22 @@ public class LevelData : ScriptableObject
             }
         }
         return text;
+    }
+    public float UpgradeCheck(string stageName, string hazardName)
+    {
+        foreach (var stage in stageList)
+        {
+            if (stageName == stage.name)
+            {
+                foreach (var hazard in stage.humanHazards)
+                {
+                    if (hazardName == hazard.name)
+                    {
+                        return hazard.chance;
+                    }
+                }
+            }
+        }
+        return 0;
     }
 }

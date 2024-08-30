@@ -27,6 +27,7 @@ public class GameHandler : MonoBehaviour
     public bool timerOn;
     public float currentTimer;
     public float loadTimer = 3f;
+    public int currentLevelGold;
     public int goldGained;
     public bool gameEnded;
     [Space(10)]
@@ -79,7 +80,7 @@ public class GameHandler : MonoBehaviour
         {
             currentTimer += Time.deltaTime;
         }
-        if (stageName == "Reef" && spawnPos.position.z < player.transform.position.z + 20)
+        if (stageName == "Reef" && spawnPos.position.z < player.transform.position.z + 20 && spawnPos.position.z <90f)
         {
             SpawnHazard();
         }
@@ -108,8 +109,10 @@ public class GameHandler : MonoBehaviour
 
     public void EndGame()
     {
-        currentLevelData.levelGold += Mathf.FloorToInt(currentTimer *3);
         goldGained = Mathf.FloorToInt(currentTimer *3);
+        currentLevelData.levelGold += goldGained;
+
+        currentLevelGold = currentLevelData.levelGold;
         currentTimer = 0f;
         gameEnded = true;
         //Time.timeScale = 0;

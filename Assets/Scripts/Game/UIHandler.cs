@@ -43,6 +43,12 @@ public class UIHandler : MonoBehaviour
     [Header("Upgrade Menu")]
     public GameObject upgradePanel;
     public Button homeButtonInUpgrade;
+    public Slider cleanProgress;
+
+    //temp
+    public GameObject upgradeToHide;
+    public string upgradeName;
+
 
     [Header("Location Menu")]
     public Text locationName;
@@ -125,9 +131,15 @@ public class UIHandler : MonoBehaviour
         if (homeButtonInUpgrade != null)
             homeButtonInUpgrade.onClick.AddListener(OnBackToMenuButtonClick);
 
+
+        if (upgradeToHide != null)
+            homeButtonInUpgrade.onClick.AddListener(OnBackToMenuButtonClick);
+
         // Hide the pause menu initially
         if (pauseMenuPanel != null)
             pauseMenuPanel.SetActive(false);
+
+
     }
     #endregion
 
@@ -142,6 +154,8 @@ public class UIHandler : MonoBehaviour
             if (gameHandler.gameEnded)
             {
                 EndGameScreen();
+                cleanProgress.value = Mathf.Round(gameHandler.currentLevelData.CleanProgression() * 100);
+                if (gameHandler.currentLevelData.UpgradeCheck(gameHandler.stageName, upgradeName) == 0) upgradeToHide.SetActive(false);
             }
             if (levelTimer != null)
             {
@@ -156,7 +170,6 @@ public class UIHandler : MonoBehaviour
     }
     private void OnPauseButtonClick()
     {
-        gameHandler.currentLevelData.UpgradeHazard(gameHandler.stageName, "Car");
         isPaused = !isPaused;
 
         if (isPaused)
@@ -255,6 +268,7 @@ public class UIHandler : MonoBehaviour
 
     private void OnUpgradeButtonClick()
     {
+        cleanProgress.value = Mathf.Round(GameHandler.Instance.currentLevelData.CleanProgression() * 100);
         if (endgamePanel != null)
             endgamePanel.SetActive(false);
         if (upgradePanel != null)
@@ -283,10 +297,11 @@ public class UIHandler : MonoBehaviour
     public void EndGameScreen()
     {
         endgamePanel.SetActive(true);
-        levelGold.text = "Beach Gold: " +  gameHandler.currentLevelData.levelGold.ToString();
-        goldCount += Time.deltaTime * 0.5f;
+        levelGold.text = "Owned: " +  gameHandler.currentLevelData.levelGold.ToString();
+        if(goldCount <= gameHandler.goldGained)
+            goldCount += Time.deltaTime * 0.5f;
         float gold = Mathf.Lerp(0, gameHandler.goldGained, goldCount);
-        goldGained.text = "Gold Gained: " + gold.ToString("F2");
+        goldGained.text = "Gained: " + gold.ToString("F1");
         factText.text = factToDisplay;
     }
 
@@ -305,5 +320,12 @@ public class UIHandler : MonoBehaviour
             SceneManager.LoadScene("Reef");
     }
 
+    public void OnClickUpgrade(string hazardName)
+    {
+        if (GameHandler.Instance.currentLevelData.levelGold < 50) return;
+
+        GameHandler.Instance.currentLevelData.levelGold -= 50;
+        GameHandler.Instance.currentLevelData.UpgradeHazard(GameHandler.Instance.stageName, hazardName);
+    }
 
 }
