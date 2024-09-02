@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97f85f754e4a054c9da81d1ba80e662, type: 3}
+  m_Name: Audio Library
+  m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24300002, guid: 208e4233cd2e0764890874a77974ba35, type: 2}
+  myPlayerAudio:
+  - clipName: Beach Move
+    clipFile: {fileID: 8300000, guid: 8c2e584b5d11270489702262176d2696, type: 3}
+    volume: 0.506
+  myGameAudio:
+  - clipName: Game Music
+    clipFile: {fileID: 8300000, guid: 5b50a89d8b51ad146a02c4c092632c53, type: 3}
+    volume: 0.1
+  myUIAudio: []
+  myHazardAudio: []

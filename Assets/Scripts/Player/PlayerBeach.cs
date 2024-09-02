@@ -17,9 +17,11 @@ public class PlayerBeach : PlayerController
     bool rotating = false;
     public bool hitBarrier;
     public Vector3 lastPosition;
+    public AudioSource moveAudio;
 
     private void Start()
     {
+        moveAudio = gameHandler.gameAudioData.AddNewAudioSourceFromStandard("Player", gameObject, "Beach Move");
         moveDir = transform.position;
     }
     private void FixedUpdate()
@@ -53,6 +55,7 @@ public class PlayerBeach : PlayerController
             StartCoroutine(rotateObject(gameObject, rotation2, rotationTime));
             isMoving = true;
             moveDir += Vector3.forward * (moveDistance+1);
+            moveAudio.Play();
         }
 
         if (inputHandler.BeachMoveLeft() && !isMoving)
@@ -71,6 +74,7 @@ public class PlayerBeach : PlayerController
             
             isMoving = true;
             moveDir += Vector3.left * moveDistance;
+            moveAudio.Play();
         }
         if (inputHandler.BeachMoveRight() && !isMoving)
         {
@@ -87,6 +91,7 @@ public class PlayerBeach : PlayerController
             }
             isMoving = true;
             moveDir += Vector3.right * moveDistance;
+            moveAudio.Play();
         }
     }
 

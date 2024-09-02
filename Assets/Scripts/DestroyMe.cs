@@ -7,6 +7,6 @@ public class DestroyMe : MonoBehaviour
     public float check = 28f;
     private void Update()
     {
-        if (GameHandler.Instance.player.gameObject.transform.position.z > transform.position.z + 28f) Destroy(gameObject);
+        if (GameHandler.Instance.player.gameObject.transform.position.z > transform.position.z + check) Destroy(gameObject);
     }
 }

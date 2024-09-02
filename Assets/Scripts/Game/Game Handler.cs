@@ -17,6 +17,7 @@ public class GameHandler : MonoBehaviour
     }
     #region Game Variables
     [Header("Level Data")]
+    public AudioData gameAudioData;
     public LevelData currentLevelData;
     public UIHandler uiHandler;
     public GameData gameData;
@@ -43,20 +44,35 @@ public class GameHandler : MonoBehaviour
 
 
     #endregion
-
+    private void Awake()
+    {
+        if (!GameObject.FindGameObjectWithTag("Music"))
+        {
+            GameObject myMusicObject = Instantiate(new GameObject(), transform.position, transform.rotation);
+            myMusicObject.name = "GameMusic";
+            myMusicObject.tag = "Music";
+            AudioSource gameMusic = gameAudioData.AddNewAudioSourceFromStandard("Game", myMusicObject, "Game Music");
+            myMusicObject.AddComponent<DontDestroyOverScene>();
+            gameMusic.Play();
+            gameMusic.loop = true;
+        }
+    }
     private void Start()
     {
+        if (gameData == null) return;
+        
         currentLevelData = gameData.currentLevel;
         timerOn = true;
         gameEnded = false;
-        currentTimer = 0f;
         if (stageName == "Beach")
         {
+            currentTimer = 0f;
             GenerateBeach();
             SpawnBeachEnd();
         }
-        else
+        else if (stageName == "Reef")
         {
+            currentTimer = currentLevelData.currentTimer;
             for (int i = 0; i < initialSpawnNum; i++)
             {
                 SpawnHazard();
@@ -76,13 +92,17 @@ public class GameHandler : MonoBehaviour
     private void Update()
     {
         if (gameEnded) return;
+        if (gameData == null) return;
         if (timerOn)
         {
-            currentTimer += Time.deltaTime;
+           currentTimer += Time.deltaTime;
         }
-        if (stageName == "Reef" && spawnPos.position.z < player.transform.position.z + 20 && spawnPos.position.z <90f)
+        if (spawnPos != null)
         {
-            SpawnHazard();
+            if (stageName == "Reef" && spawnPos.position.z < player.transform.position.z + 20 && spawnPos.position.z < 90f)
+            {
+                SpawnHazard();
+            }
         }
     }
 
@@ -122,6 +142,7 @@ public class GameHandler : MonoBehaviour
         timerOn = false;
         if (stageName == "Beach")
         {
+            currentLevelData.currentTimer = currentTimer;
             uiHandler.isLoading = true;
             PlayerController.Instance.GetComponent<Rigidbody>().useGravity = true;
         }

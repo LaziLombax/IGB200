@@ -4,7 +4,6 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.PlasticSCM.Editor.WebApi;
 
 public class UIHandler : MonoBehaviour
 {
@@ -301,7 +300,7 @@ public class UIHandler : MonoBehaviour
         if(goldCount <= gameHandler.goldGained)
             goldCount += Time.deltaTime * 0.5f;
         float gold = Mathf.Lerp(0, gameHandler.goldGained, goldCount);
-        goldGained.text = "Gained: " + gold.ToString("F1");
+        goldGained.text = "Gained: " + gold.ToString("F0");
         factText.text = factToDisplay;
     }
 

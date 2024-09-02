@@ -31,6 +31,7 @@ public class LevelData : ScriptableObject
     [TextArea(5, 10)]
     public string description = "Beach Description";
     public int levelGold;
+    public float currentTimer;
     public List<StageData> stageList = new List<StageData>();
 
     public float CleanProgression()
