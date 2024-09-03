@@ -67,7 +67,7 @@ public class GameHandler : MonoBehaviour
         if (stageName == "Beach")
         {
             currentTimer = 0f;
-            GenerateBeach();
+            GenerateLevel();
             SpawnBeachEnd();
         }
         else if (stageName == "Reef")
@@ -99,7 +99,7 @@ public class GameHandler : MonoBehaviour
         }
         if (spawnPos != null)
         {
-            if (stageName == "Reef" && spawnPos.position.z < player.transform.position.z + 20 && spawnPos.position.z < 90f)
+            if (stageName == "Reef" && spawnPos.position.z < player.transform.position.z + 20 && spawnPos.position.z < 300f)
             {
                 SpawnHazard();
             }
@@ -119,7 +119,7 @@ public class GameHandler : MonoBehaviour
         reefRb.MovePosition(reefRb.position + screenMove);
     }
 
-    private void GenerateBeach()
+    private void GenerateLevel()
     {
         for (int i = 0; i < beachSize; i++)
         {

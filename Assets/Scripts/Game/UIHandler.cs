@@ -43,6 +43,7 @@ public class UIHandler : MonoBehaviour
     public GameObject upgradePanel;
     public Button homeButtonInUpgrade;
     public Slider cleanProgress;
+    public Text upgradeLevelGold;
 
     //temp
     public GameObject upgradeToHide;
@@ -268,6 +269,7 @@ public class UIHandler : MonoBehaviour
     private void OnUpgradeButtonClick()
     {
         cleanProgress.value = Mathf.Round(GameHandler.Instance.currentLevelData.CleanProgression() * 100);
+        upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
         if (endgamePanel != null)
             endgamePanel.SetActive(false);
         if (upgradePanel != null)
@@ -324,6 +326,7 @@ public class UIHandler : MonoBehaviour
         if (GameHandler.Instance.currentLevelData.levelGold < 50) return;
 
         GameHandler.Instance.currentLevelData.levelGold -= 50;
+        upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
         GameHandler.Instance.currentLevelData.UpgradeHazard(GameHandler.Instance.stageName, hazardName);
     }
 

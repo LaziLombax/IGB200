@@ -61,11 +61,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871982705019045202, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 871982705019045202, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 871982705019045202, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: m_LocalRotation.w
@@ -102,6 +102,14 @@ PrefabInstance:
     - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: objectDir.z
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
+      propertyPath: objectSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
+      propertyPath: isUnderWater
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: objectToSpawn
@@ -135,11 +143,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871982705019045202, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 871982705019045202, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 871982705019045202, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: m_LocalRotation.w
@@ -176,6 +184,14 @@ PrefabInstance:
     - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: objectDir.z
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
+      propertyPath: objectSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
+      propertyPath: isUnderWater
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: objectToSpawn

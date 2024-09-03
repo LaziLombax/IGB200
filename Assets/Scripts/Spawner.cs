@@ -11,6 +11,7 @@ public class Spawner : MonoBehaviour
     public float spawnTime;
     public Vector3 objectDir;
     public bool Obstacles;
+    public bool isUnderWater;
 
     // Update is called once per frame
     public List<int> ObstacleSpots = new List<int>();
@@ -40,7 +41,9 @@ public class Spawner : MonoBehaviour
     }
     private void SpawnHazzard()
     {
-        GameObject newObject = Instantiate(objectToSpawn, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+        float yOffset = 0;
+        if (isUnderWater) yOffset = Random.Range(-3, 3);
+        GameObject newObject = Instantiate(objectToSpawn, new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z), transform.rotation);
         newObject.GetComponent<Rigidbody>().AddForce(transform.forward * objectSpeed, ForceMode.VelocityChange);
         Destroy(newObject,10f);
     }
