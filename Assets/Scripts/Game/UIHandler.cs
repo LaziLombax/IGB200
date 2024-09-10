@@ -268,12 +268,13 @@ public class UIHandler : MonoBehaviour
 
     private void OnUpgradeButtonClick()
     {
-        cleanProgress.value = Mathf.Round(GameHandler.Instance.currentLevelData.CleanProgression() * 100);
-        upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
+
         if (endgamePanel != null)
             endgamePanel.SetActive(false);
         if (upgradePanel != null)
             upgradePanel.SetActive(true);
+        cleanProgress.value = Mathf.Round(GameHandler.Instance.currentLevelData.CleanProgression() * 100);
+        upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
     }
 
     private void OnBackButtonClick()
