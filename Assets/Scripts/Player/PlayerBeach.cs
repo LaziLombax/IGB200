@@ -93,6 +93,17 @@ public class PlayerBeach : PlayerController
             moveDir += Vector3.right * moveDistance;
             moveAudio.Play();
         }
+
+        if (inputHandler.BeachMoveDown() && !isMoving)
+        {
+            if(transform.position.z - 4f < 0f) return;
+            lastPosition = transform.position;
+            Quaternion rotation2 = Quaternion.Euler(new Vector3(0, 180, 0));
+            StartCoroutine(rotateObject(gameObject, rotation2, rotationTime));
+            isMoving = true;
+            moveDir += Vector3.back * (moveDistance + 1);
+            moveAudio.Play();
+        }
     }
 
 

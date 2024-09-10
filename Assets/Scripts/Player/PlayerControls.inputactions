@@ -51,6 +51,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "BeachDown",
+                    "type": "Button",
+                    "id": "bd67e884-5683-40ac-b9dc-dc562c4142e8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "89022aa3-c82d-42f6-937b-37205308b03a",
@@ -140,8 +149,30 @@
                 },
                 {
                     "name": "",
+                    "id": "294de7a1-c4ef-44e7-8fee-199359aa643b",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BeachForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b507c1d2-a50f-4b78-91fc-06581d6df416",
                     "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BeachLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd837abc-3194-4cb0-a2fc-5a6b0391a667",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -162,12 +193,45 @@
                 },
                 {
                     "name": "",
+                    "id": "bbfc2952-32e7-4195-802e-0b1a5584b31a",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BeachRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a285473a-8eb9-4b3a-861a-3a06f4bc7e09",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc5b3c4d-bf99-4298-a67e-bf843ba08ea2",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BeachDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c26aa0f-7fac-455b-9a5c-838b2eabcee6",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BeachDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

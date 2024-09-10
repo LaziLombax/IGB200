@@ -63,4 +63,12 @@ public class InputHandler : MonoBehaviour
         }
         return false;
     }
+    public bool BeachMoveDown()
+    {
+        if (playerControls.Player.BeachDown.triggered)
+        {
+            return true;
+        }
+        return false;
+    }
 }

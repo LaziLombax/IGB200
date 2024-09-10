@@ -44,6 +44,7 @@ public class UIHandler : MonoBehaviour
     public Button homeButtonInUpgrade;
     public Slider cleanProgress;
     public Text upgradeLevelGold;
+    public Button upgradeRestartButton;
 
     //temp
     public GameObject upgradeToHide;
@@ -130,6 +131,8 @@ public class UIHandler : MonoBehaviour
             upgradeButton.onClick.AddListener(OnUpgradeButtonClick);
         if (homeButtonInUpgrade != null)
             homeButtonInUpgrade.onClick.AddListener(OnBackToMenuButtonClick);
+        if (upgradeRestartButton != null)
+            upgradeRestartButton.onClick.AddListener(OnRestartButtonClick);
 
 
         if (upgradeToHide != null)
@@ -154,6 +157,8 @@ public class UIHandler : MonoBehaviour
             if (gameHandler.gameEnded)
             {
                 EndGameScreen();
+                levelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
+                upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
                 cleanProgress.value = Mathf.Round(gameHandler.currentLevelData.CleanProgression() * 100);
                 if (gameHandler.currentLevelData.UpgradeCheck(gameHandler.stageName, upgradeName) == 0) upgradeToHide.SetActive(false);
             }
@@ -299,7 +304,6 @@ public class UIHandler : MonoBehaviour
     public void EndGameScreen()
     {
         endgamePanel.SetActive(true);
-        levelGold.text = "Owned: " +  gameHandler.currentLevelData.levelGold.ToString();
         if(goldCount <= gameHandler.goldGained)
             goldCount += Time.deltaTime * 0.5f;
         float gold = Mathf.Lerp(0, gameHandler.goldGained, goldCount);
@@ -327,7 +331,6 @@ public class UIHandler : MonoBehaviour
         if (GameHandler.Instance.currentLevelData.levelGold < 50) return;
 
         GameHandler.Instance.currentLevelData.levelGold -= 50;
-        upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
         GameHandler.Instance.currentLevelData.UpgradeHazard(GameHandler.Instance.stageName, hazardName);
     }
 

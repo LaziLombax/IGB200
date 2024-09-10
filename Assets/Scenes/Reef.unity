@@ -6904,6 +6904,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8444528206289976428, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
   m_PrefabInstance: {fileID: 881944022}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &881944027 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3159400069604928610, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+  m_PrefabInstance: {fileID: 881944022}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &890329329
 GameObject:
   m_ObjectHideFlags: 0
@@ -17855,6 +17866,10 @@ PrefabInstance:
       propertyPath: homeButtonInUpgrade
       value: 
       objectReference: {fileID: 1509036458}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: upgradeRestartButton
+      value: 
+      objectReference: {fileID: 881944027}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
