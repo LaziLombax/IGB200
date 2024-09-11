@@ -26,7 +26,7 @@ MonoBehaviour:
       hazardSize: 4
       description: 
     - name: Dog
-      hazardObject: {fileID: 3200868662483362531, guid: df372a13c12ecf64f867d55e316422a3, type: 3}
+      hazardObject: {fileID: 3200868662483362531, guid: c6187b7dfb0ea19438b2277022c3fd60, type: 3}
       maxChance: 7
       chance: 7
       hazardSize: 4

@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class InputHandler : MonoBehaviour
 
 
     public PlayerControls playerControls;
+    bool speedInput;
 
     private void Awake()
     {
@@ -25,7 +28,26 @@ public class InputHandler : MonoBehaviour
             _instance = this;
         }
         playerControls = new PlayerControls();
+        //
+        playerControls.Player.SpeedUp.performed += SpeedingUp;
+        playerControls.Player.SpeedUp.canceled += StopSpeedingUp;
     }
+
+    private void StopSpeedingUp(InputAction.CallbackContext context)
+    {
+        speedInput = false;
+    }
+
+    private void SpeedingUp(InputAction.CallbackContext context)
+    {
+        speedInput = true;
+    }
+
+    public bool GetSpeedInput()
+    {
+        return speedInput;
+    }
+
     private void OnEnable()
     {
         playerControls.Enable();

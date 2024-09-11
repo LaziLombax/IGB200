@@ -50,6 +50,7 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   EndPosition: {x: 0, y: 0, z: 0}
   speed: 10
+  myIndicator: {fileID: 3321672690004837419, guid: ec20857a159bb3843bb709265af60f1d, type: 3}
 --- !u!1 &5656624042153760066
 GameObject:
   m_ObjectHideFlags: 0

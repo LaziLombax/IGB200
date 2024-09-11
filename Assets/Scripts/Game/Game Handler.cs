@@ -41,6 +41,8 @@ public class GameHandler : MonoBehaviour
     public float stageTop;
     public float stageSpeed;
     public GameObject reefStage;
+    public float speedUp;
+    public bool isSpeed;
 
 
     #endregion
@@ -113,9 +115,15 @@ public class GameHandler : MonoBehaviour
     }
     private void MoveReefStage()
     {
+        Vector3 screenMove;
         Rigidbody reefRb = reefStage.GetComponent<Rigidbody>();
-
-        Vector3 screenMove = new Vector3(0, 0, stageSpeed * Time.fixedDeltaTime);
+        if (isSpeed)
+        {
+            screenMove = new Vector3(0, 0, stageSpeed * speedUp * Time.fixedDeltaTime);
+        } else
+        {
+            screenMove = new Vector3(0, 0, stageSpeed * Time.fixedDeltaTime);
+        }
         reefRb.MovePosition(reefRb.position + screenMove);
     }
 
@@ -153,16 +161,13 @@ public class GameHandler : MonoBehaviour
     }
     public void SpawnBeachEnd()
     {
-        GameObject spawnObj = beachEnd;
-        Vector3 newPos = new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z + 4f);
-        spawnPos.position = newPos;
-        Instantiate(spawnObj, newPos, Quaternion.identity);
+        Instantiate(beachEnd, spawnPos.position, Quaternion.identity);
     }
     private void SpawnHazard()
     {
         GameObject spawnObj = currentLevelData.RandomHazard(stageName);
+        Instantiate(spawnObj, spawnPos.position, Quaternion.identity);
         Vector3 newPos = new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z + currentLevelData.HazardSize(stageName, spawnObj));
         spawnPos.position = newPos;
-        Instantiate(spawnObj, newPos, Quaternion.identity);
     }
 }

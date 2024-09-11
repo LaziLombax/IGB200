@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerReef : PlayerController
@@ -7,9 +8,6 @@ public class PlayerReef : PlayerController
     [Space(10)]
     [Header("Reef Movement Variables")]
     public Vector3 moveInput;
-    private float desiredMoveSpeed;
-    private float lastDesiredMoveSpeed;
-    private MovementState lastState;
 
     private void FixedUpdate()
     {
@@ -35,7 +33,15 @@ public class PlayerReef : PlayerController
     public override void MovePlayer()
     {
 
-        Vector3 screenMove = new Vector3(0, 0, gameHandler.stageSpeed * Time.fixedDeltaTime);
+        Vector3 screenMove;
+        if (inputHandler.GetSpeedInput())
+        {
+            screenMove = new Vector3(0, 0, gameHandler.stageSpeed * gameHandler.speedUp * Time.fixedDeltaTime);
+        }
+        else
+        {
+            screenMove = new Vector3(0, 0, gameHandler.stageSpeed * Time.fixedDeltaTime);
+        }
         rb.MovePosition(rb.position + screenMove);
         Vector3 force = moveInput * moveSpeed * 10;
         rb.AddForce(force, ForceMode.Force);
@@ -48,7 +54,14 @@ public class PlayerReef : PlayerController
         {
             playerMovement.y = 0;
         }
-
+        if (inputHandler.GetSpeedInput())
+        {
+            gameHandler.isSpeed = true;
+        }
+        else
+        {
+            gameHandler.isSpeed = false;
+        }
         moveInput = new Vector3(0f, playerMovement.y, playerMovement.x);
     }
 
