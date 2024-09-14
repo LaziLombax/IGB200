@@ -4,9 +4,12 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class UIHandler : MonoBehaviour
 {
+    public RectTransform fadeImage;
+    public float fadeSpeed = 1.0f;
     #region UI Variables
     [Header("UI Data")]
     public GameHandler gameHandler;
@@ -221,10 +224,20 @@ public class UIHandler : MonoBehaviour
     private void OnStartButtonClick()
     {
         if (startMenuPanel != null)
-            startMenuPanel.SetActive(false);
+        {
+            CanvasGroup startCanvasGroup = startMenuPanel.GetComponent<CanvasGroup>();
+            startCanvasGroup.DOFade(0, 0.5f).OnComplete(() => startMenuPanel.SetActive(false));
+        }
+
         if (mapPanel != null)
+        {
             mapPanel.SetActive(true);
+            CanvasGroup mapCanvasGroup = mapPanel.GetComponent<CanvasGroup>();
+            mapCanvasGroup.alpha = 0;  
+            mapCanvasGroup.DOFade(1, 0.5f);
+        }
     }
+
 
     private void OnRestartButtonClick()
     {
@@ -240,36 +253,141 @@ public class UIHandler : MonoBehaviour
     private void OnSettingsButtonClick()
     {
         if (startMenuPanel != null)
-            startMenuPanel.SetActive(false);
+        {
+            CanvasGroup startCanvasGroup = startMenuPanel.GetComponent<CanvasGroup>();
+            startCanvasGroup.DOFade(0, 0.5f).OnComplete(() => startMenuPanel.SetActive(false));
+        }
+
         if (settingPanel != null)
+        {
             settingPanel.SetActive(true);
+            CanvasGroup settingCanvasGroup = settingPanel.GetComponent<CanvasGroup>();
+            settingCanvasGroup.alpha = 0;
+            settingCanvasGroup.DOFade(1, 0.5f);
+        }
+    }
+
+    public void OnLevelButtonClick()
+    {
+        // Trigger the transition animation before loading the scene
+        StartFadeTransition("Beach");  // Replace "Beach" with the desired scene name
     }
 
     private void OnInfoButtonClick()
     {
         if (startMenuPanel != null)
-            startMenuPanel.SetActive(false);
+        {
+            CanvasGroup startCanvasGroup = startMenuPanel.GetComponent<CanvasGroup>();
+            startCanvasGroup.DOFade(0, 0.5f).OnComplete(() => startMenuPanel.SetActive(false));
+        }
+
         if (infoPanel != null)
+        {
             infoPanel.SetActive(true);
+            CanvasGroup infoCanvasGroup = infoPanel.GetComponent<CanvasGroup>();
+            infoCanvasGroup.alpha = 0;
+            infoCanvasGroup.DOFade(1, 0.5f);
+        }
     }
-    public void OnMapPinClick(string levelName)
+
+public void OnMapPinClick(string levelName)
+{
+    gameData.SetCurrentLevel(levelName);
+    locationName.text = levelName;
+
+    if (levelPanel != null)
     {
-        gameData.SetCurrentLevel(levelName);
-        locationName.text = levelName;
-        if (levelPanel != null)
-            levelPanel.SetActive(true);
+        levelPanel.SetActive(true);
+
+        CanvasGroup levelCanvasGroup = levelPanel.GetComponent<CanvasGroup>();
+        if (levelCanvasGroup == null)
+        {
+            levelCanvasGroup = levelPanel.AddComponent<CanvasGroup>();  
+        }
+
+        levelCanvasGroup.alpha = 0;
+
+        levelCanvasGroup.DOFade(1, 0.5f);
+
+        RectTransform levelRect = levelPanel.GetComponent<RectTransform>();
+        levelRect.anchoredPosition = new Vector2(-1000, levelRect.anchoredPosition.y); 
+        levelRect.DOAnchorPosX(0, 0.5f).SetEase(Ease.OutBack); 
     }
-    private void OnLevelButtonClick()
+}
+
+
+
+    private void StartFadeTransition(string sceneName)
     {
-        SceneManager.LoadScene("Beach");
+        List<GameObject> panelsToFade = new List<GameObject> { startMenuPanel, infoPanel, settingPanel, mapPanel, levelPanel };
+
+        foreach (GameObject panel in panelsToFade)
+        {
+            if (panel != null && panel.activeSelf)
+            {
+                CanvasGroup panelCanvasGroup = panel.GetComponent<CanvasGroup>();
+                if (panelCanvasGroup == null)
+                {
+                    panelCanvasGroup = panel.AddComponent<CanvasGroup>();
+                }
+
+                panelCanvasGroup.DOFade(0, 0.5f).OnComplete(() =>
+                {
+                    panel.SetActive(false);
+                });
+            }
+        }
+
+        DOVirtual.DelayedCall(0.5f, () =>
+        {
+            fadeImage.anchoredPosition = new Vector2(-Screen.width, 0); 
+            fadeImage.GetComponent<CanvasGroup>().alpha = 0;
+
+            float slideDuration = 3.0f; 
+            fadeImage.DOAnchorPosX(0, slideDuration).SetEase(Ease.Linear);  
+            fadeImage.GetComponent<CanvasGroup>().DOFade(1, slideDuration).SetEase(Ease.Linear);  
+            StartCoroutine(LoadSceneAsyncWithTransition(sceneName, slideDuration));
+        });
     }
+
+    private IEnumerator LoadSceneAsyncWithTransition(string sceneName, float slideDuration)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        asyncLoad.allowSceneActivation = false; 
+        while (!asyncLoad.isDone)
+        {
+            if (asyncLoad.progress >= 0.9f && slideDuration <= 0)
+            {
+                asyncLoad.allowSceneActivation = true;
+            }
+
+            slideDuration -= Time.deltaTime; 
+            yield return null; 
+        }
+    }
+
+
+
 
 
     private void OnLevelBackButtonClick()
     {
         if (levelPanel != null)
-            levelPanel.SetActive(false);
+        {
+            CanvasGroup levelCanvasGroup = levelPanel.GetComponent<CanvasGroup>();
+
+            if (levelCanvasGroup == null)
+            {
+                levelCanvasGroup = levelPanel.AddComponent<CanvasGroup>();
+            }
+
+            levelCanvasGroup.DOFade(0, 0.5f).OnComplete(() =>
+            {
+                levelPanel.SetActive(false);  // Disable the panel after fade-out completes
+            });
+        }
     }
+
 
     private void OnUpgradeButtonClick()
     {
@@ -284,17 +402,39 @@ public class UIHandler : MonoBehaviour
 
     private void OnBackButtonClick()
     {
-        if (startMenuPanel != null)
-            startMenuPanel.SetActive(true);
         if (infoPanel != null)
-            infoPanel.SetActive(false);
+        {
+            CanvasGroup infoCanvasGroup = infoPanel.GetComponent<CanvasGroup>();
+            infoCanvasGroup.DOFade(0, 0.5f).OnComplete(() => infoPanel.SetActive(false));
+        }
+
         if (settingPanel != null)
-            settingPanel.SetActive(false);
+        {
+            CanvasGroup settingCanvasGroup = settingPanel.GetComponent<CanvasGroup>();
+            settingCanvasGroup.DOFade(0, 0.5f).OnComplete(() => settingPanel.SetActive(false));
+        }
+
         if (mapPanel != null)
-            mapPanel.SetActive(false);
+        {
+            CanvasGroup mapCanvasGroup = mapPanel.GetComponent<CanvasGroup>();
+            mapCanvasGroup.DOFade(0, 0.5f).OnComplete(() => mapPanel.SetActive(false));
+        }
+
         if (levelPanel != null)
-            levelPanel.SetActive(false);
+        {
+            CanvasGroup levelCanvasGroup = levelPanel.GetComponent<CanvasGroup>();
+            levelCanvasGroup.DOFade(0, 0.5f).OnComplete(() => levelPanel.SetActive(false));
+        }
+
+        if (startMenuPanel != null)
+        {
+            startMenuPanel.SetActive(true);
+            CanvasGroup startCanvasGroup = startMenuPanel.GetComponent<CanvasGroup>();
+            startCanvasGroup.alpha = 0;
+            startCanvasGroup.DOFade(1, 0.5f);
+        }
     }
+
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
