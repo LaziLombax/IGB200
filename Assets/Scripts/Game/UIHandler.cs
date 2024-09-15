@@ -59,6 +59,11 @@ public class UIHandler : MonoBehaviour
     public Button levelButton;
     public Button levelBackButton;
 
+    [Header("Hover Interaction")]
+    public GameObject greenTrashUI;  
+    private bool isUIVisible = false;   
+    public GameObject targetObject;  
+
     [Header("Loading Menu")]
     public GameObject loadingPanel;
     public Slider loadSlider;
@@ -87,6 +92,11 @@ public class UIHandler : MonoBehaviour
         if (gameHandler != null)
             gameHandler.uiHandler = this;
         AssignButtonListeners();
+
+        if (greenTrashUI != null)
+        {
+            greenTrashUI.SetActive(false);
+        }
     }
     private void AssignButtonListeners()
     {
@@ -155,6 +165,21 @@ public class UIHandler : MonoBehaviour
         {
             LoadingScreen();
         }
+
+        if (!isUIVisible && IsMouseOverTargetObject())
+        {
+            OnMouseEnter();
+        }
+        else if (!isUIVisible && !IsMouseOverTargetObject())
+        {
+            OnMouseExit();
+        }
+
+        if (Input.GetMouseButtonDown(0) && IsMouseOverTargetObject())
+        {
+            OnMouseClick();
+        }
+
         if (gameHandler != null)
         {
             if (gameHandler.gameEnded)
@@ -176,6 +201,15 @@ public class UIHandler : MonoBehaviour
         }
         
     }
+
+    public void OnMouseEnter()
+    {
+        if (!isUIVisible && greenTrashUI != null)
+        {
+            greenTrashUI.SetActive(true);
+        }
+    }
+
     private void OnPauseButtonClick()
     {
         isPaused = !isPaused;
@@ -188,6 +222,41 @@ public class UIHandler : MonoBehaviour
         {
             ResumeGame();
         }
+    }
+
+    public void OnMouseExit()
+    {
+        if (!isUIVisible && greenTrashUI != null)
+        {
+            greenTrashUI.SetActive(false);
+        }
+    }
+
+    public void OnMouseClick()
+    {
+        if (greenTrashUI != null)
+        {
+            if (isUIVisible)
+            {
+                greenTrashUI.SetActive(false);
+                isUIVisible = false;
+            }
+            else
+            {
+                greenTrashUI.SetActive(true);
+                isUIVisible = true;
+            }
+        }
+    }
+
+    private bool IsMouseOverTargetObject()
+    {
+        if (targetObject == null) return false;
+
+        RectTransform rectTransform = targetObject.GetComponent<RectTransform>();
+        Vector2 localMousePosition = rectTransform.InverseTransformPoint(Input.mousePosition);
+
+        return rectTransform.rect.Contains(localMousePosition);
     }
 
     public void PauseGame()

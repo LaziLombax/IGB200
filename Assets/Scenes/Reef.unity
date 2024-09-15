@@ -6795,7 +6795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2398595726553346676, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2841443635788646938, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
       propertyPath: m_IsActive
@@ -12514,6 +12514,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1464355634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3782662188085256549, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+  m_PrefabInstance: {fileID: 881944022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1464355635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2398595726553346676, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
+  m_PrefabInstance: {fileID: 881944022}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1509036458 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5306177222719153706, guid: 7d7984fee08b3a24993ca634dac393f6, type: 3}
@@ -17879,9 +17889,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 665418973}
     - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: greenTrashUI
+      value: 
+      objectReference: {fileID: 1464355634}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: resumeButton
       value: 
       objectReference: {fileID: 151416729}
+    - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
+      propertyPath: targetObject
+      value: 
+      objectReference: {fileID: 1464355635}
     - target: {fileID: 7454125927417385915, guid: 07eeb8bfee64a7b418549e405a26137b, type: 3}
       propertyPath: upgradePanel
       value: 
