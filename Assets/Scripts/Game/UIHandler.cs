@@ -214,17 +214,16 @@ public class UIHandler : MonoBehaviour
 
     private void OnPauseButtonClick()
     {
-        isPaused = !isPaused;
-
-        if (isPaused)
+        if (!isPaused) // If the game is not paused, pause it
         {
             PauseGame();
         }
-        else
+        else // If the game is already paused, resume it
         {
             ResumeGame();
         }
     }
+
 
     public void OnMouseExit()
     {
@@ -264,17 +263,51 @@ public class UIHandler : MonoBehaviour
     public void PauseGame()
     {
         if (pauseMenuPanel != null)
-            pauseMenuPanel.SetActive(true); // Show the pause panel
-        Time.timeScale = 0f; // Freeze the game
+        {
+            // Get or add CanvasGroup for the pause panel
+            CanvasGroup pauseCanvasGroup = pauseMenuPanel.GetComponent<CanvasGroup>();
+            if (pauseCanvasGroup == null)
+            {
+                pauseCanvasGroup = pauseMenuPanel.AddComponent<CanvasGroup>();
+            }
+
+            pauseMenuPanel.SetActive(true);  // Show the pause menu
+
+            // Animate the fade-in of the pause menu
+            pauseCanvasGroup.alpha = 0; // Make sure it's fully transparent before animation
+            pauseCanvasGroup.DOFade(1, 0.5f).OnComplete(() =>
+            {
+                Time.timeScale = 0f;  // Freeze the game AFTER the fade-in animation completes
+                isPaused = true;      // Mark the game as paused
+            });
+        }
     }
+
 
     private void ResumeGame()
     {
         if (pauseMenuPanel != null)
-            pauseMenuPanel.SetActive(false); // Hide the pause panel
-        Time.timeScale = 1f; // Resume the game
-        isPaused = false;
+        {
+            // Get or add CanvasGroup for the pause panel
+            CanvasGroup pauseCanvasGroup = pauseMenuPanel.GetComponent<CanvasGroup>();
+            if (pauseCanvasGroup == null)
+            {
+                pauseCanvasGroup = pauseMenuPanel.AddComponent<CanvasGroup>();
+            }
+
+            // Resume the game BEFORE starting the animation
+            Time.timeScale = 1f;  // Resume the game time immediately
+            isPaused = false;     // Mark the game as no longer paused
+
+            // Fade out the pause menu
+            pauseCanvasGroup.DOFade(0, 0.5f).OnComplete(() =>
+            {
+                pauseMenuPanel.SetActive(false);  // Hide the pause panel after fade-out completes
+            });
+        }
     }
+
+
 
     public void OnExitButtonClick()
     {
@@ -340,7 +373,6 @@ public class UIHandler : MonoBehaviour
 
     public void OnLevelButtonClick()
     {
-        // Trigger the transition animation before loading the scene
         StartFadeTransition("Beach");  // Replace "Beach" with the desired scene name
     }
 
