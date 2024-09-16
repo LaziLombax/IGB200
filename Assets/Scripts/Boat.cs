@@ -50,6 +50,6 @@ public class Boat : MonoBehaviour
 
     IEnumerator HoldPlayer(){
         yield return new WaitForSeconds(HoldTime);
-        Destroy(gameObject);
+        Destroy(gameObject, 10f);
     }
 }

@@ -143,10 +143,12 @@ public class GameHandler : MonoBehaviour
         if (beatGame)
         {
             uiHandler.gameOverText.SetActive(false);
+            uiHandler.completeText.SetActive(true);
         }
         else
         {
             uiHandler.gameOverText.SetActive(true);
+            uiHandler.completeText.SetActive(false);
         }
         goldGained = Mathf.FloorToInt(currentTimer *3);
         currentLevelData.levelGold += goldGained;

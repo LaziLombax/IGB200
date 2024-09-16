@@ -23,8 +23,7 @@ public class Spawner : MonoBehaviour
                 ObstacleSpots.RemoveAt(index);
             }
         }
-        spawnTime = Random.Range(0, 3);
-        SpawnHazard();
+        spawnTime = Random.Range(0, 2);
     }
     void Update()
     {

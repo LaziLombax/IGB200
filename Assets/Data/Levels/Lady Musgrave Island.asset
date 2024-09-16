@@ -74,7 +74,7 @@ MonoBehaviour:
       description: Green Turtles will select habitats based on foraging rewards and
         predators like Tiger Sharks. Green Turtles that are in good condition, tend
         to avoid areas with sharks.
-    - name: Sharks
+    - name: Shark
       hazardObject: {fileID: 107635318230043208, guid: 0fcc4f1ad380c3f44b053dbbb40489d4, type: 3}
       maxChance: 10
       chance: 10
@@ -82,6 +82,14 @@ MonoBehaviour:
       description: Green Turtles will select habitats based on foraging rewards and
         predators like Tiger Sharks. Green Turtles that are in good condition, tend
         to avoid areas with sharks.
+    - name: Crab
+      hazardObject: {fileID: 783753377506269430, guid: fe221dc780e6dfe4bb4005fa80c7dffa, type: 3}
+      maxChance: 7
+      chance: 7
+      hazardSize: 20
+      description: To protect some turtle species, feral animals like Wild Dogs,
+        Foxes or Crabs were controlled to help increase the population of endagered
+        turtles.
     humanHazards:
     - name: Oil
       hazardObject: {fileID: 783753377506269430, guid: 341c2651b736cf940845736bce809b7c, type: 3}
@@ -91,3 +99,12 @@ MonoBehaviour:
       description: 'Oil spills will drastically damage all marine. Green Turtles
         will accidentally inhale the oil, which can permanently affect their body,
         reducing their chance of survival. '
+    - name: Net
+      hazardObject: {fileID: 0}
+      maxChance: 0
+      chance: 0
+      hazardSize: 20
+      description: 'Worldwide, hundreds of thousands of sea turtles a year are accidentally
+        caught in shrimp trawl nets, on longline hooks and in fishing gillnets. Sea
+        turtles need to reach the surface to breathe, and therefore many drown once
+        caught '
