@@ -97,7 +97,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: spawnTimer
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: objectDir.z
@@ -179,7 +179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: spawnTimer
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: objectDir.z

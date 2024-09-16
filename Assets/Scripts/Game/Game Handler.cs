@@ -43,6 +43,7 @@ public class GameHandler : MonoBehaviour
     public GameObject reefStage;
     public float speedUp;
     public bool isSpeed;
+    public GameObject decorObject;
 
 
     #endregion
@@ -77,6 +78,7 @@ public class GameHandler : MonoBehaviour
             currentTimer = currentLevelData.currentTimer;
             for (int i = 0; i < initialSpawnNum; i++)
             {
+                SpawnDecor();
                 SpawnHazard();
             }
         }
@@ -101,8 +103,9 @@ public class GameHandler : MonoBehaviour
         }
         if (spawnPos != null)
         {
-            if (stageName == "Reef" && spawnPos.position.z < player.transform.position.z + 20 && spawnPos.position.z < 300f)
+            if (stageName == "Reef" && spawnPos.position.z < player.transform.position.z + 40 && spawnPos.position.z < 300f)
             {
+                SpawnDecor();
                 SpawnHazard();
             }
         }
@@ -135,8 +138,16 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-    public void EndGame()
+    public void EndGame(bool beatGame)
     {
+        if (beatGame)
+        {
+            uiHandler.gameOverText.SetActive(false);
+        }
+        else
+        {
+            uiHandler.gameOverText.SetActive(true);
+        }
         goldGained = Mathf.FloorToInt(currentTimer *3);
         currentLevelData.levelGold += goldGained;
 
@@ -145,7 +156,7 @@ public class GameHandler : MonoBehaviour
         gameEnded = true;
         //Time.timeScale = 0;
     }
-    public void CompleteLevel()
+    public void CompleteLevel(bool beatGame)
     {
         timerOn = false;
         if (stageName == "Beach")
@@ -156,7 +167,10 @@ public class GameHandler : MonoBehaviour
         }
         else
         {
-            EndGame();
+            if (beatGame)
+            {
+                EndGame(beatGame);
+            }
         }
     }
     public void SpawnBeachEnd()
@@ -169,5 +183,9 @@ public class GameHandler : MonoBehaviour
         Instantiate(spawnObj, spawnPos.position, Quaternion.identity);
         Vector3 newPos = new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z + currentLevelData.HazardSize(stageName, spawnObj));
         spawnPos.position = newPos;
+    }
+    private void SpawnDecor()
+    {
+        Instantiate(decorObject, spawnPos.position, Quaternion.identity);
     }
 }

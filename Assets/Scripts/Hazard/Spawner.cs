@@ -24,6 +24,7 @@ public class Spawner : MonoBehaviour
             }
         }
         spawnTime = Random.Range(0, 3);
+        SpawnHazard();
     }
     void Update()
     {
@@ -32,7 +33,7 @@ public class Spawner : MonoBehaviour
             if (spawnTime < 0)
             {
                 spawnTime = spawnTimer;
-                SpawnHazzard();
+                SpawnHazard();
             }
             else
             {
@@ -40,12 +41,12 @@ public class Spawner : MonoBehaviour
             }
         }
     }
-    private void SpawnHazzard()
+    private void SpawnHazard()
     {
         float yOffset = 0;
         if (isUnderWater) yOffset = Random.Range(-3, 3);
         GameObject newObject = Instantiate(objectToSpawn, new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z), transform.rotation);
         newObject.GetComponent<Rigidbody>().AddForce(transform.forward * objectSpeed, ForceMode.VelocityChange);
-        Destroy(newObject,10f);
+        Destroy(newObject,20f);
     }
 }
