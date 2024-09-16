@@ -27,6 +27,6 @@ public abstract class Entity : MonoBehaviour
     public void Death()
     {
         // how does the entity die
-        GameHandler.Instance.EndGame();
+        GameHandler.Instance.EndGame(false);
     }
 }

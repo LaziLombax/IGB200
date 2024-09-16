@@ -41,6 +41,8 @@ public class UIHandler : MonoBehaviour
     public Button homeButton;
     public Button exitButtonInEnd;
     public Button upgradeButton;
+    public GameObject gameOverText;
+    public GameObject completeText;
 
     [Header("Upgrade Menu")]
     public GameObject upgradePanel;
