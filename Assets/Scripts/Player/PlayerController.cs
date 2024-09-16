@@ -63,6 +63,7 @@ public abstract class PlayerController : Entity
         {
             Color originalColour = model.material.GetColor("_Colour");
             float elapsedTime = 0f;
+            gameHandler.uiHandler.UpdateHealth(health);
 
             while (elapsedTime < 2f)
             {

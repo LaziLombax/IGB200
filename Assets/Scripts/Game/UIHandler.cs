@@ -81,6 +81,8 @@ public class UIHandler : MonoBehaviour
     public Button backFromSettingsButton;
     public Button backFromMapButton;
 
+    [Header("Health")]
+    public List<GameObject> healthIcons = new List<GameObject>();
     [Header("etc.")]
     public float exampleFloat;
 
@@ -543,4 +545,25 @@ public void OnMapPinClick(string levelName)
         GameHandler.Instance.currentLevelData.UpgradeHazard(GameHandler.Instance.stageName, hazardName);
     }
 
+    public void UpdateHealth(int healthcount)
+    {
+        if (healthcount == 2)
+        {
+            healthIcons[2].SetActive(false);
+            healthIcons[1].SetActive(true);
+            healthIcons[0].SetActive(true);
+        }
+        else if (healthcount == 1)
+        {
+            healthIcons[2].SetActive(false);
+            healthIcons[1].SetActive(false);
+            healthIcons[0].SetActive(true);
+        }
+        else
+        {
+            healthIcons[2].SetActive(false);
+            healthIcons[1].SetActive(false);
+            healthIcons[0].SetActive(false);
+        }
+    }
 }
