@@ -9,6 +9,8 @@ public abstract class PlayerController : Entity
     [Space(10)]
     [Header("Player Movement Variables")]
     public float moveSpeed = 20f;
+    public bool isSlowed;
+    public float slowTimer;
     public Rigidbody rb;
     public bool gotHit;
     public bool isRed;
@@ -57,6 +59,13 @@ public abstract class PlayerController : Entity
             StartCoroutine(Flash());
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Oil" && !isSlowed)
+        {
+            SlowEffect();
+        }
+    }
     private IEnumerator Flash()
     {
         if (model != null && gotHit)
@@ -90,4 +99,6 @@ public abstract class PlayerController : Entity
     public abstract void PlayerInput();
     public abstract void MovePlayer();
 
+    public abstract void SlowEffect();
+    public abstract void SlowTimer();
 }

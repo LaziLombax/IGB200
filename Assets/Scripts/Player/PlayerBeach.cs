@@ -125,4 +125,14 @@ public class PlayerBeach : PlayerController
         }
         rotating = false;
     }
+
+    public override void SlowEffect()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void SlowTimer()
+    {
+        throw new System.NotImplementedException();
+    }
 }
