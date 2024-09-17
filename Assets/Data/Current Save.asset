@@ -16,3 +16,55 @@ MonoBehaviour:
   - {fileID: 11400000, guid: af658ced7c1478b41a05e624c75f7f9f, type: 2}
   - {fileID: 11400000, guid: eb64d017ffd2c074ca61ee583c4fa763, type: 2}
   currentLevel: {fileID: 11400000, guid: af658ced7c1478b41a05e624c75f7f9f, type: 2}
+  myDialogue:
+  - callKey: Game Start
+    hasRead: 0
+    dialogueList:
+    - 'Hello, My name is Shelldon! '
+    - I'm a Green Turtle! One of 6 marine turtle species found in Australia.
+    - Unfortunatly, half of the turtle species are endangered and need your help!
+    - When you're ready, press the start button.
+  - callKey: Game Map
+    hasRead: 0
+    dialogueList:
+    - 'Welcome to Australia! '
+    - This map features various levels based on Australian locations.
+    - Above each level is your cleaning progress.
+    - When you clean more than half of the level, you will unlock a new level!
+    - But enough talking, select the first level, then jump right in!
+  - callKey: Stage Beach
+    hasRead: 0
+    dialogueList:
+    - Welcome to the first stage of every level, the beach!
+    - You goal is to move up and reach the water at the end.
+    - You can move in a grid with the WASD and arrow keys.
+    - On the top left, there is a timer and your total number of starfishes.
+    - Collect starfish throughout the stage to add to your total.
+    - Starfish are used to clean up the level later-on.
+    - On the bottom left, you can see your health as turtle eggs.
+    - Finally, if you want to take a break, just press the pause button on the top
+      right.
+  - callKey: Stage Reef
+    hasRead: 0
+    dialogueList:
+    - Welcome to the final stage of every level, the reef!
+    - You goal is to reach the next beach to the right.
+    - You can move around the screen with WASD and arrow keys.
+    - 'If you are feeling risky, you can swim faster by pressing SPACE.  '
+  - callKey: End Screen
+    hasRead: 0
+    dialogueList:
+    - Oh no!
+    - Don't worry, you can always try again!
+    - 'Welcome to the end screen! '
+    - You can find information on the hazard you recently encountered here.
+    - If you beat the level under a minute, you will be rewarded with extra starfishes.
+    - You can open the upgrades menu to use your starfishes to clean-up the level.
+    - So, you wanna try again? Or see some upgrades?
+  - callKey: Upgrade Screen
+    hasRead: 0
+    dialogueList:
+    - Welcome to the clean-up crew!
+    - Here, you can trade your starfishes to help remove man made hazards.
+    - The more you clean, the chances of seeing the hazard will lower!
+    - Once you've fully cleaned the hazard, the hazard won't appear in the level.

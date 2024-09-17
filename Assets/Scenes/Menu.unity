@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 408208326}
   - component: {fileID: 408208325}
   m_Layer: 5
-  m_Name: progress
+  m_Name: Lady 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -669,16 +669,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408208323}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1943632431}
+  m_Children:
+  - {fileID: 1943632431}
+  m_Father: {fileID: 1913974743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 65.39}
+  m_AnchoredPosition: {x: 345.8, y: 199.89}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &408208325
@@ -714,7 +715,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lady Musgrave Island
+  m_Text: Lady Musgrave Island (Tutorial)
 --- !u!222 &408208326
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -952,7 +953,12 @@ MonoBehaviour:
   backFromSettingsButton: {fileID: 911591173}
   backFromMapButton: {fileID: 1122020448}
   healthIcons: []
-  exampleFloat: 0
+  levelUpto: 0
+  dialogueText: {fileID: 2127803056}
+  dialogueBox: {fileID: 2127803054}
+  textIndex: 0
+  textSpeed: 0.05
+  currentDialogueKey: 
 --- !u!114 &472143239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1717,6 +1723,7 @@ RectTransform:
   - {fileID: 1901691915}
   - {fileID: 1499412022}
   - {fileID: 1643063341}
+  - {fileID: 2127803055}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2188,7 +2195,7 @@ GameObject:
   - component: {fileID: 916549061}
   - component: {fileID: 916549060}
   m_Layer: 5
-  m_Name: Tutorial hard
+  m_Name: Pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2205,13 +2212,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1410263880}
-  m_Father: {fileID: 1913974743}
+  m_Children: []
+  m_Father: {fileID: 1410263880}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -295, y: 244}
+  m_AnchoredPosition: {x: 0, y: -60}
   m_SizeDelta: {x: 60, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &916549060
@@ -2720,7 +2726,7 @@ GameObject:
   - component: {fileID: 1410263882}
   - component: {fileID: 1410263881}
   m_Layer: 5
-  m_Name: progress
+  m_Name: Bribie 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2737,12 +2743,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 916549059}
+  m_Children:
+  - {fileID: 916549059}
+  m_Father: {fileID: 1913974743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 60}
+  m_AnchoredPosition: {x: -295, y: 304}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1410263881
@@ -2778,7 +2785,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lady Musgrave Island 2
+  m_Text: Bribie Island (Level 1)
 --- !u!222 &1410263882
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3596,8 +3603,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1943632431}
-  - {fileID: 916549059}
+  - {fileID: 408208324}
+  - {fileID: 1410263880}
   m_Father: {fileID: 1499412022}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3656,7 +3663,7 @@ GameObject:
   - component: {fileID: 1943632433}
   - component: {fileID: 1943632432}
   m_Layer: 5
-  m_Name: Tutorial
+  m_Name: Pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3673,13 +3680,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 408208324}
-  m_Father: {fileID: 1913974743}
+  m_Children: []
+  m_Father: {fileID: 408208324}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 345.8, y: 134.5}
+  m_AnchoredPosition: {x: 0, y: -65.389984}
   m_SizeDelta: {x: 60, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1943632432
@@ -4202,6 +4208,124 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2123892350}
   m_CullTransparentMesh: 1
+--- !u!1001 &2127803053
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 727688561}
+    m_Modifications:
+    - target: {fileID: 931177713500817178, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_Name
+      value: Dialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+--- !u!1 &2127803054 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 931177713500817178, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+  m_PrefabInstance: {fileID: 2127803053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &2127803055 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7815477261855419975, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+  m_PrefabInstance: {fileID: 2127803053}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2127803056 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3337725135238646475, guid: 9fc3cf8b1d265a143a7135bb8ad3056d, type: 3}
+  m_PrefabInstance: {fileID: 2127803053}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2144007123
 GameObject:
   m_ObjectHideFlags: 0

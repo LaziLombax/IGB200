@@ -88,12 +88,13 @@ public class UIHandler : MonoBehaviour
     [Header("Health")]
     public List<GameObject> healthIcons = new List<GameObject>();
     [Header("etc.")]
-    public float exampleFloat;
+    public int levelUpto;
 
     private bool isPaused = false;
 
     private void Awake()
     {
+        levelUpto = 0;
         gameHandler = GameHandler.Instance;
         if (gameHandler != null)
             gameHandler.uiHandler = this;
@@ -107,9 +108,17 @@ public class UIHandler : MonoBehaviour
         {
             for (int i = 0; i < progressList.Count; i++)
             {
-                if(progressList[i].text == gameData.levelDatas[i].levelName)
+                if (gameData.levelDatas[i].CleanProgression() * 100 > 50)
+                    levelUpto++;
+                Debug.Log(gameData.levelDatas[i].levelNum.ToString());
+                if (progressList[i].text == gameData.levelDatas[i].levelName && gameData.levelDatas[i].levelNum <= levelUpto)
                 {
+                    progressList[i].gameObject.SetActive(true);
                     progressList[i].text = (gameData.levelDatas[i].CleanProgression() * 100).ToString("F0") + "%";
+                }
+                else
+                {
+                    progressList[i].gameObject.SetActive(false);
                 }
             }
         }
@@ -216,7 +225,42 @@ public class UIHandler : MonoBehaviour
                 levelTimer.text = string.Format("{0:00} : {1:00}", minutes, seconds);
             }
         }
-        
+
+        if (dialogueBox.activeInHierarchy && Input.GetMouseButtonDown(0))
+        {
+            if (dialogueText.text == gameData.ReturnCurrentIndex(currentDialogueKey, textIndex))
+            {
+                NextLine();
+            }
+            else 
+            {
+                StopAllCoroutines();
+                dialogueText.text = gameData.ReturnCurrentIndex(currentDialogueKey, textIndex);
+            }
+
+        }
+    }
+
+    private void Start()
+    {
+        if (!gameData.CheckRead("Game Start"))
+        {
+            StartDialogue("Game Start");
+        }
+        if (gameHandler.stageName == "Beach")
+        {
+            if (!gameData.CheckRead("Stage Beach"))
+            {
+                StartDialogue("Stage Beach");
+            }
+        }
+        if (gameHandler.stageName == "Reef")
+        {
+            if (!gameData.CheckRead("Stage Reef"))
+            {
+                StartDialogue("Stage Reef");
+            }
+        }
     }
 
     public void OnMouseEnter()
@@ -350,6 +394,10 @@ public class UIHandler : MonoBehaviour
 
         if (mapPanel != null)
         {
+            if (!gameData.CheckRead("Game Map"))
+            {
+                StartDialogue("Game Map");
+            }
             mapPanel.SetActive(true);
             CanvasGroup mapCanvasGroup = mapPanel.GetComponent<CanvasGroup>();
             mapCanvasGroup.alpha = 0;  
@@ -514,6 +562,10 @@ public void OnMapPinClick(string levelName)
             endgamePanel.SetActive(false);
         if (upgradePanel != null)
             upgradePanel.SetActive(true);
+        if (!gameData.CheckRead("Upgrade Screen"))
+        {
+            StartDialogue("Upgrade Screen");
+        }
         cleanProgress.value = Mathf.Round(GameHandler.Instance.currentLevelData.CleanProgression() * 100);
         upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
     }
@@ -561,6 +613,10 @@ public void OnMapPinClick(string levelName)
 
     public void EndGameScreen()
     {
+        if (!gameData.CheckRead("End Screen"))
+        {
+            StartDialogue("End Screen");
+        }
         endgamePanel.SetActive(true);
         if(goldCount <= gameHandler.goldGained)
             goldCount += Time.deltaTime * 0.5f;
@@ -613,4 +669,54 @@ public void OnMapPinClick(string levelName)
             healthIcons[0].SetActive(false);
         }
     }
+
+    #region Dialogue
+    [Header("Dialogue")]
+    public Text dialogueText;
+    public GameObject dialogueBox;
+    public int textIndex;
+    public float textSpeed;
+    public string currentDialogueKey;
+
+    public void StartDialogue(string callKey)
+    {
+        dialogueBox.SetActive(true);
+        if (gameHandler != null)
+            if (gameHandler.timerOn)
+                gameHandler.timerOn = false;
+        textIndex = 0;
+        dialogueText.text = string.Empty;
+        isPaused = true;
+        currentDialogueKey = callKey;
+        StartCoroutine(TypeLine());
+    }
+
+    IEnumerator TypeLine()
+    {
+        foreach (char c in gameData.GetDialogue(currentDialogueKey, textIndex).ToCharArray())
+        {
+            dialogueText.text += c;
+            yield return new WaitForSeconds(textSpeed);
+        }
+    }
+    
+    void NextLine()
+    {
+        if (textIndex < gameData.GetNumberOfLines(currentDialogueKey) - 1)
+        {
+            textIndex++;
+            dialogueText.text = string.Empty;
+            StartCoroutine(TypeLine());
+        }
+        else
+        {
+            if (gameHandler != null)
+                if (!gameHandler.timerOn)
+                    gameHandler.timerOn = true;
+            isPaused = false;
+            gameData.ReadDialogue(currentDialogueKey);
+            dialogueBox.SetActive(false);
+        }
+    }
+    #endregion
 }

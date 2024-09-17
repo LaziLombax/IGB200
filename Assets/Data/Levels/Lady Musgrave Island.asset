@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f8a4ca9042c4d49af7a5a5f7b0da19, type: 3}
   m_Name: Lady Musgrave Island
   m_EditorClassIdentifier: 
-  levelName: Lady Musgrave Island
+  levelName: Lady Musgrave Island (Tutorial)
+  levelNum: 0
   description: Beach Description
   levelGold: 0
   currentTimer: 0
@@ -21,8 +22,8 @@ MonoBehaviour:
     naturalHazards:
     - name: Safe
       hazardObject: {fileID: 5984137651008251359, guid: 1d958795612c9c04a82a1cdcc72cc85c, type: 3}
-      maxChance: 5
-      chance: 5
+      maxChance: 50
+      chance: 50
       hazardSize: 4
       description: 
     - name: Dog

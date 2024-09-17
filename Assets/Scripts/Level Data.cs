@@ -28,6 +28,7 @@ public class LevelData : ScriptableObject
     }
     [Header("Level Data")]
     public string levelName;
+    public int levelNum;
     [TextArea(5, 10)]
     public string description = "Beach Description";
     public int levelGold;
