@@ -10,7 +10,7 @@ public class Barrier : MonoBehaviour
         {
             PlayerBeach player = other.gameObject.GetComponent<PlayerBeach>();
             player.hitBarrier = true;
-            player.moveDir = player.lastPosition;
+            player.inputOrder[0] = player.lastPosition;
         }
     }
 }
