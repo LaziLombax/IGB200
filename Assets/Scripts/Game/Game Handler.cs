@@ -150,7 +150,7 @@ public class GameHandler : MonoBehaviour
             uiHandler.gameOverText.SetActive(true);
             uiHandler.completeText.SetActive(false);
         }
-        goldGained = Mathf.FloorToInt(currentTimer *3);
+        goldGained += Mathf.FloorToInt(currentTimer *3);
         currentLevelData.levelGold += goldGained;
 
         currentLevelGold = currentLevelData.levelGold;

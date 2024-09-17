@@ -20,6 +20,7 @@ public class UIHandler : MonoBehaviour
     public float goldCount;
     public Text factText;
     public string factToDisplay;
+    public Text goldDisplay;
 
     [Header("Start Menu")]
     public GameObject startMenuPanel;
@@ -60,6 +61,7 @@ public class UIHandler : MonoBehaviour
     public Text locationName;
     public Button levelButton;
     public Button levelBackButton;
+    public List<Text> progressList = new List<Text>();
 
     [Header("Hover Interaction")]
     public GameObject greenTrashUI;  
@@ -100,6 +102,16 @@ public class UIHandler : MonoBehaviour
         if (greenTrashUI != null)
         {
             greenTrashUI.SetActive(false);
+        }
+        if(progressList.Count > 0)
+        {
+            for (int i = 0; i < progressList.Count; i++)
+            {
+                if(progressList[i].text == gameData.levelDatas[i].levelName)
+                {
+                    progressList[i].text = (gameData.levelDatas[i].CleanProgression() * 100).ToString("F0") + "%";
+                }
+            }
         }
     }
     private void AssignButtonListeners()
@@ -183,7 +195,8 @@ public class UIHandler : MonoBehaviour
         {
             OnMouseClick();
         }
-
+        if(goldDisplay != null)
+            goldDisplay.text = GameHandler.Instance.currentLevelData.levelGold.ToString();
         if (gameHandler != null)
         {
             if (gameHandler.gameEnded)
@@ -448,7 +461,7 @@ public void OnMapPinClick(string levelName)
             fadeImage.anchoredPosition = new Vector2(-Screen.width, 0); 
             fadeImage.GetComponent<CanvasGroup>().alpha = 0;
 
-            float slideDuration = 3.0f; 
+            float slideDuration = 0.5f; 
             fadeImage.DOAnchorPosX(0, slideDuration).SetEase(Ease.Linear);  
             fadeImage.GetComponent<CanvasGroup>().DOFade(1, slideDuration).SetEase(Ease.Linear);  
             StartCoroutine(LoadSceneAsyncWithTransition(sceneName, slideDuration));
@@ -542,7 +555,7 @@ public void OnMapPinClick(string levelName)
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Beach");
         Time.timeScale = 1;
     }
 
