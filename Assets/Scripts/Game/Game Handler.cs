@@ -65,7 +65,6 @@ public class GameHandler : MonoBehaviour
         if (gameData == null) return;
         
         currentLevelData = gameData.currentLevel;
-        timerOn = true;
         gameEnded = false;
         if (stageName == "Beach")
         {
@@ -114,7 +113,7 @@ public class GameHandler : MonoBehaviour
     private void FixedUpdate()
     {
         if (gameEnded) return;
-        if (reefStage != null) MoveReefStage();
+        if (reefStage != null && timerOn) MoveReefStage();
     }
     private void MoveReefStage()
     {
@@ -144,21 +143,25 @@ public class GameHandler : MonoBehaviour
         {
             uiHandler.gameOverText.SetActive(false);
             uiHandler.completeText.SetActive(true);
+            uiHandler.CheckWinDialogue();
+            if (currentTimer < 90)
+            {
+                goldGained += Mathf.FloorToInt((90 - currentTimer) * 5);
+                currentLevelData.levelGold += goldGained;
+            }
         }
         else
         {
             uiHandler.gameOverText.SetActive(true);
             uiHandler.completeText.SetActive(false);
-        }
-        if (currentTimer < 60)
-        {
-            goldGained += Mathf.FloorToInt((60 - currentTimer) * 5);
-            currentLevelData.levelGold += goldGained;
+            uiHandler.CheckLoseDialogue();
         }
 
+        timerOn = false;
         currentLevelGold = currentLevelData.levelGold;
         currentTimer = 0f;
         gameEnded = true;
+        uiHandler.EndGameScreen();
         //Time.timeScale = 0;
     }
     public void CompleteLevel(bool beatGame)
@@ -174,6 +177,7 @@ public class GameHandler : MonoBehaviour
         {
             if (beatGame)
             {
+                
                 EndGame(beatGame);
             }
         }

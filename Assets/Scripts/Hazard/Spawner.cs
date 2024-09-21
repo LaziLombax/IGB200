@@ -28,6 +28,7 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         if(GameHandler.Instance.gameEnded) return;
+        if (!GameHandler.Instance.timerOn) return;
         if (!Obstacles){
             if (spawnTime < 0)
             {

@@ -35,6 +35,8 @@ public class UIHandler : MonoBehaviour
     public Button resumeButton;
     public Button exitButtonInPause;
     public Button backToMenuButton;
+    public bool canPause = true;
+    public bool canResume = false;
 
     [Header("EndGame Menu")]
     public GameObject endgamePanel;
@@ -90,7 +92,7 @@ public class UIHandler : MonoBehaviour
     [Header("etc.")]
     public int levelUpto;
 
-    private bool isPaused = false;
+    public bool isPaused = false;
 
     private void Awake()
     {
@@ -100,6 +102,7 @@ public class UIHandler : MonoBehaviour
             gameHandler.uiHandler = this;
         AssignButtonListeners();
 
+        
         if (greenTrashUI != null)
         {
             greenTrashUI.SetActive(false);
@@ -186,6 +189,27 @@ public class UIHandler : MonoBehaviour
 
     private void Update()
     {
+        if (isPaused)
+        {
+            GameHandler.Instance.timerOn = false;
+        }
+        else
+        {
+            GameHandler.Instance.timerOn = true;
+        }
+        if (dialogueBox.activeInHierarchy && InputHandler.Instance.LMBDialogue())
+        {
+            if (dialogueText.text == gameData.ReturnCurrentIndex(currentDialogueKey, textIndex))
+            {
+                NextLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                dialogueText.text = gameData.ReturnCurrentIndex(currentDialogueKey, textIndex);
+            }
+
+        }
         if (isLoading)
         {
             LoadingScreen();
@@ -206,11 +230,17 @@ public class UIHandler : MonoBehaviour
         }
         if(goldDisplay != null)
             goldDisplay.text = GameHandler.Instance.currentLevelData.levelGold.ToString();
+        if (endgamePanel.activeInHierarchy)
+        {
+            if (goldCount <= gameHandler.goldGained)
+                goldCount += Time.deltaTime * 0.5f;
+            float gold = Mathf.Lerp(0, gameHandler.goldGained, goldCount);
+            goldGained.text = "Gained: " + gold.ToString("F0");
+        }
         if (gameHandler != null)
         {
             if (gameHandler.gameEnded)
             {
-                EndGameScreen();
                 levelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
                 upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
                 cleanProgress.value = Mathf.Round(gameHandler.currentLevelData.CleanProgression() * 100);
@@ -224,20 +254,6 @@ public class UIHandler : MonoBehaviour
 
                 levelTimer.text = string.Format("{0:00} : {1:00}", minutes, seconds);
             }
-        }
-
-        if (dialogueBox.activeInHierarchy && Input.GetMouseButtonDown(0))
-        {
-            if (dialogueText.text == gameData.ReturnCurrentIndex(currentDialogueKey, textIndex))
-            {
-                NextLine();
-            }
-            else 
-            {
-                StopAllCoroutines();
-                dialogueText.text = gameData.ReturnCurrentIndex(currentDialogueKey, textIndex);
-            }
-
         }
     }
 
@@ -273,12 +289,13 @@ public class UIHandler : MonoBehaviour
 
     private void OnPauseButtonClick()
     {
-        if (!isPaused) // If the game is not paused, pause it
+        if (!isPaused && canPause) // If the game is not paused, pause it
         {
             PauseGame();
         }
-        else // If the game is already paused, resume it
+        else if (canResume)
         {
+            // If the game is already paused, resume it
             ResumeGame();
         }
     }
@@ -323,6 +340,7 @@ public class UIHandler : MonoBehaviour
     {
         if (pauseMenuPanel != null)
         {
+            canPause = false;
             // Get or add CanvasGroup for the pause panel
             CanvasGroup pauseCanvasGroup = pauseMenuPanel.GetComponent<CanvasGroup>();
             if (pauseCanvasGroup == null)
@@ -334,10 +352,11 @@ public class UIHandler : MonoBehaviour
 
             // Animate the fade-in of the pause menu
             pauseCanvasGroup.alpha = 0; // Make sure it's fully transparent before animation
-            pauseCanvasGroup.DOFade(1, 0.5f).OnComplete(() =>
+            pauseCanvasGroup.DOFade(1, 0.2f).OnComplete(() =>
             {
                 Time.timeScale = 0f;  // Freeze the game AFTER the fade-in animation completes
                 isPaused = true;      // Mark the game as paused
+                canResume = true;
             });
         }
     }
@@ -359,9 +378,11 @@ public class UIHandler : MonoBehaviour
             isPaused = false;     // Mark the game as no longer paused
 
             // Fade out the pause menu
-            pauseCanvasGroup.DOFade(0, 0.5f).OnComplete(() =>
+            pauseCanvasGroup.DOFade(0, 0.2f).OnComplete(() =>
             {
                 pauseMenuPanel.SetActive(false);  // Hide the pause panel after fade-out completes
+                canPause = true;
+                canResume = false;
             });
         }
     }
@@ -613,18 +634,25 @@ public void OnMapPinClick(string levelName)
 
     public void EndGameScreen()
     {
-        if (!gameData.CheckRead("End Screen"))
-        {
-            StartDialogue("End Screen");
-        }
         endgamePanel.SetActive(true);
-        if(goldCount <= gameHandler.goldGained)
-            goldCount += Time.deltaTime * 0.5f;
-        float gold = Mathf.Lerp(0, gameHandler.goldGained, goldCount);
-        goldGained.text = "Gained: " + gold.ToString("F0");
+        isPaused = true;
         factText.text = factToDisplay;
     }
 
+    public void CheckLoseDialogue()
+    {
+        if (!gameData.CheckRead("Lose Screen"))
+        {
+            StartDialogue("Lose Screen");
+        }
+    }
+    public void CheckWinDialogue()
+    {
+        if (!gameData.CheckRead("Win Screen"))
+        {
+            StartDialogue("Win Screen");
+        }
+    }
     public void LoadingScreen()
     {
         loadingPanel.SetActive(true);
@@ -716,6 +744,8 @@ public void OnMapPinClick(string levelName)
             isPaused = false;
             gameData.ReadDialogue(currentDialogueKey);
             dialogueBox.SetActive(false);
+            if (endgamePanel.activeInHierarchy && !gameData.CheckRead("End Explain"))
+                StartDialogue("End Explain");
         }
     }
     #endregion

@@ -26,6 +26,7 @@ public class BoatSpawner : MonoBehaviour
     }
 
     public void SpawnBoat(){
+        if (!GameHandler.Instance.timerOn) return;
         GameObject newBoat = Instantiate(Boat, new Vector3(gameObject.transform.position.x, 8.0f, gameObject.transform.position.z), gameObject.transform.rotation);
         newBoat.GetComponent<Boat>().Player = gameObject.transform.parent.gameObject;
     }

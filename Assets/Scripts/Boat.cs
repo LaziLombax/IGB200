@@ -24,7 +24,9 @@ public class Boat : MonoBehaviour
         newNet = Instantiate(Net, NetSpot, Net.transform.rotation);
         newNet.transform.parent = gameObject.transform;
     }
-    void Update(){
+    void Update()
+    {
+        if (!GameHandler.Instance.timerOn) return;
         if (!positionreached){
             transform.position = Vector3.MoveTowards(transform.position, TargetSpot, (BoatSpeed * Time.deltaTime));
             if (Vector3.Distance(transform.position, TargetSpot) < 0.001f){

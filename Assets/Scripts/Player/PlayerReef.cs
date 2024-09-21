@@ -15,6 +15,7 @@ public class PlayerReef : PlayerController
     private void FixedUpdate()
     {
         if (gameHandler.gameEnded) return;
+        if (!gameHandler.timerOn) return;
         MovePlayer();
         SpeedControl();
 

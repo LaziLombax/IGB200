@@ -19,6 +19,7 @@ public class CrabMove : MonoBehaviour
 
     void Update()
     {
+        if (!GameHandler.Instance.timerOn) return;
         movementTimer += Time.deltaTime * moveSpeed; // Increment timer based on speed
 
         // Calculate the new position using a sine wave function

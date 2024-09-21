@@ -37,6 +37,7 @@ public class ChaseNav : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameHandler.Instance.timerOn) return;
         if (myState == ChaseState.chase && target != null)
         {
             indicator.SetActive(true);

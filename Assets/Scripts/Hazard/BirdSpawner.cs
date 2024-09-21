@@ -16,6 +16,7 @@ public class BirdSpawner : MonoBehaviour
     }
     void SpawnBird()
     {
+        if (!GameHandler.Instance.timerOn) return;
         float xspawn = 0;
         float roty = 0;
         float random = Random.Range(0,1);

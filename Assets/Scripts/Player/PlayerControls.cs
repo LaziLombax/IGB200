@@ -89,6 +89,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LMB"",
+                    ""type"": ""Button"",
+                    ""id"": ""088b82fa-0b93-465f-b7c4-b716e06f86f2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -256,6 +265,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""BeachDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96d84e31-b1e2-4683-afe4-fce6065af6aa"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LMB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -271,6 +291,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_BeachRight = m_Player.FindAction("BeachRight", throwIfNotFound: true);
         m_Player_BeachDown = m_Player.FindAction("BeachDown", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_LMB = m_Player.FindAction("LMB", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,6 +360,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_BeachRight;
     private readonly InputAction m_Player_BeachDown;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_LMB;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -350,6 +372,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @BeachRight => m_Wrapper.m_Player_BeachRight;
         public InputAction @BeachDown => m_Wrapper.m_Player_BeachDown;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @LMB => m_Wrapper.m_Player_LMB;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -380,6 +403,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @LMB.started += instance.OnLMB;
+            @LMB.performed += instance.OnLMB;
+            @LMB.canceled += instance.OnLMB;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -405,6 +431,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @LMB.started -= instance.OnLMB;
+            @LMB.performed -= instance.OnLMB;
+            @LMB.canceled -= instance.OnLMB;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -431,5 +460,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnBeachRight(InputAction.CallbackContext context);
         void OnBeachDown(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnLMB(InputAction.CallbackContext context);
     }
 }

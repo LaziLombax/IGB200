@@ -93,4 +93,12 @@ public class InputHandler : MonoBehaviour
         }
         return false;
     }
+    public bool LMBDialogue()
+    {
+        if (playerControls.Player.LMB.triggered)
+        {
+            return true;
+        }
+        return false;
+    }
 }

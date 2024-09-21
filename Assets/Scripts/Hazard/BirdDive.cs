@@ -30,7 +30,7 @@ public class BirdDive : MonoBehaviour
             float distanceCovered = (Time.time - startTime) * speed;
             float fractionOfJourney = distanceCovered / journeyLength;
 
-            if (movingToDivePosition)
+            if (movingToDivePosition && GameHandler.Instance.timerOn)
             {
                 transform.position = Vector3.Lerp(startPosition, DivePosition, fractionOfJourney);
                 Vector3 targetDirection = DivePosition - transform.position;
@@ -44,7 +44,7 @@ public class BirdDive : MonoBehaviour
                     journeyLength = Vector3.Distance(DivePosition, startPosition);
                 }
             }
-            else
+            else if (GameHandler.Instance.timerOn)
             {
                 transform.position = Vector3.Lerp(DivePosition, EndPosition, fractionOfJourney);
                 Vector3 targetDirection = DivePosition - transform.position;
