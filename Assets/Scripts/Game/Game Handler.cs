@@ -47,7 +47,7 @@ public class GameHandler : MonoBehaviour
 
 
     #endregion
-    private void Awake()
+    private void Start()
     {
         if (!GameObject.FindGameObjectWithTag("Music"))
         {
@@ -59,9 +59,6 @@ public class GameHandler : MonoBehaviour
             gameMusic.Play();
             gameMusic.loop = true;
         }
-    }
-    private void Start()
-    {
         if (gameData == null) return;
         
         currentLevelData = gameData.currentLevel;

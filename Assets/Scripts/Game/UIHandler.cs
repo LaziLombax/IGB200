@@ -103,28 +103,6 @@ public class UIHandler : MonoBehaviour
         AssignButtonListeners();
 
         
-        if (greenTrashUI != null)
-        {
-            greenTrashUI.SetActive(false);
-        }
-        if(progressList.Count > 0)
-        {
-            for (int i = 0; i < progressList.Count; i++)
-            {
-                if (gameData.levelDatas[i].CleanProgression() * 100 > 50)
-                    levelUpto++;
-                Debug.Log(gameData.levelDatas[i].levelNum.ToString());
-                if (progressList[i].text == gameData.levelDatas[i].levelName && gameData.levelDatas[i].levelNum <= levelUpto)
-                {
-                    progressList[i].gameObject.SetActive(true);
-                    progressList[i].text = (gameData.levelDatas[i].CleanProgression() * 100).ToString("F0") + "%";
-                }
-                else
-                {
-                    progressList[i].gameObject.SetActive(false);
-                }
-            }
-        }
     }
     private void AssignButtonListeners()
     {
@@ -259,6 +237,28 @@ public class UIHandler : MonoBehaviour
 
     private void Start()
     {
+        if (greenTrashUI != null)
+        {
+            greenTrashUI.SetActive(false);
+        }
+        if (progressList.Count > 0)
+        {
+            for (int i = 0; i < progressList.Count; i++)
+            {
+                if (gameData.levelDatas[i].CleanProgression() * 100 > 50)
+                    levelUpto++;
+                Debug.Log(gameData.levelDatas[i].levelNum.ToString());
+                if (progressList[i].text == gameData.levelDatas[i].levelName && gameData.levelDatas[i].levelNum <= levelUpto)
+                {
+                    progressList[i].gameObject.SetActive(true);
+                    progressList[i].text = (gameData.levelDatas[i].CleanProgression() * 100).ToString("F0") + "%";
+                }
+                else
+                {
+                    progressList[i].gameObject.SetActive(false);
+                }
+            }
+        }
         if (!gameData.CheckRead("Game Start"))
         {
             StartDialogue("Game Start");
