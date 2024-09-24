@@ -44,6 +44,9 @@ public class GameHandler : MonoBehaviour
     public float speedUp;
     public bool isSpeed;
     public GameObject decorObject;
+    public Transform decSpawnPos;
+    public GameObject reefEnd;
+    public float levelSize = 9f;
 
 
     #endregion
@@ -74,9 +77,14 @@ public class GameHandler : MonoBehaviour
             currentTimer = currentLevelData.currentTimer;
             for (int i = 0; i < initialSpawnNum; i++)
             {
-                SpawnDecor();
                 SpawnHazard();
             }
+
+            for (int i = 0; i < levelSize; i++)
+            {
+                SpawnDecor();
+            }
+            Instantiate(reefEnd, decSpawnPos.position, Quaternion.identity);
         }
     }
 
@@ -99,10 +107,12 @@ public class GameHandler : MonoBehaviour
         }
         if (spawnPos != null)
         {
-            if (stageName == "Reef" && spawnPos.position.z < player.transform.position.z + 40 && spawnPos.position.z < 300f)
+            if (stageName == "Reef")
             {
-                SpawnDecor();
-                SpawnHazard();
+                if (spawnPos.position.z < player.transform.position.z + 40 && spawnPos.position.z < decSpawnPos.position.z + 40f)
+                {
+                    SpawnHazard();
+                }
             }
         }
     }
@@ -192,6 +202,8 @@ public class GameHandler : MonoBehaviour
     }
     private void SpawnDecor()
     {
-        Instantiate(decorObject, spawnPos.position, Quaternion.identity);
+        Instantiate(decorObject, decSpawnPos.position, Quaternion.identity);
+        Vector3 newPos = new Vector3(decSpawnPos.position.x, decSpawnPos.position.y, decSpawnPos.position.z + 40f);
+        decSpawnPos.position = newPos;
     }
 }
