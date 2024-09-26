@@ -814,8 +814,9 @@ public class UIHandler : MonoBehaviour
             isPaused = false;
             gameData.ReadDialogue(currentDialogueKey);
             dialogueBox.SetActive(false);
-            if (endgamePanel.activeInHierarchy && !gameData.CheckRead("End Explain"))
-                StartDialogue("End Explain");
+            if(endgamePanel != null)
+                if (endgamePanel.activeInHierarchy && !gameData.CheckRead("End Explain"))
+                    StartDialogue("End Explain");
         }
     }
     #endregion

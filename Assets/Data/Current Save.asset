@@ -27,7 +27,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 8dc5fb124d40dab4087934f8187347ef, type: 3}
   myDialogue:
   - callKey: Game Start
-    hasRead: 1
+    hasRead: 0
     dialogueList:
     - 'Hello, My name is Shelldon! '
     - I'm a Green Turtle! One of 6 marine turtle species found in Australia.
@@ -55,14 +55,14 @@ MonoBehaviour:
     - Finally, if you want to take a break, just press the pause button on the top
       right.
   - callKey: Stage Reef
-    hasRead: 1
+    hasRead: 0
     dialogueList:
     - Welcome to the final stage of every level, the reef!
     - You goal is to reach the next beach to the right.
     - You can move around the screen with WASD and arrow keys.
     - 'If you are feeling risky, you can swim faster by pressing SPACE.  '
   - callKey: Lose Screen
-    hasRead: 1
+    hasRead: 0
     dialogueList:
     - Oh no!
     - Don't worry, you can always try again!
@@ -72,7 +72,7 @@ MonoBehaviour:
     - You're Amazing!
     - For beating the level, you've unlocked a new hat!
   - callKey: End Explain
-    hasRead: 1
+    hasRead: 0
     dialogueList:
     - 'Welcome to the end screen! '
     - You can find information on the hazard you recently encountered here.
