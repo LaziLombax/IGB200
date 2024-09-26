@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class UIHandler : MonoBehaviour
 {
@@ -40,6 +41,7 @@ public class UIHandler : MonoBehaviour
 
     [Header("EndGame Menu")]
     public GameObject endgamePanel;
+    public GameObject funFactText;
     public Button restartButton;
     public Button homeButton;
     public Button exitButtonInEnd;
@@ -54,9 +56,10 @@ public class UIHandler : MonoBehaviour
     public Text upgradeLevelGold;
     public Button upgradeRestartButton;
 
-    //temp
-    public GameObject upgradeToHide;
-    public string upgradeName;
+    public RectTransform upgradeCardSpawn;
+    public GameObject upgradeCard;
+    public float gapBetweenCards;
+
 
 
     [Header("Location Menu")]
@@ -127,6 +130,8 @@ public class UIHandler : MonoBehaviour
             exitButton.onClick.AddListener(OnExitButtonClick);
         if (levelButton != null)
             levelButton.onClick.AddListener(OnLevelButtonClick);
+        if (goToHatsButton != null)
+            goToHatsButton.onClick.AddListener(OnHatsButtonClick);
 
         if (backFromInfoButton != null)
             backFromInfoButton.onClick.AddListener(OnBackButtonClick);
@@ -136,6 +141,8 @@ public class UIHandler : MonoBehaviour
             backFromMapButton.onClick.AddListener(OnBackButtonClick);
         if (levelBackButton != null)
             levelBackButton.onClick.AddListener(OnLevelBackButtonClick);
+        if (hatBackButton != null)
+            hatBackButton.onClick.AddListener(OnBackButtonClick);
 
         // Ensure Endgame Panel is initially hidden
         if (endgamePanel != null)
@@ -152,10 +159,6 @@ public class UIHandler : MonoBehaviour
             homeButtonInUpgrade.onClick.AddListener(OnBackToMenuButtonClick);
         if (upgradeRestartButton != null)
             upgradeRestartButton.onClick.AddListener(OnRestartButtonClick);
-
-
-        if (upgradeToHide != null)
-            homeButtonInUpgrade.onClick.AddListener(OnBackToMenuButtonClick);
 
         // Hide the pause menu initially
         if (pauseMenuPanel != null)
@@ -179,10 +182,12 @@ public class UIHandler : MonoBehaviour
         {
             if (dialogueText.text == gameData.ReturnCurrentIndex(currentDialogueKey, textIndex))
             {
+                continueEnd.SetActive(false);
                 NextLine();
             }
             else
             {
+                continueEnd.SetActive(true);
                 StopAllCoroutines();
                 dialogueText.text = gameData.ReturnCurrentIndex(currentDialogueKey, textIndex);
             }
@@ -193,14 +198,14 @@ public class UIHandler : MonoBehaviour
             LoadingScreen();
         }
 
-        if (!isUIVisible && IsMouseOverTargetObject())
-        {
-            OnMouseEnter();
-        }
-        else if (!isUIVisible && !IsMouseOverTargetObject())
-        {
-            OnMouseExit();
-        }
+        //if (!isUIVisible && IsMouseOverTargetObject())
+        //{
+        //    OnMouseEnter();
+        //}
+        //else if (!isUIVisible && !IsMouseOverTargetObject())
+        //{
+        //    OnMouseExit();
+        //}
 
         if (Input.GetMouseButtonDown(0) && IsMouseOverTargetObject())
         {
@@ -208,12 +213,15 @@ public class UIHandler : MonoBehaviour
         }
         if(goldDisplay != null)
             goldDisplay.text = GameHandler.Instance.currentLevelData.levelGold.ToString();
-        if (endgamePanel.activeInHierarchy)
+        if (endgamePanel != null)
         {
-            if (goldCount <= gameHandler.goldGained)
-                goldCount += Time.deltaTime * 0.5f;
-            float gold = Mathf.Lerp(0, gameHandler.goldGained, goldCount);
-            goldGained.text = "Gained: " + gold.ToString("F0");
+            if (endgamePanel.activeInHierarchy)
+            {
+                if (goldCount <= gameHandler.goldGained)
+                    goldCount += Time.deltaTime * 0.5f;
+                float gold = Mathf.Lerp(0, gameHandler.goldGained, goldCount);
+                goldGained.text = "Gained: " + gold.ToString("F0");
+            }
         }
         if (gameHandler != null)
         {
@@ -222,7 +230,6 @@ public class UIHandler : MonoBehaviour
                 levelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
                 upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
                 cleanProgress.value = Mathf.Round(gameHandler.currentLevelData.CleanProgression() * 100);
-                if (gameHandler.currentLevelData.UpgradeCheck(gameHandler.stageName, upgradeName) == 0) upgradeToHide.SetActive(false);
             }
             if (levelTimer != null)
             {
@@ -237,17 +244,12 @@ public class UIHandler : MonoBehaviour
 
     private void Start()
     {
-        if (greenTrashUI != null)
-        {
-            greenTrashUI.SetActive(false);
-        }
         if (progressList.Count > 0)
         {
             for (int i = 0; i < progressList.Count; i++)
             {
                 if (gameData.levelDatas[i].CleanProgression() * 100 > 50)
                     levelUpto++;
-                Debug.Log(gameData.levelDatas[i].levelNum.ToString());
                 if (progressList[i].text == gameData.levelDatas[i].levelName && gameData.levelDatas[i].levelNum <= levelUpto)
                 {
                     progressList[i].gameObject.SetActive(true);
@@ -259,6 +261,18 @@ public class UIHandler : MonoBehaviour
                 }
             }
         }
+
+        if (upgradePanel != null)
+        {
+            GenerateUpgrades();
+        }
+
+        if (hatPanel != null)
+        {
+            GenerateHats();
+        }
+
+        // Check Dialogue when Start
         if (!gameData.CheckRead("Game Start"))
         {
             StartDialogue("Game Start");
@@ -476,8 +490,24 @@ public class UIHandler : MonoBehaviour
             infoCanvasGroup.DOFade(1, 0.5f);
         }
     }
+    private void OnHatsButtonClick()
+    {
+        if (startMenuPanel != null)
+        {
+            CanvasGroup startCanvasGroup = startMenuPanel.GetComponent<CanvasGroup>();
+            startCanvasGroup.DOFade(0, 0.5f).OnComplete(() => startMenuPanel.SetActive(false));
+        }
 
-public void OnMapPinClick(string levelName)
+        if (hatPanel != null)
+        {
+            hatPanel.SetActive(true);
+            CanvasGroup hatCanvasGroup = hatPanel.GetComponent<CanvasGroup>();
+            hatCanvasGroup.alpha = 0;
+            hatCanvasGroup.DOFade(1, 0.5f);
+        }
+    }
+
+    public void OnMapPinClick(string levelName)
 {
     gameData.SetCurrentLevel(levelName);
     locationName.text = levelName;
@@ -576,20 +606,6 @@ public void OnMapPinClick(string levelName)
     }
 
 
-    private void OnUpgradeButtonClick()
-    {
-
-        if (endgamePanel != null)
-            endgamePanel.SetActive(false);
-        if (upgradePanel != null)
-            upgradePanel.SetActive(true);
-        if (!gameData.CheckRead("Upgrade Screen"))
-        {
-            StartDialogue("Upgrade Screen");
-        }
-        cleanProgress.value = Mathf.Round(GameHandler.Instance.currentLevelData.CleanProgression() * 100);
-        upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
-    }
 
     private void OnBackButtonClick()
     {
@@ -617,6 +633,12 @@ public void OnMapPinClick(string levelName)
             levelCanvasGroup.DOFade(0, 0.5f).OnComplete(() => levelPanel.SetActive(false));
         }
 
+        if (hatPanel != null)
+        {
+            CanvasGroup hatCanvasGroup = hatPanel.GetComponent<CanvasGroup>();
+            hatCanvasGroup.DOFade(0, 0.5f).OnComplete(() => hatPanel.SetActive(false));
+        }
+
         if (startMenuPanel != null)
         {
             startMenuPanel.SetActive(true);
@@ -637,6 +659,14 @@ public void OnMapPinClick(string levelName)
         endgamePanel.SetActive(true);
         isPaused = true;
         factText.text = factToDisplay;
+        if (factText.text == null)
+        {
+            funFactText.SetActive(false);
+        }
+        else
+        {
+            funFactText.SetActive(true);
+        }
     }
 
     public void CheckLoseDialogue()
@@ -668,14 +698,51 @@ public void OnMapPinClick(string levelName)
             SceneManager.LoadScene("Reef");
     }
 
-    public void OnClickUpgrade(string hazardName)
+    #region UpgradeUI
+    public void GenerateUpgrades()
     {
-        if (GameHandler.Instance.currentLevelData.levelGold < 50) return;
+        int cardCount = GameHandler.Instance.currentLevelData.UpgradeCardCount();
+        float totalGap = gapBetweenCards + upgradeCard.GetComponent<RectTransform>().rect.width;
+        // Calculate the starting point to spawn UI objects
+        float totalCardAndGapSize = totalGap * (cardCount -1) + gapBetweenCards;
 
-        GameHandler.Instance.currentLevelData.levelGold -= 50;
-        GameHandler.Instance.currentLevelData.UpgradeHazard(GameHandler.Instance.stageName, hazardName);
+        float sideOffset = upgradeCardSpawn.rect.width - totalCardAndGapSize;
+
+        float startX = 0f - upgradeCardSpawn.rect.width /2 + sideOffset/2;
+
+        for (int i = 0; i < cardCount; i++)
+        {
+            // Create a new UI object
+            GameObject newUIObject = Instantiate(upgradeCard, upgradeCardSpawn);
+            UpgradeCard cardComp = newUIObject.GetComponent<UpgradeCard>();
+            cardComp.upgradeName = GameHandler.Instance.currentLevelData.GetUpgradeCardName(i);
+            // Set the anchored position for the UI element
+            RectTransform uiRect = newUIObject.GetComponent<RectTransform>();
+            uiRect.anchoredPosition = new Vector2(startX + i * totalGap, 0);
+
+            // Optionally: Set the name of the object to distinguish them
+            newUIObject.name = "Card_" + i;
+        }
     }
+    private void OnUpgradeButtonClick()
+    {
 
+        if (endgamePanel != null)
+            endgamePanel.SetActive(false);
+        if (upgradePanel != null)
+            upgradePanel.SetActive(true);
+        if (!gameData.CheckRead("Upgrade Screen"))
+        {
+            StartDialogue("Upgrade Screen");
+        }
+        cleanProgress.value = Mathf.Round(GameHandler.Instance.currentLevelData.CleanProgression() * 100);
+        upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
+    }
+    public void UpdateGold()
+    {
+        upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
+    }
+    #endregion
     public void UpdateHealth(int healthcount)
     {
         if (healthcount == 2)
@@ -705,10 +772,12 @@ public void OnMapPinClick(string levelName)
     public int textIndex;
     public float textSpeed;
     public string currentDialogueKey;
+    public GameObject continueEnd;
 
     public void StartDialogue(string callKey)
     {
         dialogueBox.SetActive(true);
+        continueEnd.SetActive(false);
         if (gameHandler != null)
             if (gameHandler.timerOn)
                 gameHandler.timerOn = false;
@@ -726,6 +795,7 @@ public void OnMapPinClick(string levelName)
             dialogueText.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+        continueEnd.SetActive(true);
     }
     
     void NextLine()
@@ -746,6 +816,56 @@ public void OnMapPinClick(string levelName)
             dialogueBox.SetActive(false);
             if (endgamePanel.activeInHierarchy && !gameData.CheckRead("End Explain"))
                 StartDialogue("End Explain");
+        }
+    }
+    #endregion
+
+    #region Hats
+
+    [Header("Hats")]
+
+    public Button goToHatsButton;
+    public GameObject hatPanel;
+    public Button hatBackButton;
+    public GameObject hatsButton;
+    public RectTransform hatsSpawn;
+    public List<HatButton> hatButtonList = new List<HatButton>();
+    public void GenerateHats()
+    {
+        GameHandler.Instance.gameData.CheckAllHats();
+        hatButtonList.Clear();
+        float gapBetweenHats = 20f;
+        int cardCount = GameHandler.Instance.gameData.TotalOfHats();
+        float totalGap = gapBetweenHats + hatsButton.GetComponent<RectTransform>().rect.width;
+        // Calculate the starting point to spawn UI objects
+        float totalCardAndGapSize = totalGap * (cardCount - 1) + gapBetweenHats;
+
+        float sideOffset = hatsSpawn.rect.width - totalCardAndGapSize;
+
+        float startX = 0f - hatsSpawn.rect.width / 2 + sideOffset / 2;
+
+        for (int i = 0; i < cardCount; i++)
+        {
+            // Create a new UI object
+            GameObject newUIObject = Instantiate(hatsButton, hatsSpawn);
+            HatButton hatComp = newUIObject.GetComponent<HatButton>();
+            hatButtonList.Add(hatComp);
+            hatComp.hatKey = GameHandler.Instance.gameData.GetHatKey(i);
+            hatComp.icon.sprite = GameHandler.Instance.gameData.GetSpriteHat(hatComp.hatKey);
+            if (GameHandler.Instance.gameData.CheckIfUnlockedHat(hatComp.hatKey))
+            {
+                hatComp.canUse = true;
+            }
+            if (GameHandler.Instance.gameData.CheckIfInUseHat(hatComp.hatKey))
+            {
+                hatComp.isSelected = true;
+            }
+            // Set the anchored position for the UI element
+            RectTransform uiRect = newUIObject.GetComponent<RectTransform>();
+            uiRect.anchoredPosition = new Vector2(startX + i * totalGap, 0);
+
+            // Optionally: Set the name of the object to distinguish them
+            newUIObject.name = "Hat_" + i;
         }
     }
     #endregion

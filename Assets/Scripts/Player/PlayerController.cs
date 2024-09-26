@@ -23,6 +23,7 @@ public abstract class PlayerController : Entity
         damaged
     };
     [HideInInspector] public InputHandler inputHandler;
+    public List<GameObject> hatList = new List<GameObject>();
 
     //etc.
 
@@ -94,6 +95,19 @@ public abstract class PlayerController : Entity
             // Ensure the renderer is enabled at the end
             model.material.SetColor("_Colour", originalColour);
             gotHit = false;
+        }
+    }
+
+    public void SetHat()
+    {
+        string currentHatKey = gameHandler.gameData.CheckWhichHat();
+        foreach (var hat in hatList)
+        {
+            hat.SetActive(false);
+            if (hat.name == currentHatKey)
+            {
+                hat.SetActive(true);
+            }
         }
     }
     public abstract void PlayerInput();

@@ -28,6 +28,7 @@ public class PlayerBeach : PlayerController
         lastPosition = transform.position;
         moveAudio = gameHandler.gameAudioData.AddNewAudioSourceFromStandard("Player", gameObject, "Beach Move");
         moveDir = transform.position;
+        SetHat();
     }
     private void FixedUpdate()
     {

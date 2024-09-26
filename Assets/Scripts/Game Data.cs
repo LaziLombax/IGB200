@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 [CreateAssetMenu(fileName = "New Save", menuName = "Game Data")]
 public class GameData : ScriptableObject
@@ -15,9 +16,18 @@ public class GameData : ScriptableObject
         [TextArea]
         public List<string> dialogueList = new List<string>();
     }
+    [System.Serializable]
+    public class HatEntry
+    {
+        public string hatKey;
+        public bool canUse;
+        public bool inUse;
+        public Sprite icon;
+    }
     [Header("Game Data")]
     public List<LevelData> levelDatas = new List<LevelData>();
     public LevelData currentLevel;
+    public List<HatEntry> myHats = new List<HatEntry>();
 
     public List<DialogueShelldon> myDialogue = new List<DialogueShelldon>();
 
@@ -95,5 +105,92 @@ public class GameData : ScriptableObject
             }
         }
         return null;
+    }
+
+
+    //hats
+    public void CheckAllHats()
+    {
+        foreach (var level in levelDatas)
+        {
+            if (level.hatUnlocked && level.hatKey != null)
+            {
+                foreach (var hat in myHats)
+                {
+                    if (level.hatKey == hat.hatKey)
+                    {
+                        hat.canUse = true;
+                    }
+                }
+            }
+        }
+    }
+    public void SelectHat(string key)
+    {
+        foreach (var hat in myHats)
+        {
+            hat.inUse = false;
+            if (hat.hatKey == key)
+            {
+                hat.inUse = true;
+            }
+        }
+    }
+    public bool CheckIfUnlockedHat(string key)
+    {
+        foreach (var hat in myHats)
+        {
+            if (hat.hatKey == key && hat.canUse)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public bool CheckIfInUseHat(string key)
+    {
+        foreach (var hat in myHats)
+        {
+            if (hat.hatKey == key && hat.inUse)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public string CheckWhichHat()
+    {
+        foreach (var hat in myHats)
+        {
+            if (hat.inUse)
+            {
+                return hat.hatKey;
+            }
+        }
+        return null;
+    }
+    public Sprite GetSpriteHat(string key)
+    {
+        foreach (var hat in myHats)
+        {
+            if (hat.hatKey == key)
+            {
+                return hat.icon;
+            }
+        }
+        return null;
+    }
+    public string GetHatKey(int index)
+    {
+        return myHats[index].hatKey;
+    }
+    public int TotalOfHats()
+    {
+        int count = 0;
+        foreach (var hat in myHats)
+        {
+            count++;
+        }
+        return count;
     }
 }

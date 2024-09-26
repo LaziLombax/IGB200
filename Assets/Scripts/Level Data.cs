@@ -25,7 +25,18 @@ public class LevelData : ScriptableObject
         public float hazardSize;
         [TextArea(15, 20)]
         public string description = "Hazard turtle Fact";
+        public UpgradeCard upgradeCard;
     }
+    [System.Serializable]
+    public class UpgradeCard
+    {
+        public string cardName;
+        public int cardCost;
+        [TextArea(15, 20)]
+        public string cardDesc = "Description of Action";
+        // maybe more detail later
+    }
+
     [Header("Level Data")]
     public string levelName;
     public int levelNum;
@@ -34,6 +45,11 @@ public class LevelData : ScriptableObject
     public int levelGold;
     public float currentTimer;
     public List<StageData> stageList = new List<StageData>();
+    private List<HazardData> upgradeCardList = new List<HazardData>();
+
+    [Header("Hat Data")]
+    public string hatKey;
+    public bool hatUnlocked;
 
     public float CleanProgression()
     {
@@ -133,6 +149,9 @@ public class LevelData : ScriptableObject
                 {
                     if (hazardName == hazard.name && hazard.chance != 0)
                     {
+                        levelGold -= hazard.upgradeCard.cardCost;
+                        float cost = hazard.upgradeCard.cardCost * 1.20f;
+                        hazard.upgradeCard.cardCost = Mathf.FloorToInt(cost);
                         hazard.chance--;
                     }
                 }
@@ -197,5 +216,128 @@ public class LevelData : ScriptableObject
             }
         }
         return 0;
+    }
+    public float UpgradesBuyTotal(string stageName, string hazardName)
+    {
+        foreach (var stage in stageList)
+        {
+            if (stageName == stage.name)
+            {
+                foreach (var hazard in stage.humanHazards)
+                {
+                    if (hazardName == hazard.name)
+                    {
+                        return hazard.maxChance;
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+    public float UpgradeCost(string stageName, string hazardName)
+    {
+        foreach (var stage in stageList)
+        {
+            if (stageName == stage.name)
+            {
+                foreach (var hazard in stage.humanHazards)
+                {
+                    if (hazardName == hazard.name)
+                    {
+                        return hazard.upgradeCard.cardCost;
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    public int UpgradeCardCount()
+    {
+        upgradeCardList.Clear();
+        
+        int count = 0;
+        foreach (var stage in stageList)
+        {
+            foreach (var hazard in stage.humanHazards)
+            {
+                upgradeCardList.Add(hazard);
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    //Card Details
+    public string GetUpgradeCardName(int index)
+    {
+        return upgradeCardList[index].name;
+    }
+
+    public string GetUpgradeCardStage(string hazardName)
+    {
+        foreach (var stage in stageList)
+        {
+            foreach (var hazard in stage.humanHazards)
+            {
+                if (hazardName == hazard.name)
+                {
+                    return stage.name;
+                }
+            }
+        }
+        return null;
+    }
+    public string GetUpgradeCardTitle(string stageName, string hazardName)
+    {
+        foreach (var stage in stageList)
+        {
+            if (stageName == stage.name)
+            {
+                foreach (var hazard in stage.humanHazards)
+                {
+                    if (hazardName == hazard.name)
+                    {
+                        return hazard.upgradeCard.cardName;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    public string GetUpgradeCardDesc(string stageName, string hazardName)
+    {
+        foreach (var stage in stageList)
+        {
+            if (stageName == stage.name)
+            {
+                foreach (var hazard in stage.humanHazards)
+                {
+                    if (hazardName == hazard.name)
+                    {
+                        return hazard.upgradeCard.cardDesc;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    public string GetUpgradeCardCost(string stageName, string hazardName)
+    {
+        foreach (var stage in stageList)
+        {
+            if (stageName == stage.name)
+            {
+                foreach (var hazard in stage.humanHazards)
+                {
+                    if (hazardName == hazard.name)
+                    {
+                        return hazard.upgradeCard.cardCost.ToString();
+                    }
+                }
+            }
+        }
+        return null;
     }
 }

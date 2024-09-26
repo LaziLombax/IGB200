@@ -12,6 +12,10 @@ public class PlayerReef : PlayerController
     public GameObject oilOverlay;
     public float fadeInkTimer;
 
+    private void Start()
+    {
+        SetHat();
+    }
     private void FixedUpdate()
     {
         if (gameHandler.gameEnded) return;

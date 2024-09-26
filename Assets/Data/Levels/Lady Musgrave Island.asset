@@ -26,6 +26,10 @@ MonoBehaviour:
       chance: 50
       hazardSize: 4
       description: 
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
     - name: Dog
       hazardObject: {fileID: 3200868662483362531, guid: c6187b7dfb0ea19438b2277022c3fd60, type: 3}
       maxChance: 7
@@ -34,6 +38,10 @@ MonoBehaviour:
       description: To protect some turtle species, feral animals like Wild Dogs,
         Foxes or Crabs were controlled to help increase the population of endagered
         turtles.
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
     - name: Crab
       hazardObject: {fileID: 3146694958185421144, guid: dc57f109c01a80e4eafcd096eb8c9b7c, type: 3}
       maxChance: 6
@@ -42,6 +50,10 @@ MonoBehaviour:
       description: To protect some turtle species, feral animals like Wild Dogs,
         Foxes or Crabs were controlled to help increase the population of endagered
         turtles.
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
     - name: Bird
       hazardObject: {fileID: 3146694958185421144, guid: afab4767bc4aa9343b1ee19b27e87a89, type: 3}
       maxChance: 6
@@ -50,12 +62,20 @@ MonoBehaviour:
       description: Seabirds are a protected species, which means that monitoring
         turtles should minimise the disturbance that it can cause on seabirds and
         other species.
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
     - name: Rock
       hazardObject: {fileID: 3200868662483362531, guid: e48f37719fb035840b92a6f54a360040, type: 3}
       maxChance: 10
       chance: 10
       hazardSize: 4
       description: 
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
     humanHazards:
     - name: Car
       hazardObject: {fileID: 3200868662483362531, guid: cee494e92333d994bbbeb09711efb373, type: 3}
@@ -65,6 +85,10 @@ MonoBehaviour:
       description: Hatchlings that do emerge are frequently disoriented by lights,
         disturbed by people and vehicles as they struggle to make it safely to the
         water.
+      upgradeCard:
+        cardName: Reduce traffic with awareness
+        cardCost: 50
+        cardDesc: Reduce the number of cars through posters and local action.
   - name: Reef
     naturalHazards:
     - name: Nothing
@@ -75,6 +99,10 @@ MonoBehaviour:
       description: Green Turtles will select habitats based on foraging rewards and
         predators like Tiger Sharks. Green Turtles that are in good condition, tend
         to avoid areas with sharks.
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
     - name: Shark
       hazardObject: {fileID: 107635318230043208, guid: 0fcc4f1ad380c3f44b053dbbb40489d4, type: 3}
       maxChance: 10
@@ -83,6 +111,10 @@ MonoBehaviour:
       description: Green Turtles will select habitats based on foraging rewards and
         predators like Tiger Sharks. Green Turtles that are in good condition, tend
         to avoid areas with sharks.
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
     - name: Crab
       hazardObject: {fileID: 783753377506269430, guid: fe221dc780e6dfe4bb4005fa80c7dffa, type: 3}
       maxChance: 7
@@ -91,6 +123,10 @@ MonoBehaviour:
       description: To protect some turtle species, feral animals like Wild Dogs,
         Foxes or Crabs were controlled to help increase the population of endagered
         turtles.
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
     humanHazards:
     - name: Oil
       hazardObject: {fileID: 783753377506269430, guid: 341c2651b736cf940845736bce809b7c, type: 3}
@@ -100,6 +136,10 @@ MonoBehaviour:
       description: 'Oil spills will drastically damage all marine. Green Turtles
         will accidentally inhale the oil, which can permanently affect their body,
         reducing their chance of survival. '
+      upgradeCard:
+        cardName: Contain And Clean
+        cardCost: 50
+        cardDesc: Clean up oil-spills by containing the spill and using oil skimmers.
     - name: Net
       hazardObject: {fileID: 0}
       maxChance: 0
@@ -109,3 +149,9 @@ MonoBehaviour:
         caught in shrimp trawl nets, on longline hooks and in fishing gillnets. Sea
         turtles need to reach the surface to breathe, and therefore many drown once
         caught '
+      upgradeCard:
+        cardName: Coastal Guards
+        cardCost: 50
+        cardDesc: Contact local coast guards to protect the reef from illegal fishing.
+  hatKey: Pirate
+  hatUnlocked: 1

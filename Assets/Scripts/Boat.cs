@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
@@ -17,6 +18,7 @@ public class Boat : MonoBehaviour
     public float HoldPlayerAbove;
     public GameObject Player;
     GameObject newNet;
+    public LineRenderer lr;
     void Start(){
         float newz = Mathf.Abs(Random.Range(Player.gameObject.transform.position.z-20,gameObject.transform.position.z-20));
         TargetSpot = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, newz);
@@ -42,6 +44,10 @@ public class Boat : MonoBehaviour
             }
         }
     }
+
+    void LateUpdate()
+    {
+    }  
 
     IEnumerator NetCheck(){
         //hold player here

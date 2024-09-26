@@ -18,17 +18,17 @@ public class BirdSpawner : MonoBehaviour
     {
         if (!GameHandler.Instance.timerOn) return;
         float xspawn = 0;
-        float roty = 0;
+        //float roty = 0;
         float random = Random.Range(0,1);
         if (random == 0)
         {
             xspawn = 18;
-            roty = -90;
+            //roty = -90;
         }
         else if (random == 1)
         {
             xspawn = -18;
-            roty = 90;
+            //roty = 90;
         }
         Vector3 offsetpos = new Vector3(xspawn,0,(4*Random.Range(-2,10)));
         GameObject newObject = Instantiate(objectToSpawn, transform.position + offsetpos, objectToSpawn.transform.rotation);

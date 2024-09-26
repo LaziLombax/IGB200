@@ -99,11 +99,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 11db3064b040f224bbee962d29c560c2, type: 3}
 --- !u!1 &9138556148552503502
@@ -159,6 +159,7 @@ MonoBehaviour:
   HoldTime: 0
   HoldPlayerAbove: 3
   Player: {fileID: 0}
+  lr: {fileID: 0}
 --- !u!54 &2466586858284866706
 Rigidbody:
   m_ObjectHideFlags: 0
