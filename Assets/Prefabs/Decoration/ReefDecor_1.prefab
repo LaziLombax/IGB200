@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: anemone#0000
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 52bce5b3b7969d349b32bbaa11e90e4d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

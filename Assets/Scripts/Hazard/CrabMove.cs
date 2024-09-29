@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CrabMove : MonoBehaviour
@@ -14,26 +13,38 @@ public class CrabMove : MonoBehaviour
     void Start()
     {
         startPosition = transform.position; // Store the initial position
-        movementTimer += Random.Range(0f,5f);
+        movementTimer = Random.Range(0f, 5f); // Direct assignment, no need for increment
+
+        StartCoroutine(UpdateMovement());
     }
 
-    void Update()
+    private IEnumerator UpdateMovement()
     {
-        if (!GameHandler.Instance.timerOn) return;
-        movementTimer += Time.deltaTime * moveSpeed; // Increment timer based on speed
-
-        // Calculate the new position using a sine wave function
-        float offset = Mathf.Sin(movementTimer) * movementRange;
-
-        if (isUnderWater)
+        while (true)
         {
-            // Set the new position while keeping the original y and z coordinates
-            transform.position = new Vector3(transform.position.x, transform.position.y, startPosition.z + offset);
-        }
-        else
-        {
-            // Set the new position while keeping the original y and z coordinates
-            transform.position = new Vector3(startPosition.x + offset, transform.position.y, transform.position.z);
+            if (GameHandler.Instance.timerOn)
+            {
+                movementTimer += Time.deltaTime * moveSpeed; // Increment timer based on speed
+
+                // Calculate the offset based on sine wave function
+                float offset = Mathf.Sin(movementTimer) * movementRange;
+
+                // Cache the current position to minimize repeated access
+                Vector3 currentPosition = transform.position;
+
+                if (isUnderWater)
+                {
+                    currentPosition.z = startPosition.z + offset; // Update z if under water
+                }
+                else
+                {
+                    currentPosition.x = startPosition.x + offset; // Update x if not under water
+                }
+
+                transform.position = currentPosition; // Set the new position
+            }
+
+            yield return new WaitForSeconds(0.1f); // Update every 0.1 seconds (10 times a second)
         }
     }
 }

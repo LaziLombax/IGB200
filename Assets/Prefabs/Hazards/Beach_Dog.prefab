@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6848242392854090583
 Transform:
@@ -108,7 +108,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2638216206628772645
 Transform:
@@ -419,6 +419,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6623139207145991643}
     m_Modifications:
+    - target: {fileID: 487689406341805188, guid: 34f3b455d9e0d1e4495f950be8437ab8, type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1417673978907783378, guid: 34f3b455d9e0d1e4495f950be8437ab8, type: 3}
       propertyPath: m_VersionIndex
       value: 11945
@@ -533,6 +537,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4756068958716732620, guid: 9838cc5f295d39145982a399cf045fb8, type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8454438916516798023, guid: 9838cc5f295d39145982a399cf045fb8, type: 3}
       propertyPath: m_VersionIndex
       value: 1624
@@ -555,6 +563,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6623139207145991643}
     m_Modifications:
+    - target: {fileID: 487689406341805188, guid: 34f3b455d9e0d1e4495f950be8437ab8, type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1417673978907783378, guid: 34f3b455d9e0d1e4495f950be8437ab8, type: 3}
       propertyPath: m_VersionIndex
       value: 11945
@@ -625,9 +637,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -711,9 +727,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -797,9 +817,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -1058,9 +1082,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -1144,9 +1172,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -1308,9 +1340,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -1550,9 +1586,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -1680,6 +1720,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4756068958716732620, guid: 9838cc5f295d39145982a399cf045fb8, type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8454438916516798023, guid: 9838cc5f295d39145982a399cf045fb8, type: 3}
       propertyPath: m_VersionIndex
       value: 1624
@@ -1750,6 +1794,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4756068958716732620, guid: 9838cc5f295d39145982a399cf045fb8, type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8454438916516798023, guid: 9838cc5f295d39145982a399cf045fb8, type: 3}
       propertyPath: m_VersionIndex
       value: 1624
@@ -1776,9 +1824,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -1862,9 +1914,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -2026,9 +2082,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -2156,6 +2216,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4756068958716732620, guid: 9838cc5f295d39145982a399cf045fb8, type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8454438916516798023, guid: 9838cc5f295d39145982a399cf045fb8, type: 3}
       propertyPath: m_VersionIndex
       value: 1624
@@ -2182,9 +2246,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -2312,6 +2380,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4756068958716732620, guid: 9838cc5f295d39145982a399cf045fb8, type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8454438916516798023, guid: 9838cc5f295d39145982a399cf045fb8, type: 3}
       propertyPath: m_VersionIndex
       value: 1624
@@ -2338,9 +2410,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -2424,9 +2500,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -2510,9 +2590,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -2596,9 +2680,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -2682,9 +2770,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -2764,6 +2856,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6623139207145991643}
     m_Modifications:
+    - target: {fileID: 487689406341805188, guid: 34f3b455d9e0d1e4495f950be8437ab8, type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1417673978907783378, guid: 34f3b455d9e0d1e4495f950be8437ab8, type: 3}
       propertyPath: m_VersionIndex
       value: 11945
@@ -2834,9 +2930,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -2998,9 +3098,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -3084,9 +3188,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -3170,9 +3278,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -3256,9 +3368,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -3342,9 +3458,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -3506,9 +3626,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -3592,9 +3716,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -3834,9 +3962,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -3920,9 +4052,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -4006,9 +4142,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -4092,9 +4232,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -4178,9 +4322,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -4560,9 +4708,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -4646,9 +4798,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -4728,6 +4884,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6623139207145991643}
     m_Modifications:
+    - target: {fileID: 487689406341805188, guid: 34f3b455d9e0d1e4495f950be8437ab8, type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1417673978907783378, guid: 34f3b455d9e0d1e4495f950be8437ab8, type: 3}
       propertyPath: m_VersionIndex
       value: 11945
@@ -4798,9 +4958,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -4884,9 +5048,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -4970,9 +5138,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -5118,9 +5290,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex
@@ -5204,9 +5380,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_small (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 1190264679337309370, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1319527261244185133, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_SelectedEditorRenderState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2673774714652795046, guid: aca4b8a0046d25349b9713431bfa1e30, type: 3}
       propertyPath: m_VersionIndex

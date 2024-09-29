@@ -98,6 +98,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Swipe"",
+                    ""type"": ""Value"",
+                    ""id"": ""cdf0f3a2-5f8a-4cb6-ba84-9409e28433e5"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -182,6 +191,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""294de7a1-c4ef-44e7-8fee-199359aa643b"",
                     ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BeachForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a78f14e-bba1-4bb5-b74a-8c5fd689bc97"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -276,6 +296,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""LMB"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""279c99dd-a8c9-4ea5-9b95-e0d86b650077"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LMB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bceee106-f045-49c4-8386-12ed50bf5e93"",
+                    ""path"": ""<Touchscreen>/primaryTouch/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swipe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -292,6 +334,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_BeachDown = m_Player.FindAction("BeachDown", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_LMB = m_Player.FindAction("LMB", throwIfNotFound: true);
+        m_Player_Swipe = m_Player.FindAction("Swipe", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -361,6 +404,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_BeachDown;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_LMB;
+    private readonly InputAction m_Player_Swipe;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -373,6 +417,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @BeachDown => m_Wrapper.m_Player_BeachDown;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @LMB => m_Wrapper.m_Player_LMB;
+        public InputAction @Swipe => m_Wrapper.m_Player_Swipe;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -406,6 +451,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LMB.started += instance.OnLMB;
             @LMB.performed += instance.OnLMB;
             @LMB.canceled += instance.OnLMB;
+            @Swipe.started += instance.OnSwipe;
+            @Swipe.performed += instance.OnSwipe;
+            @Swipe.canceled += instance.OnSwipe;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -434,6 +482,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LMB.started -= instance.OnLMB;
             @LMB.performed -= instance.OnLMB;
             @LMB.canceled -= instance.OnLMB;
+            @Swipe.started -= instance.OnSwipe;
+            @Swipe.performed -= instance.OnSwipe;
+            @Swipe.canceled -= instance.OnSwipe;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -461,5 +512,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnBeachDown(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnLMB(InputAction.CallbackContext context);
+        void OnSwipe(InputAction.CallbackContext context);
     }
 }

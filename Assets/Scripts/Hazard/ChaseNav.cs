@@ -7,12 +7,12 @@ public class ChaseNav : MonoBehaviour
 {
     public enum ChaseState
     {
-        patrolling,
-        reach,
-        chase,
-        start
+        Patrolling,
+        Reach,
+        Chase,
+        Start
     }
-    [Space(10)]
+
     [Header("Variables")]
     public ChaseState myState;
     public Transform target;
@@ -20,75 +20,102 @@ public class ChaseNav : MonoBehaviour
     public Transform patrolRight;
     public bool reachRightEnd;
     public float rotateSmooth = 3f;
-    private Vector3 newRotation;
     public float patrollingSpeed = 4f;
     public float chaseSpeed = 6f;
     public GameObject indicator;
 
-
     private NavMeshAgent agent;
-    // Start is called before the first frame update
+    private Vector3 newRotation;
+    private PatrolChange patrolLeftScript;
+    private PatrolChange patrolRightScript;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        myState = ChaseState.start;
+        myState = ChaseState.Start;
+
+        // Cache PatrolChange components to avoid repeated GetComponent calls
+        patrolLeftScript = patrolLeft.GetComponent<PatrolChange>();
+        patrolRightScript = patrolRight.GetComponent<PatrolChange>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!GameHandler.Instance.timerOn) return;
-        if (myState == ChaseState.chase && target != null)
+
+        switch (myState)
         {
-            indicator.SetActive(true);
-            agent.speed = chaseSpeed;
-            Vector3 targetXZ = target.position;
-            targetXZ.y = 0;
-            agent.SetDestination(targetXZ);
-        }
-        else if (myState == ChaseState.patrolling)
-        {
-            indicator.SetActive(false);
-            agent.speed = patrollingSpeed;
-            if (reachRightEnd)
-            {
-                agent.SetDestination(patrolLeft.position);
-                if (Vector3.Distance(transform.position, patrolLeft.position) < 0.1f)
-                {
-                    newRotation = transform.eulerAngles - 180 * Vector3.up;
-                    myState = ChaseState.reach;
-                    Invoke(nameof(StartPatrolling), 1f);
-                    patrolLeft.GetComponent<PatrolChange>().RandomPatrol();
-                }
-            }
-            else
-            {
-                agent.SetDestination(patrolRight.position);
-                if (Vector3.Distance(transform.position, patrolRight.position) < 0.1f)
-                {
-                    newRotation = transform.eulerAngles + 180 * Vector3.up;
-                    myState = ChaseState.reach;
-                    Invoke(nameof(StartPatrolling), 2f);
-                    patrolRight.GetComponent<PatrolChange>().RandomPatrol();
-                }
-            }
-        }
-        else if (myState == ChaseState.reach)
-        {
-            indicator.SetActive(false);
-            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, newRotation, Time.deltaTime * rotateSmooth);
-        }
-        else if (myState == ChaseState.start)
-        {
-            indicator.SetActive(false);
-            Invoke(nameof(StartPatrolling), Random.Range(0f,4f));
+            case ChaseState.Chase:
+                HandleChaseState();
+                break;
+            case ChaseState.Patrolling:
+                HandlePatrollingState();
+                break;
+            case ChaseState.Reach:
+                HandleReachState();
+                break;
+            case ChaseState.Start:
+                HandleStartState();
+                break;
         }
     }
 
-    public void StartPatrolling()
+    private void HandleChaseState()
     {
-        if (target != null) return;
-        reachRightEnd = !reachRightEnd;
-        myState = ChaseState.patrolling;
+        if (target == null) return;
+
+        indicator.SetActive(true);
+        agent.speed = chaseSpeed;
+        Vector3 targetXZ = new Vector3(target.position.x, 0, target.position.z);
+        agent.SetDestination(targetXZ);
+    }
+
+    private void HandlePatrollingState()
+    {
+        indicator.SetActive(false);
+        agent.speed = patrollingSpeed;
+
+        Transform currentPatrolTarget = reachRightEnd ? patrolLeft : patrolRight;
+        agent.SetDestination(currentPatrolTarget.position);
+
+        if (Vector3.Distance(transform.position, currentPatrolTarget.position) < 0.1f)
+        {
+            newRotation = transform.eulerAngles + (reachRightEnd ? -180 : 180) * Vector3.up;
+            myState = ChaseState.Reach;
+
+            if (reachRightEnd)
+            {
+                StartCoroutine(InvokePatrolRoutine(1f));
+                patrolLeftScript.RandomPatrol();
+            }
+            else
+            {
+                StartCoroutine(InvokePatrolRoutine(2f));
+                patrolRightScript.RandomPatrol();
+            }
+
+            reachRightEnd = !reachRightEnd; // Switch ends
+        }
+    }
+
+    private void HandleReachState()
+    {
+        indicator.SetActive(false);
+        transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, newRotation, Time.deltaTime * rotateSmooth);
+    }
+
+    private void HandleStartState()
+    {
+        indicator.SetActive(false);
+        StartCoroutine(InvokePatrolRoutine(Random.Range(0f, 4f)));
+    }
+
+    private IEnumerator InvokePatrolRoutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (target == null)
+        {
+            myState = ChaseState.Patrolling;
+        }
     }
 }

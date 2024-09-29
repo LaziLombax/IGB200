@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -8404411838091709831}
   - component: {fileID: 2124004775711337087}
   - component: {fileID: 7454125927417385915}
+  - component: {fileID: 1947829791901026745}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -46,17 +47,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801066e8a4091f44cab1020f7cbe4486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameAudioData: {fileID: 0}
   currentLevelData: {fileID: 11400000, guid: af658ced7c1478b41a05e624c75f7f9f, type: 2}
+  uiHandler: {fileID: 0}
+  gameData: {fileID: 0}
   stageName: Beach
   spawnPos: {fileID: 0}
   initialSpawnNum: 5
   player: {fileID: 0}
+  timerOn: 0
+  currentTimer: 0
+  loadTimer: 3
+  currentLevelGold: 0
+  goldGained: 0
+  gameEnded: 0
   beachSize: 40
   beachEnd: {fileID: 3200868662483362531, guid: dbbe193804e74e24aa02d4e4be011b7f, type: 3}
   stageTop: 0
   stageSpeed: 0
   reefStage: {fileID: 0}
-  EndGamePanel: {fileID: 0}
+  speedUp: 0
+  isSpeed: 0
+  decorObject: {fileID: 0}
+  decSpawnPos: {fileID: 0}
+  reefEnd: {fileID: 0}
+  levelSize: 9
 --- !u!114 &2124004775711337087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,19 +96,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeae247ae18479f4e8b8ce75819ed5df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeImage: {fileID: 0}
+  fadeSpeed: 1
   gameHandler: {fileID: 0}
+  gameData: {fileID: 0}
+  levelTimer: {fileID: 0}
+  levelGold: {fileID: 0}
+  goldGained: {fileID: 0}
+  goldCount: 0
+  factText: {fileID: 0}
+  factToDisplay: 
+  goldDisplay: {fileID: 0}
   startMenuPanel: {fileID: 0}
   infoPanel: {fileID: 0}
   settingPanel: {fileID: 0}
+  mapPanel: {fileID: 0}
+  levelPanel: {fileID: 0}
   pauseMenuPanel: {fileID: 0}
   pauseButton: {fileID: 0}
   resumeButton: {fileID: 0}
   exitButtonInPause: {fileID: 0}
   backToMenuButton: {fileID: 0}
+  canPause: 1
+  canResume: 0
+  endgamePanel: {fileID: 0}
+  funFactText: {fileID: 0}
+  restartButton: {fileID: 0}
+  homeButton: {fileID: 0}
+  exitButtonInEnd: {fileID: 0}
+  upgradeButton: {fileID: 0}
+  gameOverText: {fileID: 0}
+  completeText: {fileID: 0}
+  upgradePanel: {fileID: 0}
+  homeButtonInUpgrade: {fileID: 0}
+  cleanProgress: {fileID: 0}
+  upgradeLevelGold: {fileID: 0}
+  upgradeRestartButton: {fileID: 0}
+  upgradeCardSpawn: {fileID: 0}
+  upgradeCard: {fileID: 0}
+  gapBetweenCards: 0
+  locationName: {fileID: 0}
+  levelButton: {fileID: 0}
+  levelBackButton: {fileID: 0}
+  progressList: []
+  greenTrashUI: {fileID: 0}
+  targetObject: {fileID: 0}
+  loadingPanel: {fileID: 0}
+  loadSlider: {fileID: 0}
+  isLoading: 0
+  alphaTimer: 0
+  progressTimer: 0
   startButton: {fileID: 0}
   settingsButton: {fileID: 0}
   infoButton: {fileID: 0}
   exitButton: {fileID: 0}
   backFromInfoButton: {fileID: 0}
   backFromSettingsButton: {fileID: 0}
-  exampleFloat: 0
+  backFromMapButton: {fileID: 0}
+  healthIcons: []
+  levelUpto: 0
+  isPaused: 0
+  dialogueText: {fileID: 0}
+  dialogueBox: {fileID: 0}
+  textIndex: 0
+  textSpeed: 0
+  currentDialogueKey: 
+  continueEnd: {fileID: 0}
+  goToHatsButton: {fileID: 0}
+  hatPanel: {fileID: 0}
+  hatBackButton: {fileID: 0}
+  hatsButton: {fileID: 0}
+  hatsSpawn: {fileID: 0}
+  hatButtonList: []
+--- !u!114 &1947829791901026745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3851411194794639680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573a35206958a9841b5dce350266115d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools: []

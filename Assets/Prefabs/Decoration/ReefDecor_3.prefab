@@ -92,6 +92,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7391475362428380560, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -6916884269562327121, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -111,6 +115,10 @@ PrefabInstance:
     - target: {fileID: -6105285788328184033, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
       propertyPath: m_SelectedEditorRenderState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4027712659809661682, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3423439024362184292, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
       propertyPath: m_Mesh
@@ -148,9 +156,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: big_coral#0000
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 926890008215212137, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617048992373897728, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1786538997817980154, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2293001280245421605, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
       propertyPath: m_Mesh
@@ -176,9 +196,21 @@ PrefabInstance:
       propertyPath: m_SelectedEditorRenderState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4775428508133318212, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5888640062742189451, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6638817378431544544, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8568900376933055577, guid: b9ac3e634cad9bd488f9c01c248d88f1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

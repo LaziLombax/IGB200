@@ -9,12 +9,12 @@ public class ChaseController : MonoBehaviour
     public ChaseNav myChaser;
     private void OnTriggerEnter(Collider other)
     {
-        myChaser.myState = ChaseNav.ChaseState.chase;
+        myChaser.myState = ChaseNav.ChaseState.Chase;
         myChaser.target = other.transform;
     }
     private void OnTriggerExit(Collider other)
     {
-        myChaser.myState = ChaseNav.ChaseState.start;
+        myChaser.myState = ChaseNav.ChaseState.Start;
         myChaser.target = null;
     }
 }

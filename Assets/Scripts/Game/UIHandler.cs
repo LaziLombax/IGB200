@@ -170,14 +170,13 @@ public class UIHandler : MonoBehaviour
 
     private void Update()
     {
-        if (isPaused)
+        // Timer handling should only be checked if necessary, not every frame.
+        if (isPaused != GameHandler.Instance.timerOn)
         {
-            GameHandler.Instance.timerOn = false;
+            GameHandler.Instance.timerOn = !isPaused;
         }
-        else
-        {
-            GameHandler.Instance.timerOn = true;
-        }
+
+        // Handle dialogue only when the dialogue box is active and LMB is pressed.
         if (dialogueBox.activeInHierarchy && InputHandler.Instance.LMBDialogue())
         {
             if (dialogueText.text == gameData.ReturnCurrentIndex(currentDialogueKey, textIndex))
@@ -191,55 +190,64 @@ public class UIHandler : MonoBehaviour
                 StopAllCoroutines();
                 dialogueText.text = gameData.ReturnCurrentIndex(currentDialogueKey, textIndex);
             }
-
         }
+
+        // Only load when necessary
         if (isLoading)
         {
             LoadingScreen();
         }
 
-        //if (!isUIVisible && IsMouseOverTargetObject())
-        //{
-        //    OnMouseEnter();
-        //}
-        //else if (!isUIVisible && !IsMouseOverTargetObject())
-        //{
-        //    OnMouseExit();
-        //}
-
+        // Mouse input for object interaction
         if (Input.GetMouseButtonDown(0) && IsMouseOverTargetObject())
         {
             OnMouseClick();
         }
-        if(goldDisplay != null)
-            goldDisplay.text = GameHandler.Instance.currentLevelData.levelGold.ToString();
-        if (endgamePanel != null)
-        {
-            if (endgamePanel.activeInHierarchy)
-            {
-                if (goldCount <= gameHandler.goldGained)
-                    goldCount += Time.deltaTime * 0.5f;
-                float gold = Mathf.Lerp(0, gameHandler.goldGained, goldCount);
-                goldGained.text = "Gained: " + gold.ToString("F0");
-            }
-        }
-        if (gameHandler != null)
-        {
-            if (gameHandler.gameEnded)
-            {
-                levelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
-                upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
-                cleanProgress.value = Mathf.Round(gameHandler.currentLevelData.CleanProgression() * 100);
-            }
-            if (levelTimer != null)
-            {
-                if (!gameHandler.timerOn) return;
-                float minutes = Mathf.FloorToInt(gameHandler.currentTimer / 60);
-                float seconds = Mathf.FloorToInt(gameHandler.currentTimer % 60);
 
-                levelTimer.text = string.Format("{0:00} : {1:00}", minutes, seconds);
-            }
+        // Only update goldDisplay if there's a change
+        if (goldDisplay != null && goldDisplay.text != GameHandler.Instance.currentLevelData.levelGold.ToString())
+        {
+            goldDisplay.text = GameHandler.Instance.currentLevelData.levelGold.ToString();
         }
+
+        // Endgame handling
+        if (endgamePanel != null && endgamePanel.activeInHierarchy)
+        {
+            if (goldCount <= gameHandler.goldGained)
+            {
+                goldCount += Time.deltaTime * 0.5f;
+            }
+            float gold = Mathf.Lerp(0, gameHandler.goldGained, goldCount);
+            goldGained.text = "Gained: " + gold.ToString("F0");
+        }
+
+        // Game ended handling
+        if (gameHandler != null && gameHandler.gameEnded)
+        {
+            UpdateEndGameUI();
+        }
+
+        // Timer update only when timerOn is true
+        if (levelTimer != null && gameHandler.timerOn)
+        {
+            UpdateLevelTimer();
+        }
+    }
+
+    // Separate method for updating end game UI
+    private void UpdateEndGameUI()
+    {
+        levelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
+        upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
+        cleanProgress.value = Mathf.Round(gameHandler.currentLevelData.CleanProgression() * 100);
+    }
+
+    // Separate method for updating the level timer
+    private void UpdateLevelTimer()
+    {
+        float minutes = Mathf.FloorToInt(gameHandler.currentTimer / 60);
+        float seconds = Mathf.FloorToInt(gameHandler.currentTimer % 60);
+        levelTimer.text = string.Format("{0:00} : {1:00}", minutes, seconds);
     }
 
     private void Start()

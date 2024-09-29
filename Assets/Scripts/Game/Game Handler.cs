@@ -45,6 +45,7 @@ public class GameHandler : MonoBehaviour
     public bool isSpeed;
     public GameObject decorObject;
     public Transform decSpawnPos;
+    public Transform endLocal;
     public GameObject reefEnd;
     public float levelSize = 9f;
 
@@ -82,9 +83,9 @@ public class GameHandler : MonoBehaviour
 
             for (int i = 0; i < levelSize; i++)
             {
-                SpawnDecor();
+                //SpawnDecor();
             }
-            Instantiate(reefEnd, decSpawnPos.position, Quaternion.identity);
+            endLocal = Instantiate(reefEnd, decSpawnPos.position, Quaternion.identity).transform;
         }
     }
 
@@ -109,7 +110,7 @@ public class GameHandler : MonoBehaviour
         {
             if (stageName == "Reef")
             {
-                if (spawnPos.position.z < player.transform.position.z + 40 && spawnPos.position.z < decSpawnPos.position.z + 40f)
+                if (spawnPos.position.z < player.transform.position.z + 40 && spawnPos.position.z < endLocal.position.z + 40f)
                 {
                     SpawnHazard();
                 }

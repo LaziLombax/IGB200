@@ -47,7 +47,10 @@ public abstract class PlayerController : Entity
 
     private void Update()
     {
-        PlayerInput();
+        if (SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            PlayerInput();
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -115,4 +118,5 @@ public abstract class PlayerController : Entity
 
     public abstract void SlowEffect();
     public abstract void SlowTimer();
+
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerBeach : PlayerController
 {
@@ -22,9 +23,18 @@ public class PlayerBeach : PlayerController
     public List<Vector3> inputOrder = new List<Vector3>();
     public List<Vector3> rotationOrder = new List<Vector3>();
 
+    [Header("Mobile Movement Variables")]
+    public float swipeThreshold = 50f;
+    private Vector2 startTouchPosition;
+    private Vector2 currentTouchPosition;
+    private Vector2 endTouchPosition;
+
+
 
     private void Start()
     {
+        if (inputHandler != null)
+            inputHandler.playerControls.Player.Swipe.performed += OnSwipePerformed;
         lastPosition = transform.position;
         moveAudio = gameHandler.gameAudioData.AddNewAudioSourceFromStandard("Player", gameObject, "Beach Move");
         moveDir = transform.position;
@@ -78,45 +88,59 @@ public class PlayerBeach : PlayerController
         }
         if (inputHandler.BeachMoveForward())
         {
-            newPos += Vector3.forward * (moveDistance + 1);
-            inputOrder.Add(newPos);
-            rotationOrder.Add(new Vector3(0, 0, 0));
-            moveAudio.Play();
+            MoveUp(newPos);
         }
 
         if (inputHandler.BeachMoveLeft())
         {
-            if (newPos.x - moveDistance < horizontalSpaces * moveDistance * -1) return;
-            if (newPos.x - moveDistance < -12.0f) return;
-            
-            isMoving = true;
-            newPos += Vector3.left * moveDistance;
-            rotationOrder.Add(new Vector3(0, -90, 0));
-            inputOrder.Add(newPos);
-            moveAudio.Play();
+            MoveLeft(newPos);
         }
         if (inputHandler.BeachMoveRight())
         {
-            if (newPos.x + moveDistance > horizontalSpaces * moveDistance) return;
-            if (newPos.x - moveDistance > 12.0f) return;
-
-            isMoving = true;
-            newPos += Vector3.right * moveDistance;
-            rotationOrder.Add(new Vector3(0, 90, 0));
-            inputOrder.Add(newPos);
-            moveAudio.Play();
+            MoveRight(newPos);
         }
 
-        if (inputHandler.BeachMoveDown() && !isMoving)
+        if (inputHandler.BeachMoveDown())
         {
-            if(transform.position.z - 4f < 0f) return;
-            lastPosition = transform.position;
-            isMoving = true;
-            newPos += Vector3.back * (moveDistance + 1);
-            rotationOrder.Add(new Vector3(0, 180, 0));
-            inputOrder.Add(newPos);
-            moveAudio.Play();
+            MoveDown(newPos);
         }
+    }
+
+    public void MoveUp(Vector3 newPos)
+    {
+        newPos += Vector3.forward * (moveDistance + 1);
+        inputOrder.Add(newPos);
+        rotationOrder.Add(new Vector3(0, 0, 0));
+        moveAudio.Play();
+
+    }
+    public void MoveDown(Vector3 newPos)
+    {
+        if (transform.position.z - 4f < 0f) return;
+        newPos += Vector3.back * (moveDistance + 1);
+        rotationOrder.Add(new Vector3(0, 180, 0));
+        inputOrder.Add(newPos);
+        moveAudio.Play();
+    }
+    public void MoveLeft(Vector3 newPos)
+    {
+        if (newPos.x - moveDistance < horizontalSpaces * moveDistance * -1) return;
+        if (newPos.x - moveDistance < -12.0f) return;
+
+        newPos += Vector3.left * moveDistance;
+        rotationOrder.Add(new Vector3(0, -90, 0));
+        inputOrder.Add(newPos);
+        moveAudio.Play();
+    }
+    public void MoveRight(Vector3 newPos)
+    {
+        if (newPos.x + moveDistance > horizontalSpaces * moveDistance) return;
+        if (newPos.x - moveDistance > 12.0f) return;
+
+        newPos += Vector3.right * moveDistance;
+        rotationOrder.Add(new Vector3(0, 90, 0));
+        inputOrder.Add(newPos);
+        moveAudio.Play();
     }
 
 
@@ -152,5 +176,70 @@ public class PlayerBeach : PlayerController
     public override void MovePlayer()
     {
         throw new System.NotImplementedException();
+    }
+
+
+    private void OnSwipePerformed(InputAction.CallbackContext context)
+    {
+        // Detect touch start position
+        if (Touchscreen.current.primaryTouch.press.isPressed)
+        {
+            startTouchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+        }
+
+        // When the finger is lifted
+        if (Touchscreen.current.primaryTouch.press.wasReleasedThisFrame)
+        {
+            endTouchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+            currentTouchPosition = endTouchPosition - startTouchPosition;
+
+            Debug.Log("Swiped");
+            // Call the method to process the swipe
+            ProcessSwipe(currentTouchPosition);
+        }
+    }
+
+    private void ProcessSwipe(Vector2 swipeDelta)
+    {
+        if (inputOrder.Count > 2) return;
+        Vector3 newPos = new Vector3();
+        if (inputOrder.Count == 0)
+        {
+            newPos = transform.position;
+        }
+        else
+        {
+            isMoving = true;
+            newPos = inputOrder.Last();
+        }
+        if (swipeDelta.magnitude >= swipeThreshold) // Only process if the swipe is large enough
+        {
+            float x = swipeDelta.x;
+            float y = swipeDelta.y;
+
+            // Determine swipe direction based on the larger axis movement
+            if (Mathf.Abs(x) > Mathf.Abs(y))
+            {
+                if (x > 0)
+                {
+                    MoveRight(newPos);
+                }
+                else
+                {
+                    MoveLeft(newPos);
+                }
+            }
+            else
+            {
+                if (y > 0)
+                {
+                    MoveUp(newPos);
+                }
+                else
+                {
+                    MoveDown(newPos);
+                }
+            }
+        }
     }
 }
