@@ -32292,6 +32292,7 @@ MonoBehaviour:
   canPause: 1
   canResume: 0
   endgamePanel: {fileID: 0}
+  funFactText: {fileID: 0}
   restartButton: {fileID: 0}
   homeButton: {fileID: 0}
   exitButtonInEnd: {fileID: 0}
