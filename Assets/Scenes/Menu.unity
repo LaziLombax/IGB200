@@ -32729,6 +32729,81 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &542305755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 542305756}
+  - component: {fileID: 542305758}
+  - component: {fileID: 542305757}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &542305756
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542305755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1643063341}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: 484.3833, y: 353.2407}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &542305757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542305755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: b8a3b168d485db449bb3b23dbe6084f1, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &542305758
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542305755}
+  m_CullTransparentMesh: 1
 --- !u!1 &589081521
 GameObject:
   m_ObjectHideFlags: 0
@@ -32885,8 +32960,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -487.2}
-  m_SizeDelta: {x: 800, y: 802}
+  m_AnchoredPosition: {x: 0, y: -539.0846}
+  m_SizeDelta: {x: 800, y: 905.7693}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &687359786
 MonoBehaviour:
@@ -32910,7 +32985,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 648e53e35b2541448a3c9c74e59f5d54, type: 3}
-    m_FontSize: 60
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 6
@@ -32921,9 +32996,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Beach: \nW - To move foward\nA - To move left\nD - To move right\n\nReef:\nWASD
-    - To move freely in the water\nSPACE - To move faster\nSelect the first level
-    by pressing on the red pin on the australian map, then jump in!"
+  m_Text: "Beach: \nW - To move foward\nA - To move left\nD - To move right\nS -
+    To move DOWN\n\nReef:\nWASD - To move freely in the water\nSPACE - To move faster\nSelect
+    the first level by pressing on the red pin on the australian map, then jump in!"
 --- !u!222 &687359787
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -33409,7 +33484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 117.7}
+  m_AnchoredPosition: {x: 0, y: 110}
   m_SizeDelta: {x: 432.7, y: 138.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &855013206
@@ -34899,12 +34974,13 @@ RectTransform:
   - {fileID: 374187462}
   - {fileID: 1974707970}
   - {fileID: 855013205}
+  - {fileID: 542305756}
   m_Father: {fileID: 727688561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1331.5962, y: 735.66}
+  m_AnchoredPosition: {x: 0, y: -24.871906}
+  m_SizeDelta: {x: 1331.5962, y: 785.4037}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1643063342
 MonoBehaviour:
@@ -35462,8 +35538,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 900, y: 200}
+  m_AnchoredPosition: {x: 0, y: -140.20201}
+  m_SizeDelta: {x: 900, y: 180.4041}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1974707971
 CanvasRenderer:
