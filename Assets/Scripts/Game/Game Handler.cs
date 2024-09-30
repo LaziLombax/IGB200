@@ -83,7 +83,7 @@ public class GameHandler : MonoBehaviour
 
             for (int i = 0; i < levelSize; i++)
             {
-                //SpawnDecor();
+                SpawnDecor();
             }
             endLocal = Instantiate(reefEnd, decSpawnPos.position, Quaternion.identity).transform;
         }
