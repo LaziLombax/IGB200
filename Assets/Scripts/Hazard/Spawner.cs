@@ -62,7 +62,9 @@ public class Spawner : MonoBehaviour
         GameObject hazard = objectPool.GetFromPool(new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z), transform.rotation);
         if (hazard != null)
         {
-            hazard.GetComponent<Rigidbody>().AddForce(transform.forward * objectSpeed, ForceMode.VelocityChange);
+            GameObject newObject = Instantiate(hazard);
+            newObject.GetComponent<Rigidbody>().AddForce(transform.forward * objectSpeed, ForceMode.VelocityChange);
+            Destroy(newObject, 7f);
 
             // Return the object to the pool after some time (instead of Destroy)
             StartCoroutine(ReturnToPoolAfterDelay(hazard, 5f));
