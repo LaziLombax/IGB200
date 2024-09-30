@@ -76,8 +76,10 @@ public class ChaseNav : MonoBehaviour
         agent.speed = patrollingSpeed;
 
         Transform currentPatrolTarget = reachRightEnd ? patrolLeft : patrolRight;
-        agent.SetDestination(currentPatrolTarget.position);
-
+        if (agent.destination != currentPatrolTarget.position)
+        {
+            agent.SetDestination(currentPatrolTarget.position);
+        }
         if (Vector3.Distance(transform.position, currentPatrolTarget.position) < 0.1f)
         {
             newRotation = transform.eulerAngles + (reachRightEnd ? -180 : 180) * Vector3.up;
@@ -95,6 +97,7 @@ public class ChaseNav : MonoBehaviour
             }
 
             reachRightEnd = !reachRightEnd; // Switch ends
+            agent.SetDestination(currentPatrolTarget.position);
         }
     }
 

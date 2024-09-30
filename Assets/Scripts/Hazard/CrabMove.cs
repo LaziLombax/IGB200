@@ -44,7 +44,7 @@ public class CrabMove : MonoBehaviour
                 transform.position = currentPosition; // Set the new position
             }
 
-            yield return new WaitForSeconds(0.1f); // Update every 0.1 seconds (10 times a second)
+            yield return new WaitForSeconds(0.01f); // Update every 0.1 seconds (10 times a second)
         }
     }
 }
