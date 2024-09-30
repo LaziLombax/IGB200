@@ -31,6 +31,7 @@ public class GameHandler : MonoBehaviour
     public int currentLevelGold;
     public int goldGained;
     public bool gameEnded;
+    public Transform playerPos;
     [Space(10)]
     [Header("Beach")]
     public int beachSize;
@@ -47,7 +48,7 @@ public class GameHandler : MonoBehaviour
     public Transform decSpawnPos;
     public Transform endLocal;
     public GameObject reefEnd;
-    public float levelSize = 9f;
+    public int levelSize = 9;
 
 
     #endregion
@@ -78,14 +79,12 @@ public class GameHandler : MonoBehaviour
             currentTimer = currentLevelData.currentTimer;
             for (int i = 0; i < initialSpawnNum; i++)
             {
-                SpawnHazard();
+                //SpawnHazard();
             }
 
-            for (int i = 0; i < levelSize; i++)
-            {
-                SpawnDecor();
-            }
-            endLocal = Instantiate(reefEnd, decSpawnPos.position, Quaternion.identity).transform;
+            Vector3 endPos = decSpawnPos.position;
+            endPos.z += 80f + (40f * levelSize);
+            endLocal = Instantiate(reefEnd, endPos, Quaternion.identity).transform;
         }
     }
 

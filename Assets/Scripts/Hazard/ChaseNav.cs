@@ -41,9 +41,11 @@ public class ChaseNav : MonoBehaviour
 
     void Update()
     {
-        if (!GameHandler.Instance.timerOn) return;
+        if (!GameHandler.Instance.timerOn || !IsPlayerWithinRange()) return;
 
-        switch (myState)
+
+        // Check if the player is within the specified distance
+            switch (myState)
         {
             case ChaseState.Chase:
                 HandleChaseState();
@@ -59,7 +61,14 @@ public class ChaseNav : MonoBehaviour
                 break;
         }
     }
+    bool IsPlayerWithinRange()
+    {
+        Vector3 middle = gameObject.transform.position;
+        middle.x = 0f;
+        float distanceToPlayer = Vector3.Distance(GameHandler.Instance.playerPos.position, middle);
 
+        return distanceToPlayer <= 28f;
+    }
     private void HandleChaseState()
     {
         if (target == null) return;

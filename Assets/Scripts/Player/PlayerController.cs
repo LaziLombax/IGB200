@@ -41,6 +41,7 @@ public abstract class PlayerController : Entity
     private void Awake()
     {
         gameHandler = GameHandler.Instance;
+        gameHandler.playerPos = gameObject.transform;
         inputHandler = InputHandler.Instance;
         rb = GetComponent<Rigidbody>();
     }

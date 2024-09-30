@@ -24,26 +24,33 @@ public class CrabMove : MonoBehaviour
         {
             if (GameHandler.Instance.timerOn)
             {
-                movementTimer += Time.deltaTime * moveSpeed; // Increment timer based on speed
+                Vector3 middle = gameObject.transform.position;
+                middle.x = 0f;
+                float distanceToPlayer = Vector3.Distance(GameHandler.Instance.playerPos.position, middle);
 
-                // Calculate the offset based on sine wave function
-                float offset = Mathf.Sin(movementTimer) * movementRange;
-
-                // Cache the current position to minimize repeated access
-                Vector3 currentPosition = transform.position;
-
-                if (isUnderWater)
+                // Check if the player is within the specified distance
+                if (distanceToPlayer <= 28f)
                 {
-                    currentPosition.z = startPosition.z + offset; // Update z if under water
-                }
-                else
-                {
-                    currentPosition.x = startPosition.x + offset; // Update x if not under water
-                }
+                    movementTimer += Time.deltaTime * moveSpeed; // Increment timer based on speed
 
-                transform.position = currentPosition; // Set the new position
+                    // Calculate the offset based on sine wave function
+                    float offset = Mathf.Sin(movementTimer) * movementRange;
+
+                    // Cache the current position to minimize repeated access
+                    Vector3 currentPosition = transform.position;
+
+                    if (isUnderWater)
+                    {
+                        currentPosition.z = startPosition.z + offset; // Update z if under water
+                    }
+                    else
+                    {
+                        currentPosition.x = startPosition.x + offset; // Update x if not under water
+                    }
+
+                    transform.position = currentPosition; // Set the new position
+                }
             }
-
             yield return new WaitForSeconds(0.01f); // Update every 0.1 seconds (10 times a second)
         }
     }

@@ -19,11 +19,11 @@ MonoBehaviour:
   myHats:
   - hatKey: None
     canUse: 1
-    inUse: 1
+    inUse: 0
     icon: {fileID: 21300000, guid: 41f808bd76d91d74aa3ed6d3e9d3d261, type: 3}
   - hatKey: Pirate
     canUse: 1
-    inUse: 0
+    inUse: 1
     icon: {fileID: 21300000, guid: 8dc5fb124d40dab4087934f8187347ef, type: 3}
   myDialogue:
   - callKey: Game Start

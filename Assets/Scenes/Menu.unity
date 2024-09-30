@@ -9296,6 +9296,7 @@ MonoBehaviour:
   currentLevelGold: 0
   goldGained: 0
   gameEnded: 0
+  playerPos: {fileID: 0}
   beachSize: 0
   beachEnd: {fileID: 0}
   stageTop: 0
@@ -9305,6 +9306,7 @@ MonoBehaviour:
   isSpeed: 0
   decorObject: {fileID: 0}
   decSpawnPos: {fileID: 0}
+  endLocal: {fileID: 0}
   reefEnd: {fileID: 0}
   levelSize: 9
 --- !u!114 &472143240

@@ -47,9 +47,16 @@ public class Spawner : MonoBehaviour
             CancelInvoke(nameof(CheckAndSpawnHazard)); // Stop spawning
             return;
         }
+        Vector3 middle = gameObject.transform.position;
+        middle.x = 0f;
+        float distanceToPlayer = Vector3.Distance(GameHandler.Instance.playerPos.position, middle);
 
-        // Spawn the hazard if the game is still running
-        SpawnHazard();
+        // Check if the player is within the specified distance
+        if (distanceToPlayer <= 28f)
+        {
+            // Player is within the distance, so perform actions (e.g., spawn hazard)
+            SpawnHazard();
+        }
     }
 
     // Hazard spawning logic

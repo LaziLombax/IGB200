@@ -179,7 +179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7545304614844873970, guid: e2bf8754391f4224eb48dc7961153f1e, type: 3}
       propertyPath: moveSpeed
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7545304614844873970, guid: e2bf8754391f4224eb48dc7961153f1e, type: 3}
       propertyPath: isUnderWater

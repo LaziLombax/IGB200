@@ -193,6 +193,8 @@ public class PlayerBeach : PlayerController
             endTouchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
             currentTouchPosition = endTouchPosition - startTouchPosition;
 
+            Debug.Log(endTouchPosition.ToString());
+            Debug.Log(currentTouchPosition.ToString());
             Debug.Log("Swiped");
             // Call the method to process the swipe
             ProcessSwipe(currentTouchPosition);
