@@ -9,9 +9,11 @@ public class HatButton : MonoBehaviour
     public bool isSelected;
     public bool canUse;
     public Image icon;
+    private HatDisplay hatDisplay;
 
     private void Start()
     {
+        hatDisplay = HatDisplay.Instance;
         if (canUse)
         {
             icon.color = Color.white;
@@ -25,15 +27,10 @@ public class HatButton : MonoBehaviour
     public void SelectHat()
     {
         if (!canUse) return;
-        if (isSelected) return;
-        foreach (var hat in GameHandler.Instance.uiHandler.hatButtonList)
-        {
-            hat.isSelected = false;
-            hat.CheckSelect();
-        }
-        isSelected = true;
+        isSelected = !isSelected;
         CheckSelect();
         GameHandler.Instance.gameData.SelectHat(hatKey);
+        hatDisplay.SetHat();
     }
     public void CheckSelect()
     {

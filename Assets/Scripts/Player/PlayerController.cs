@@ -104,13 +104,16 @@ public abstract class PlayerController : Entity
 
     public void SetHat()
     {
-        string currentHatKey = gameHandler.gameData.CheckWhichHat();
+        List<string> currentHatKeyList = gameHandler.gameData.CheckWhichHat();
         foreach (var hat in hatList)
         {
             hat.SetActive(false);
-            if (hat.name == currentHatKey)
+            foreach (var key in currentHatKeyList)
             {
-                hat.SetActive(true);
+                if (hat.name == key)
+                {
+                    hat.SetActive(true);
+                }
             }
         }
     }

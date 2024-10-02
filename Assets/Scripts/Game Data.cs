@@ -28,6 +28,7 @@ public class GameData : ScriptableObject
     public List<LevelData> levelDatas = new List<LevelData>();
     public LevelData currentLevel;
     public List<HatEntry> myHats = new List<HatEntry>();
+    public List<string> myHatKeys = new List<string>();
 
     public List<DialogueShelldon> myDialogue = new List<DialogueShelldon>();
 
@@ -129,10 +130,9 @@ public class GameData : ScriptableObject
     {
         foreach (var hat in myHats)
         {
-            hat.inUse = false;
             if (hat.hatKey == key)
             {
-                hat.inUse = true;
+                hat.inUse = !hat.inUse;
             }
         }
     }
@@ -158,16 +158,17 @@ public class GameData : ScriptableObject
         }
         return false;
     }
-    public string CheckWhichHat()
+    public List<string> CheckWhichHat()
     {
+        List<string> result = new List<string>();
         foreach (var hat in myHats)
         {
             if (hat.inUse)
             {
-                return hat.hatKey;
+                result.Add(hat.hatKey);
             }
         }
-        return null;
+        return result;
     }
     public Sprite GetSpriteHat(string key)
     {
