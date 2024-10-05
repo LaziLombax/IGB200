@@ -706,6 +706,38 @@ public class UIHandler : MonoBehaviour
             SceneManager.LoadScene("Reef");
     }
 
+    public void LoseHealth()
+    {
+        // 遍历蛋图标，找到下一个要减少的生命值
+        for (int i = healthIcons.Count - 1; i >= 0; i--)
+        {
+            if (healthIcons[i].activeSelf) // 检查蛋是否仍然激活
+            {
+                // 在减少图标前，执行闪烁动画
+                StartCoroutine(FlashAndRemoveIcon(healthIcons[i]));
+                break;
+            }
+        }
+    }
+
+    private IEnumerator FlashAndRemoveIcon(GameObject icon)
+    {
+        Image image = icon.GetComponent<Image>();
+        if (image == null) yield break; // 如果没有Image组件，跳出协程
+
+        // 创建一个闪烁的序列动画
+        DG.Tweening.Sequence sequence = DOTween.Sequence(); // 使用完整的命名空间
+        sequence.Append(image.DOFade(0, 0.2f)) // 渐隐
+                .Append(image.DOFade(1, 0.2f)) // 渐显
+                .SetLoops(2); // 设置闪烁两次
+
+        // 等待动画完成
+        yield return sequence.WaitForCompletion();
+
+        // 移除或禁用图标
+        icon.SetActive(false); // 隐藏图标，或者可以选择销毁图标
+    }
+
     #region UpgradeUI
     public void GenerateUpgrades()
     {

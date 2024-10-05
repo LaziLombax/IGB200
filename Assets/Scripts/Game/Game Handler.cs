@@ -206,4 +206,11 @@ public class GameHandler : MonoBehaviour
         Vector3 newPos = new Vector3(decSpawnPos.position.x, decSpawnPos.position.y, decSpawnPos.position.z + 40f);
         decSpawnPos.position = newPos;
     }
+    public void TakeDamage()
+    {
+        if (uiHandler != null)
+        {
+            uiHandler.LoseHealth();
+        }
+    }
 }
