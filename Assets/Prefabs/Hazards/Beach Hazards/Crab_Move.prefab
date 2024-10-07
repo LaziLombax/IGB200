@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec0eff1537ce59438d849700afa8d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 1
   movementRange: 3
   isUnderWater: 0
 --- !u!65 &2049492787658558703

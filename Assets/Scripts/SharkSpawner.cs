@@ -10,7 +10,7 @@ public class SharkSpawner : MonoBehaviour
     public GameObject objectToSpawn; // The object prefab to spawn
     public float spawnInterval = 2f; // Time between each spawn
     public float spawnHeight = 5f; // Height at which to spawn objects
-    public float spawnOffset = 2f; // Horizontal offset for pattern
+    public float spawnOffset = 2f; // Vertical offset for pattern
     public int numberOfObjects = 5; // Number of objects to spawn
     public bool isUnderWater; // Flag for underwater logic
 
@@ -43,32 +43,68 @@ public class SharkSpawner : MonoBehaviour
 
     private void SpawnObjectsInPattern()
     {
-        numberOfObjects = Random.Range(3, 5);
-        for (int i = 0; i < numberOfObjects; i++)
+        int numberOfSets = 1;
+        int objectsPerSet = 3;
+        float setInterval = 1.0f;
+        float verticalOffset = spawnOffset * 3;
+        float spaceing = 2f; 
+        int randomPattern = Random.Range(0, 3);
+        switch (randomPattern)
         {
-            float offset = 0f;
-            if(numberOfObjects==3) offset = spawnOffset;
-            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y + (i * spawnOffset) + offset, transform.position.z);
-            // Use object pooling to get a pooled object
-            GameObject spawnedObject = objectPool.GetFromPool(spawnPosition, transform.rotation);
-            if (spawnedObject != null)
+            case 0:
+                // Set the number of sets and objects per set
+                numberOfSets = 1;
+                objectsPerSet = 4; // Adjust this range as necessary
+                setInterval = 2.0f; // Time interval between each set
+                verticalOffset = spawnOffset * 3; // Adjust the spacing between sets
+                spaceing = 3f;
+                break;
+            case 1:
+                // Set the number of sets and objects per set
+                numberOfSets = 3;
+                objectsPerSet = 3; // Adjust this range as necessary
+                setInterval = 1.0f; // Time interval between each set
+                verticalOffset = spawnOffset * 1f; // Adjust the spacing between sets
+                spaceing = 1f;
+                break;
+            case 2:
+                // Set the number of sets and objects per set
+                numberOfSets = 6;
+                objectsPerSet = 1; // Adjust this range as necessary
+                setInterval = 0.2f; // Time interval between each set
+                verticalOffset = spawnOffset * 1f; // Adjust the spacing between sets
+                spaceing = 1f;
+                break;
+        }
+        StartCoroutine(SpawnSharkSets(numberOfSets, objectsPerSet, setInterval, verticalOffset, spaceing));
+    }
+    private IEnumerator SpawnSharkSets(int numberOfSets, int objectsPerSet, float setInterval, float verticalOffset, float spaceOffset)
+    {
+        for (int set = 0; set < numberOfSets; set++)
+        {
+            for (int i = 0; i < objectsPerSet; i++)
             {
-                // Optionally add force or modify the spawned object
-                Rigidbody rb = spawnedObject.GetComponent<Rigidbody>();
-                if (rb != null)
+                Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y + (i * spaceOffset) + (set * verticalOffset), transform.position.z);
+
+                GameObject spawnedObject = objectPool.GetFromPool(spawnPosition, transform.rotation);
+                if (spawnedObject != null)
                 {
-                    rb.AddForce(transform.forward * 7f, ForceMode.VelocityChange); // Adjust the force as needed
+                    Rigidbody rb = spawnedObject.GetComponent<Rigidbody>();
+                    rb.velocity = Vector3.zero;
+                    if (rb != null)
+                    {
+                        rb.AddForce(transform.forward * 7f, ForceMode.VelocityChange);
+                    }
+
+                    SpawnIndicator(spawnPosition);
+                    StartCoroutine(ReturnToPoolAfterDelay(spawnedObject, 5f));
                 }
-
-                // Spawn a new indicator for each shark
-                SpawnIndicator(spawnPosition);
-
-                // Return the object to the pool after some time
-                StartCoroutine(ReturnToPoolAfterDelay(spawnedObject, 5f));
             }
+
+            // Wait for the interval before spawning the next set
+            yield return new WaitForSeconds(setInterval);
         }
     }
-
     private void SpawnIndicator(Vector3 sharkPosition)
     {
         // Instantiate a new indicator on the canvas

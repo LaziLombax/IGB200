@@ -15,7 +15,7 @@ MonoBehaviour:
   levelName: Lady Musgrave Island (Tutorial)
   levelNum: 0
   description: Beach Description
-  levelGold: 0
+  levelGold: 180
   currentTimer: 0
   stageList:
   - name: Beach
@@ -26,6 +26,7 @@ MonoBehaviour:
       chance: 30
       hazardSize: 4
       description: 
+      hint: Hazard Hint
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -35,9 +36,10 @@ MonoBehaviour:
       maxChance: 7
       chance: 7
       hazardSize: 16
-      description: To protect some turtle species, feral animals like Wild Dogs,
+      description: To protect some turtle species, feral animals like Wild Pigs,
         Foxes or Crabs were controlled to help increase the population of endagered
         turtles.
+      hint: I should create distance, before I try to pass the pigs
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -50,6 +52,8 @@ MonoBehaviour:
       description: To protect some turtle species, feral animals like Wild Dogs,
         Foxes or Crabs were controlled to help increase the population of endagered
         turtles.
+      hint: Crabs can hide in the sand, so I should wait for the right moment when
+        it's safe, or use the rocks to avoid them.
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -62,6 +66,7 @@ MonoBehaviour:
       description: Seabirds are a protected species, which means that monitoring
         turtles should minimise the disturbance that it can cause on seabirds and
         other species.
+      hint: I need to watch out for those birds and where they might land.
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -72,6 +77,7 @@ MonoBehaviour:
       chance: 10
       hazardSize: 4
       description: 
+      hint: Hazard Hint
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -85,6 +91,7 @@ MonoBehaviour:
       description: Hatchlings that do emerge are frequently disoriented by lights,
         disturbed by people and vehicles as they struggle to make it safely to the
         water.
+      hint: I need to watch out for tire tracks, cars can come out of now where!
       upgradeCard:
         cardName: Reduce traffic with awareness
         cardCost: 50
@@ -99,6 +106,7 @@ MonoBehaviour:
       description: Green Turtles will select habitats based on foraging rewards and
         predators like Tiger Sharks. Green Turtles that are in good condition, tend
         to avoid areas with sharks.
+      hint: Hazard Hint
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -111,6 +119,8 @@ MonoBehaviour:
       description: Green Turtles will select habitats based on foraging rewards and
         predators like Tiger Sharks. Green Turtles that are in good condition, tend
         to avoid areas with sharks.
+      hint: I hate sharks, but I can move between them, I just need to watch where
+        they're going.
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -123,6 +133,7 @@ MonoBehaviour:
       description: To protect some turtle species, feral animals like Wild Dogs,
         Foxes or Crabs were controlled to help increase the population of endagered
         turtles.
+      hint: Crabs can catch me if I stick to the floor,
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -136,6 +147,7 @@ MonoBehaviour:
       description: 'Oil spills will drastically damage all marine. Green Turtles
         will accidentally inhale the oil, which can permanently affect their body,
         reducing their chance of survival. '
+      hint: Hazard Hint
       upgradeCard:
         cardName: Contain And Clean
         cardCost: 50
@@ -149,6 +161,7 @@ MonoBehaviour:
         caught in shrimp trawl nets, on longline hooks and in fishing gillnets. Sea
         turtles need to reach the surface to breathe, and therefore many drown once
         caught '
+      hint: I can get caught in these nets, making it hard to move.
       upgradeCard:
         cardName: Coastal Guards
         cardCost: 50

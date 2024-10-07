@@ -35,6 +35,7 @@ public class GameHandler : MonoBehaviour
     [Space(10)]
     [Header("Beach")]
     public int beachSize;
+    public GameObject checkPoint;
     public GameObject beachEnd;
 
     [Space(10)]
@@ -135,12 +136,18 @@ public class GameHandler : MonoBehaviour
         }
         reefRb.MovePosition(reefRb.position + screenMove);
     }
-
     private void GenerateLevel()
     {
-        for (int i = 0; i < beachSize; i++)
+        for (int j = 0; j < 7; j++)
         {
-            SpawnHazard();
+            GameObject spawnObj = checkPoint;
+            Instantiate(spawnObj, spawnPos.position, Quaternion.identity);
+            Vector3 newPos = new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z + 4);
+            spawnPos.position = newPos;
+            for (int i = 0; i < 5; i++)
+            {
+                SpawnHazard();
+            }
         }
     }
 

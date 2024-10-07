@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using Unity.VisualScripting;
+using UnityEngine.EventSystems;
+using TMPro;
 
 public class UIHandler : MonoBehaviour
 {
@@ -232,6 +234,26 @@ public class UIHandler : MonoBehaviour
         {
             UpdateLevelTimer();
         }
+        if (hatPanel != null)
+        {
+            if (hatPanelIsActive)
+            {
+                targetHatPosition = new Vector3(platformHatsPos.x, platformHatsPos.y, platformHatsPos.z);
+            }
+            else
+            {
+                targetHatPosition = new Vector3(platformHatsPos.x, platformHatsPos.y - 2f, platformHatsPos.z);
+            }
+            platformHats.position = Vector3.Lerp(platformHats.position, targetHatPosition, Time.deltaTime * 2);
+            if (rotateLeft)
+            {
+                RotateLeft();
+            }
+            else if (rotateRight)
+            {
+                RotateRight();
+            }
+        }
     }
 
     // Separate method for updating end game UI
@@ -277,6 +299,7 @@ public class UIHandler : MonoBehaviour
 
         if (hatPanel != null)
         {
+            platformHatsPos = platformHats.position;
             GenerateHats();
         }
 
@@ -509,6 +532,7 @@ public class UIHandler : MonoBehaviour
         if (hatPanel != null)
         {
             hatPanel.SetActive(true);
+            hatPanelIsActive = true;
             CanvasGroup hatCanvasGroup = hatPanel.GetComponent<CanvasGroup>();
             hatCanvasGroup.alpha = 0;
             hatCanvasGroup.DOFade(1, 0.5f);
@@ -644,6 +668,7 @@ public class UIHandler : MonoBehaviour
         if (hatPanel != null)
         {
             CanvasGroup hatCanvasGroup = hatPanel.GetComponent<CanvasGroup>();
+            hatPanelIsActive = false;
             hatCanvasGroup.DOFade(0, 0.5f).OnComplete(() => hatPanel.SetActive(false));
         }
 
@@ -860,7 +885,23 @@ public class UIHandler : MonoBehaviour
         }
     }
     #endregion
+    #region HintBubble
 
+    [Header("Hint")]
+    public Text hintText;
+    public GameObject hintBox;
+
+    public void ShowHint()
+    {
+        gameHandler.timerOn = false;
+        isPaused = true;
+        Invoke(nameof(DisplayHint),0.6f);
+    }
+    public void DisplayHint()
+    {
+        hintBox.SetActive(true);
+    }
+    #endregion
     #region Hats
 
     [Header("Hats")]
@@ -908,6 +949,41 @@ public class UIHandler : MonoBehaviour
             // Optionally: Set the name of the object to distinguish them
             newUIObject.name = "Hat_" + i;
         }
+    }
+    private bool hatPanelIsActive;
+    private bool rotateLeft;
+    private bool rotateRight;
+    public Transform platformHats;
+    public Vector3 platformHatsPos;
+    private Vector3 targetHatPosition;
+    public void RotateLeftPressed()
+    {
+        rotateLeft = true;
+    }
+
+    public void RotateLeftReleased()
+    {
+        rotateLeft = false;
+    }
+
+    public void RotateRightPressed()
+    {
+        rotateRight = true;
+    }
+
+    public void RotateRightReleased()
+    {
+        rotateRight = false;
+    }
+
+    private void RotateLeft()
+    {
+        platformHats.Rotate(Vector3.up * 50f * Time.deltaTime);
+    }
+
+    private void RotateRight()
+    {
+        platformHats.Rotate(-Vector3.up * 50f * Time.deltaTime);
     }
     #endregion
 }

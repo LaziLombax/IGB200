@@ -43,8 +43,28 @@ public class PlayerBeach : PlayerController
     private void FixedUpdate()
     {
         if (gameHandler.gameEnded) return;
+        if (!gameHandler.timerOn)
+        {
+            if (gameHandler.uiHandler.hintBox.activeInHierarchy)
+            {
+                if (inputHandler.PressAnyKey())
+                {
+                    gameHandler.uiHandler.hintBox.SetActive(false);
+                    gameHandler.uiHandler.isPaused = false;
+                    gameHandler.timerOn = true;
+                }
+            }
+            return;
+        }
         if (isMoving)
         {
+            if (gotHit)
+            {
+                inputOrder.RemoveAt(0);
+                rotationOrder.RemoveAt(0);
+                isMoving = false;
+                return;
+            }
             MovePlayerBeach(inputOrder[0]);
         }   
     }

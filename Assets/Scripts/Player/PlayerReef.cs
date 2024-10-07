@@ -19,7 +19,19 @@ public class PlayerReef : PlayerController
     private void FixedUpdate()
     {
         if (gameHandler.gameEnded) return;
-        if (!gameHandler.timerOn) return;
+        if (!gameHandler.timerOn)
+        {
+            if (gameHandler.uiHandler.hintBox.activeInHierarchy)
+            {
+                if (inputHandler.PressAnyKey())
+                {
+                    gameHandler.uiHandler.hintBox.SetActive(false);
+                    gameHandler.uiHandler.isPaused = false;
+                    gameHandler.timerOn = true;
+                }
+            }
+            return;
+        }
         MovePlayer();
         SpeedControl();
 

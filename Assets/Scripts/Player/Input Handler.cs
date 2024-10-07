@@ -33,6 +33,10 @@ public class InputHandler : MonoBehaviour
         playerControls.Player.SpeedUp.canceled += StopSpeedingUp;
     }
 
+    public bool PressAnyKey()
+    {
+        return BeachMoveForward() || BeachMoveDown() || BeachMoveLeft() || BeachMoveRight() || playerControls.Player.Movement.triggered;
+    }
     private void StopSpeedingUp(InputAction.CallbackContext context)
     {
         speedInput = false;

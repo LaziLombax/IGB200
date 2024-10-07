@@ -25,6 +25,8 @@ public class LevelData : ScriptableObject
         public float hazardSize;
         [TextArea(15, 20)]
         public string description = "Hazard turtle Fact";
+        [TextArea(15, 20)]
+        public string hint = "Hazard Hint";
         public UpgradeCard upgradeCard;
     }
     [System.Serializable]
@@ -194,6 +196,31 @@ public class LevelData : ScriptableObject
                     if (hazardName == hazard.name)
                     {
                         text = hazard.description;
+                    }
+                }
+            }
+        }
+        return text;
+    }
+    public string HazardHint(string stageName, string hazardName)
+    {
+        string text = "";
+        foreach (var stage in stageList)
+        {
+            if (stageName == stage.name)
+            {
+                foreach (var hazard in stage.humanHazards)
+                {
+                    if (hazardName == hazard.name)
+                    {
+                        text = hazard.hint;
+                    }
+                }
+                foreach (var hazard in stage.naturalHazards)
+                {
+                    if (hazardName == hazard.name)
+                    {
+                        text = hazard.hint;
                     }
                 }
             }

@@ -9,6 +9,7 @@ public abstract class PlayerController : Entity
     [Space(10)]
     [Header("Player Movement Variables")]
     public float moveSpeed = 20f;
+    public Vector3 spawnPoint = Vector3.zero;
     public bool isSlowed;
     public float slowTimer;
     public Rigidbody rb;
@@ -50,7 +51,8 @@ public abstract class PlayerController : Entity
     {
         if (SystemInfo.deviceType == DeviceType.Desktop)
         {
-            PlayerInput();
+            if(gameHandler.timerOn)
+                PlayerInput();
         }
     }
 
@@ -60,8 +62,17 @@ public abstract class PlayerController : Entity
         {
             gameHandler.uiHandler.factToDisplay = gameHandler.currentLevelData.HazardFact(gameHandler.stageName,other.GetComponent<Info>().hazardName);
             TakeDamage(1);
+            if (health != 0 && gameHandler.stageName == "Beach")
+            {
+                gameHandler.uiHandler.hintText.text = gameHandler.currentLevelData.HazardHint(gameHandler.stageName, other.GetComponent<Info>().hazardName);
+                gameHandler.uiHandler.ShowHint();
+            }
             gotHit = true;
             StartCoroutine(Flash());
+        }
+        if (other.gameObject.tag == "CheckPoint")
+        {
+            SetSpawn(other.transform);
         }
     }
     private void OnTriggerStay(Collider other)
@@ -116,6 +127,12 @@ public abstract class PlayerController : Entity
                 }
             }
         }
+    }
+    private void SetSpawn(Transform point)
+    {
+        spawnPoint = point.position;
+        spawnPoint.x = 0;
+        spawnPoint.y = transform.position.y;
     }
     public abstract void PlayerInput();
     public abstract void MovePlayer();
