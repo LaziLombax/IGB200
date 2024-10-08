@@ -91,7 +91,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7545304614844873970, guid: e2bf8754391f4224eb48dc7961153f1e, type: 3}
       propertyPath: moveSpeed
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9176313003182767197, guid: e2bf8754391f4224eb48dc7961153f1e, type: 3}
       propertyPath: m_LocalScale.x
@@ -297,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7545304614844873970, guid: e2bf8754391f4224eb48dc7961153f1e, type: 3}
       propertyPath: moveSpeed
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9176313003182767197, guid: e2bf8754391f4224eb48dc7961153f1e, type: 3}
       propertyPath: m_LocalScale.x

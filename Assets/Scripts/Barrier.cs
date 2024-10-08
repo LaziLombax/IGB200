@@ -9,8 +9,7 @@ public class Barrier : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerBeach>())
         {
             PlayerBeach player = other.gameObject.GetComponent<PlayerBeach>();
-            player.hitBarrier = true;
-            player.inputOrder[0] = player.lastPosition;
+            player.ResetPlayerPosition();
         }
     }
 }

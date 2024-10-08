@@ -201,6 +201,7 @@ public class UIHandler : MonoBehaviour
         }
         if (startWave)
         {
+            fadeImage.gameObject.SetActive(true);
             timeElapsed += Time.deltaTime* 0.5f;
             // Lerp the x value from 1 to 0 over time
             float lerpedX = Mathf.Lerp(1f, 0f, timeElapsed);
@@ -263,11 +264,6 @@ public class UIHandler : MonoBehaviour
                 }
             }
 
-        }
-        // Only load when necessary
-        if (isLoading)
-        {
-            LoadingScreen();
         }
 
         // Mouse input for object interaction
@@ -518,7 +514,8 @@ public class UIHandler : MonoBehaviour
     private void OnBackToMenuButtonClick()
     {
         ResumeGame(); // Ensure the game is resumed
-        SceneManager.LoadScene("Menu"); // Load the main menu scene (replace with your scene name)
+        StartFadeTransition("Beach");  // Replace "Beach" with the desired scene name
+        startWave = true;
     }
 
     private void OnStartButtonClick()
@@ -551,7 +548,8 @@ public class UIHandler : MonoBehaviour
         }
 
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StartFadeTransition("Beach");  // Replace "Beach" with the desired scene name
+        startWave = true;
     }
 
     private void OnSettingsButtonClick()
@@ -664,33 +662,22 @@ public class UIHandler : MonoBehaviour
             }
         }
 
-        DOVirtual.DelayedCall(0.5f, () =>
-        {
-            fadeImage.anchoredPosition = new Vector2(-Screen.width, 0); 
-            fadeImage.GetComponent<CanvasGroup>().alpha = 0;
-
-            float slideDuration = 0.5f; 
-            fadeImage.DOAnchorPosX(0, slideDuration).SetEase(Ease.Linear);  
-            fadeImage.GetComponent<CanvasGroup>().DOFade(1, slideDuration).SetEase(Ease.Linear);  
-            StartCoroutine(LoadSceneAsyncWithTransition(sceneName, slideDuration));
-        });
+        StartCoroutine(LoadSceneAsyncWithTransition(sceneName));
     }
 
-    private IEnumerator LoadSceneAsyncWithTransition(string sceneName, float slideDuration)
+    private IEnumerator LoadSceneAsyncWithTransition(string sceneName)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-        asyncLoad.allowSceneActivation = false; 
+        asyncLoad.allowSceneActivation = false;
+        yield return new WaitForSeconds(lerpDuration);
         while (!asyncLoad.isDone)
         {
-            Debug.Log(asyncLoad.progress.ToString());
-            Debug.Log(asyncLoad.progress.ToString()+ " " + slideDuration.ToString() + " " + fadeImage.GetComponent<Image>().material.GetVector("_Mask_Position").x.ToString());
-            if (asyncLoad.progress >= 0.9f && slideDuration <= 0 && fadeImage.GetComponent<Image>().material.GetVector("_Mask_Position").x <= 0.1f)
+            if (asyncLoad.progress >= 0.9f && timeElapsed == 0)
             {
                 Debug.Log("Loading now");
                 asyncLoad.allowSceneActivation = true;
             }
 
-            slideDuration -= Time.deltaTime; 
             yield return null; 
         }
     }
@@ -769,8 +756,9 @@ public class UIHandler : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene("Beach");
         Time.timeScale = 1;
+        StartFadeTransition("Beach");  // Replace "Beach" with the desired scene name
+        startWave = true;
     }
 
     public void EndGameScreen()
@@ -818,17 +806,20 @@ public class UIHandler : MonoBehaviour
 
     public void CheckLoseDialogue()
     {
-        if (!gameData.CheckRead("Lose Screen"))
-        {
-            StartDialogue("Lose Screen");
-        }
+        StartCoroutine(CheckDialogue("Lose Screen"));
     }
     public void CheckWinDialogue()
     {
-        if (!gameData.CheckRead("Win Screen"))
+        StartCoroutine(CheckDialogue("Win Screen"));
+    }
+    IEnumerator CheckDialogue(string name)
+    {
+        yield return new WaitForSeconds(1f);
+        if (!gameData.CheckRead(name))
         {
-            StartDialogue("Win Screen");
+            StartDialogue(name);
         }
+        yield return null;
     }
     public void LoadingScreen()
     {

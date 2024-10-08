@@ -9,6 +9,7 @@ public class End : MonoBehaviour
     {
         if (other.gameObject == GameHandler.Instance.player)
         {
+            Debug.Log("Win");
             GameHandler.Instance.CompleteLevel(win);
         }
     }

@@ -1,45 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerBeach : PlayerController
 {
-    [Space(10)]
     [Header("Beach Movement Variables")]
-    public bool isMoving;
-    public Vector3 moveDir;
     public float moveTime = 0.1f;
     public float moveDistance;
     public float horizontalSpaces;
     public float rotationTime;
-    bool rotating = false;
-    public bool hitBarrier;
-    public Vector3 lastPosition;
     public AudioSource moveAudio;
-    public List<Vector3> inputOrder = new List<Vector3>();
-    public List<Vector3> rotationOrder = new List<Vector3>();
+    public bool canBuffer;
+    public float bufferTime;
+    private bool isMoving, rotating;
+    private Vector3 initialPosition;
+    private Vector3 targetPosition;
+    private Quaternion targetRotation;
 
-    [Header("Mobile Movement Variables")]
-    public float swipeThreshold = 50f;
-    private Vector2 startTouchPosition;
-    private Vector2 currentTouchPosition;
-    private Vector2 endTouchPosition;
-
-
+    private Queue<(Vector3, Quaternion)> inputQueue = new Queue<(Vector3, Quaternion)>(); // Queue to store input
 
     private void Start()
     {
-        if (inputHandler != null)
-            inputHandler.playerControls.Player.Swipe.performed += OnSwipePerformed;
-        lastPosition = transform.position;
+        initialPosition = transform.position; // Store the player's starting position
+
         moveAudio = gameHandler.gameAudioData.AddNewAudioSourceFromStandard("Player", gameObject, "Beach Move");
-        moveDir = transform.position;
         SetHat();
     }
+
     private void FixedUpdate()
     {
         if (gameHandler.gameEnded) return;
@@ -58,210 +46,114 @@ public class PlayerBeach : PlayerController
         }
         if (isMoving)
         {
-            if (gotHit)
-            {
-                inputOrder.RemoveAt(0);
-                rotationOrder.RemoveAt(0);
-                isMoving = false;
-                return;
-            }
-            MovePlayerBeach(inputOrder[0]);
-        }   
-    }
-    public void MovePlayerBeach(Vector3 nextPos)
-    {
-        Vector3 newPosition = Vector3.Lerp(transform.position, nextPos, moveTime * moveSpeed * Time.fixedDeltaTime);
-        Quaternion newRotation = Quaternion.Euler(rotationOrder[0]);
-        rb.MovePosition(newPosition);
-        if (gameObject.transform.rotation.y < 0)
-        {
-            StartCoroutine(rotateObject(gameObject, newRotation, 2 * rotationTime));
+            MovePlayer();
         }
-        else if (gameObject.transform.rotation.y >= 0)
+        else if (inputQueue.Count > 0)
         {
-            StartCoroutine(rotateObject(gameObject, newRotation, rotationTime));
+            // Process next input from the queue once movement is finished
+            var (nextPosition, nextRotation) = inputQueue.Dequeue();
+            SetMove(nextPosition, nextRotation);
         }
-
-        if (Vector3.Distance(transform.position, newPosition) <= 0.01f)
-        {
-            lastPosition = nextPos;
-            if (hitBarrier) hitBarrier = false;
-            rb.MovePosition(nextPos);
-            inputOrder.RemoveAt(0);
-            rotationOrder.RemoveAt(0);
-            isMoving = false;
-        }
-    }
-
-    public override void PlayerInput()
-    {
-        if (inputOrder.Count > 2) return;
-        Vector3 newPos = new Vector3();
-        if (inputOrder.Count == 0)
-        {
-            newPos = transform.position;
-        }
-        else
-        {
-            isMoving = true;
-            newPos = inputOrder.Last();
-        }
-        if (inputHandler.BeachMoveForward())
-        {
-            MoveUp(newPos);
-        }
-
-        if (inputHandler.BeachMoveLeft())
-        {
-            MoveLeft(newPos);
-        }
-        if (inputHandler.BeachMoveRight())
-        {
-            MoveRight(newPos);
-        }
-
-        if (inputHandler.BeachMoveDown())
-        {
-            MoveDown(newPos);
-        }
-    }
-
-    public void MoveUp(Vector3 newPos)
-    {
-        newPos += Vector3.forward * (moveDistance + 1);
-        inputOrder.Add(newPos);
-        rotationOrder.Add(new Vector3(0, 0, 0));
-        moveAudio.Play();
-
-    }
-    public void MoveDown(Vector3 newPos)
-    {
-        if (transform.position.z - 4f < 0f) return;
-        newPos += Vector3.back * (moveDistance + 1);
-        rotationOrder.Add(new Vector3(0, 180, 0));
-        inputOrder.Add(newPos);
-        moveAudio.Play();
-    }
-    public void MoveLeft(Vector3 newPos)
-    {
-        if (newPos.x - moveDistance < horizontalSpaces * moveDistance * -1) return;
-        if (newPos.x - moveDistance < -12.0f) return;
-
-        newPos += Vector3.left * moveDistance;
-        rotationOrder.Add(new Vector3(0, -90, 0));
-        inputOrder.Add(newPos);
-        moveAudio.Play();
-    }
-    public void MoveRight(Vector3 newPos)
-    {
-        if (newPos.x + moveDistance > horizontalSpaces * moveDistance) return;
-        if (newPos.x - moveDistance > 12.0f) return;
-
-        newPos += Vector3.right * moveDistance;
-        rotationOrder.Add(new Vector3(0, 90, 0));
-        inputOrder.Add(newPos);
-        moveAudio.Play();
-    }
-
-
-    IEnumerator rotateObject(GameObject gameObjectToMove, Quaternion newRot, float duration){
-        if (rotating)
-        {
-            yield break;
-        }
-        rotating = true;
-
-        Quaternion currentRot = gameObjectToMove.transform.rotation;
-
-        float counter = 0;
-        while (counter < duration)
-        {
-            counter += Time.deltaTime;
-            gameObjectToMove.transform.rotation = Quaternion.Lerp(currentRot, newRot, counter / duration);
-            yield return null;
-        }
-        rotating = false;
-    }
-
-    public override void SlowEffect()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void SlowTimer()
-    {
-        throw new System.NotImplementedException();
     }
 
     public override void MovePlayer()
     {
-        throw new System.NotImplementedException();
+        float t = Mathf.SmoothStep(0f, 1f, moveTime * moveSpeed * Time.fixedDeltaTime); // Easing the movement
+        Vector3 newPosition = Vector3.Lerp(transform.position, targetPosition, t);
+        rb.MovePosition(newPosition);
+
+        if (Vector3.Distance(transform.position, targetPosition) <= 0.01f)
+        {
+            rb.MovePosition(targetPosition); // Snap to the target position
+            isMoving = false; // Stop moving once the target is reached
+            canBuffer = false;
+            initialPosition = targetPosition;
+        }
+
+        // Rotate player smoothly
+        StartCoroutine(rotateObject(gameObject, targetRotation, rotationTime));
     }
 
-
-    private void OnSwipePerformed(InputAction.CallbackContext context)
+    public override void PlayerInput()
     {
-        // Detect touch start position
-        if (Touchscreen.current.primaryTouch.press.isPressed)
+        if (isMoving && inputQueue.Count > 1) return; // Avoid overfilling the queue
+
+        Vector3 currentPos = targetPosition;
+        //initialPosition = targetPosition;
+        if (inputHandler.BeachMoveForward())
         {
-            startTouchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+            EnqueueMove(currentPos + Vector3.forward * moveDistance, Quaternion.Euler(0, 0, 0));
         }
-
-        // When the finger is lifted
-        if (Touchscreen.current.primaryTouch.press.wasReleasedThisFrame)
+        if (inputHandler.BeachMoveLeft())
         {
-            endTouchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
-            currentTouchPosition = endTouchPosition - startTouchPosition;
-
-            Debug.Log(endTouchPosition.ToString());
-            Debug.Log(currentTouchPosition.ToString());
-            Debug.Log("Swiped");
-            // Call the method to process the swipe
-            ProcessSwipe(currentTouchPosition);
+            if (currentPos.x - horizontalSpaces < -9) return;
+            EnqueueMove(currentPos + Vector3.left * horizontalSpaces, Quaternion.Euler(0, -90, 0));
+        } 
+        if (inputHandler.BeachMoveRight())
+        {
+            if (currentPos.x + horizontalSpaces > 9) return;
+            EnqueueMove(currentPos + Vector3.right * horizontalSpaces, Quaternion.Euler(0, 90, 0));
+        } 
+        if (inputHandler.BeachMoveDown())
+        {
+            if (currentPos.z - moveDistance < 0) return;
+            EnqueueMove(currentPos + Vector3.back * moveDistance, Quaternion.Euler(0, 180, 0));
         }
     }
 
-    private void ProcessSwipe(Vector2 swipeDelta)
+    private void SetMove(Vector3 newPosition, Quaternion newRotation)
     {
-        if (inputOrder.Count > 2) return;
-        Vector3 newPos = new Vector3();
-        if (inputOrder.Count == 0)
-        {
-            newPos = transform.position;
-        }
-        else
-        {
-            isMoving = true;
-            newPos = inputOrder.Last();
-        }
-        if (swipeDelta.magnitude >= swipeThreshold) // Only process if the swipe is large enough
-        {
-            float x = swipeDelta.x;
-            float y = swipeDelta.y;
+        targetPosition = newPosition;
+        targetRotation = newRotation;
+        moveAudio.Play();
+        isMoving = true; // Player starts moving
+    }
 
-            // Determine swipe direction based on the larger axis movement
-            if (Mathf.Abs(x) > Mathf.Abs(y))
-            {
-                if (x > 0)
-                {
-                    MoveRight(newPos);
-                }
-                else
-                {
-                    MoveLeft(newPos);
-                }
-            }
-            else
-            {
-                if (y > 0)
-                {
-                    MoveUp(newPos);
-                }
-                else
-                {
-                    MoveDown(newPos);
-                }
-            }
+    private void EnqueueMove(Vector3 newPosition, Quaternion newRotation)
+    {
+        inputQueue.Enqueue((newPosition, newRotation)); // Store input in the queue
+    }
+
+    // Collision detection for rocks
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Rock")) // Assuming rocks have the tag "Rock"
+        {
+            ResetPlayerPosition(); // Reset to initial position when colliding with rocks
         }
+    }
+    public void ResetPlayerPosition()
+    {
+        transform.position = initialPosition; // Reset to original position
+        targetPosition = initialPosition; // Reset the target position as well
+        isMoving = false; // Stop the player from moving
+        inputQueue.Clear(); // Clear the input queue
+    }
+
+    IEnumerator rotateObject(GameObject obj, Quaternion newRot, float duration)
+    {
+        if (rotating) yield break;
+
+        rotating = true;
+        Quaternion startRot = obj.transform.rotation;
+        float timeElapsed = 0;
+
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+            obj.transform.rotation = Quaternion.Lerp(startRot, newRot, timeElapsed / duration);
+            yield return null;
+        }
+
+        rotating = false;
+    }
+
+    public override void SlowEffect() { /* Not Implemented */ }
+    public override void SlowTimer() { /* Not Implemented */ }
+
+    public override void Respawn()
+    {
+        transform.position = spawnPoint;
+        targetPosition = spawnPoint;
     }
 }

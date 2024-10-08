@@ -143,4 +143,7 @@ public class PlayerReef : PlayerController
         }
         isSlowed = true;
     }
+    public override void Respawn()
+    {
+    }
 }

@@ -64,7 +64,7 @@ public abstract class PlayerController : Entity
             TakeDamage(1);
             if (gameHandler.stageName == "Beach")
             {
-                gameObject.transform.position = spawnPoint;
+                Respawn();
                 if (health != 0)
                 {
                     gameHandler.uiHandler.hintText.text = gameHandler.currentLevelData.HazardHint(gameHandler.stageName, other.GetComponent<Info>().hazardName);
@@ -140,6 +140,7 @@ public abstract class PlayerController : Entity
     }
     public abstract void PlayerInput();
     public abstract void MovePlayer();
+    public abstract void Respawn();
 
     public abstract void SlowEffect();
     public abstract void SlowTimer();

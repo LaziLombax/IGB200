@@ -69,7 +69,7 @@ public class SharkSpawner : MonoBehaviour
                 break;
             case 2:
                 // Set the number of sets and objects per set
-                numberOfSets = 6;
+                numberOfSets = 5;
                 objectsPerSet = 1; // Adjust this range as necessary
                 setInterval = 0.2f; // Time interval between each set
                 verticalOffset = spawnOffset * 1f; // Adjust the spacing between sets

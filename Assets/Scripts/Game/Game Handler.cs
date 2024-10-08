@@ -57,8 +57,6 @@ public class GameHandler : MonoBehaviour
     #endregion
     private void Start()
     {
-        if (stageName == string.Empty)
-            uiHandler.finishedWaves = true;
         if (!GameObject.FindGameObjectWithTag("Music"))
         {
             GameObject myMusicObject = Instantiate(new GameObject(), transform.position, transform.rotation);
