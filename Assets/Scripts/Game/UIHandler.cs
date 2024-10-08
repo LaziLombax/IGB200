@@ -607,6 +607,7 @@ public class UIHandler : MonoBehaviour
 
         if (hatPanel != null)
         {
+            platformHats.gameObject.SetActive(true);
             hatPanel.SetActive(true);
             hatPanelIsActive = true;
             CanvasGroup hatCanvasGroup = hatPanel.GetComponent<CanvasGroup>();
@@ -748,7 +749,9 @@ public class UIHandler : MonoBehaviour
         {
             CanvasGroup hatCanvasGroup = hatPanel.GetComponent<CanvasGroup>();
             hatPanelIsActive = false;
+            Invoke(nameof(HidePlatform), 0.5f);
             hatCanvasGroup.DOFade(0, 0.5f).OnComplete(() => hatPanel.SetActive(false));
+            
         }
 
         if (startMenuPanel != null)
@@ -758,6 +761,10 @@ public class UIHandler : MonoBehaviour
             startCanvasGroup.alpha = 0;
             startCanvasGroup.DOFade(1, 0.5f);
         }
+    }
+    private void HidePlatform()
+    {
+        platformHats.gameObject.SetActive(false);
     }
 
     public void RestartLevel()
