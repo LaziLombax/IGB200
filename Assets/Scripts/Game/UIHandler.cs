@@ -81,6 +81,10 @@ public class UIHandler : MonoBehaviour
     public bool isLoading;
     public float alphaTimer;
     public float progressTimer;
+    public bool startWave;
+    private Vector2 wavePos;
+    public bool panelWaves;
+    public GameObject panelToActivate;
     [Space(10)]
     [Header("Buttons")]
     public Button startButton;
@@ -169,7 +173,9 @@ public class UIHandler : MonoBehaviour
 
     }
     #endregion
-
+    private float timeElapsed;
+    private float lerpDuration = 1f;
+    public bool finishedWaves;
     private void Update()
     {
         // Timer handling should only be checked if necessary, not every frame.
@@ -193,7 +199,71 @@ public class UIHandler : MonoBehaviour
                 dialogueText.text = gameData.ReturnCurrentIndex(currentDialogueKey, textIndex);
             }
         }
+        if (startWave)
+        {
+            timeElapsed += Time.deltaTime* 0.5f;
+            // Lerp the x value from 1 to 0 over time
+            float lerpedX = Mathf.Lerp(1f, 0f, timeElapsed);
 
+            // Update wavePos with the lerped x value
+            wavePos.x = lerpedX;
+
+            // Update the shader with the new wavePos
+            fadeImage.GetComponent<Image>().material.SetVector("_Mask_Position", wavePos);
+
+
+            // Optionally, stop the effect when it's finished
+            if (timeElapsed >= lerpDuration)
+            {
+                timeElapsed = 0f;
+                startWave = false; // Stop the wave effect after the duration
+            }
+        }
+        if (!finishedWaves)
+        {
+            if(fadeImage.GetComponent<CanvasGroup>()) fadeImage.GetComponent<CanvasGroup>().alpha = 1;
+            fadeImage.gameObject.SetActive(true);
+            if (panelWaves)
+            {
+                timeElapsed += Time.deltaTime * 0.5f;
+                // Lerp the x value from 1 to 0 over time
+                float lerpedX = Mathf.Lerp(1f, 0f, timeElapsed);
+
+                // Update wavePos with the lerped x value
+                wavePos.x = lerpedX;
+
+                // Update the shader with the new wavePos
+                fadeImage.GetComponent<Image>().material.SetVector("_Mask_Position", wavePos);
+
+                // Optionally, stop the effect when it's finished
+                if (timeElapsed >= lerpDuration)
+                {
+                    panelWaves = false;
+                    timeElapsed = 0f; // Stop the wave effect after the duration
+                }
+            }
+            else
+            {
+                timeElapsed += Time.deltaTime * 0.5f;
+                // Lerp the x value from 1 to 0 over time
+                float lerpedX = Mathf.Lerp(0f, 1f, timeElapsed);
+
+                // Update wavePos with the lerped x value
+                wavePos.x = lerpedX;
+
+                // Update the shader with the new wavePos
+                fadeImage.GetComponent<Image>().material.SetVector("_Mask_Position", wavePos);
+
+                // Optionally, stop the effect when it's finished
+                if (timeElapsed >= lerpDuration)
+                {
+                    fadeImage.gameObject.SetActive(false);
+                    finishedWaves = true;
+                    timeElapsed = 0f; // Stop the wave effect after the duration
+                }
+            }
+
+        }
         // Only load when necessary
         if (isLoading)
         {
@@ -274,6 +344,7 @@ public class UIHandler : MonoBehaviour
 
     private void Start()
     {
+        wavePos = Vector3.zero;
         if (progressList.Count > 0)
         {
             for (int i = 0; i < progressList.Count; i++)
@@ -503,8 +574,13 @@ public class UIHandler : MonoBehaviour
     public void OnLevelButtonClick()
     {
         StartFadeTransition("Beach");  // Replace "Beach" with the desired scene name
+        startWave = true;
     }
-
+    public void OnBeachEnd()
+    {
+        StartFadeTransition("Reef");  // Replace "Beach" with the desired scene name
+        startWave = true;
+    }
     private void OnInfoButtonClick()
     {
         if (startMenuPanel != null)
@@ -605,8 +681,11 @@ public class UIHandler : MonoBehaviour
         asyncLoad.allowSceneActivation = false; 
         while (!asyncLoad.isDone)
         {
-            if (asyncLoad.progress >= 0.9f && slideDuration <= 0)
+            Debug.Log(asyncLoad.progress.ToString());
+            Debug.Log(asyncLoad.progress.ToString()+ " " + slideDuration.ToString() + " " + fadeImage.GetComponent<Image>().material.GetVector("_Mask_Position").x.ToString());
+            if (asyncLoad.progress >= 0.9f && slideDuration <= 0 && fadeImage.GetComponent<Image>().material.GetVector("_Mask_Position").x <= 0.1f)
             {
+                Debug.Log("Loading now");
                 asyncLoad.allowSceneActivation = true;
             }
 
@@ -689,17 +768,45 @@ public class UIHandler : MonoBehaviour
 
     public void EndGameScreen()
     {
-        endgamePanel.SetActive(true);
         isPaused = true;
-        factText.text = factToDisplay;
-        if (factText.text == null)
+        panelWaves = true;
+        finishedWaves = false;
+        StartCoroutine(ActivatePanel(endgamePanel, 1.5f));
+    }
+    IEnumerator ActivatePanel(GameObject panel, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        panel.SetActive(true);
+
+        if (panel == endgamePanel)
         {
-            funFactText.SetActive(false);
-        }
-        else
+            if (endgamePanel != null)
+                endgamePanel.SetActive(true);
+            factText.text = factToDisplay;
+            if (factText.text == null)
+            {
+                funFactText.SetActive(false);
+            }
+            else
+            {
+                funFactText.SetActive(true);
+            }
+        } else if (panel == upgradePanel)
         {
-            funFactText.SetActive(true);
-        }
+            if (endgamePanel != null)
+                endgamePanel.SetActive(false);
+            if (upgradePanel != null)
+                upgradePanel.SetActive(true);
+            if (!gameData.CheckRead("Upgrade Screen"))
+            {
+                StartDialogue("Upgrade Screen");
+            }
+            cleanProgress.value = Mathf.Round(GameHandler.Instance.currentLevelData.CleanProgression() * 100);
+            upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
+        } //else if (panel == upgradePanel)
+        //{
+
+        //}
     }
 
     public void CheckLoseDialogue()
@@ -718,17 +825,6 @@ public class UIHandler : MonoBehaviour
     }
     public void LoadingScreen()
     {
-        loadingPanel.SetActive(true);
-        alphaTimer += Time.deltaTime * 0.002f;
-        float alpha = Mathf.Lerp(0, 255, alphaTimer);
-        Debug.Log(alpha.ToString());
-        loadingPanel.GetComponent<Image>().color = new Color(255, 255, 255, alpha);
-        if (alpha >= 1)
-            progressTimer +=  Time.deltaTime * 0.5f;
-        loadSlider.value = Mathf.Lerp(0, 100, progressTimer);
-
-        if (loadSlider.value >= 100)
-            SceneManager.LoadScene("Reef");
     }
 
     public void LoseHealth()
@@ -791,17 +887,11 @@ public class UIHandler : MonoBehaviour
     }
     private void OnUpgradeButtonClick()
     {
-
-        if (endgamePanel != null)
-            endgamePanel.SetActive(false);
-        if (upgradePanel != null)
-            upgradePanel.SetActive(true);
-        if (!gameData.CheckRead("Upgrade Screen"))
-        {
-            StartDialogue("Upgrade Screen");
-        }
-        cleanProgress.value = Mathf.Round(GameHandler.Instance.currentLevelData.CleanProgression() * 100);
-        upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
+        isPaused = true;
+        StopAllCoroutines();
+        panelWaves = true;
+        finishedWaves = false;
+        StartCoroutine(ActivatePanel(upgradePanel, 1.5f));
     }
     public void UpdateGold()
     {

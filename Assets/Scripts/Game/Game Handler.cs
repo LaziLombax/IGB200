@@ -45,6 +45,8 @@ public class GameHandler : MonoBehaviour
     public GameObject reefStage;
     public float speedUp;
     public bool isSpeed;
+    private AudioSource playerSwim;
+    private bool isPlayingSwim;
     public GameObject decorObject;
     public Transform decSpawnPos;
     public Transform endLocal;
@@ -55,6 +57,8 @@ public class GameHandler : MonoBehaviour
     #endregion
     private void Start()
     {
+        if (stageName == string.Empty)
+            uiHandler.finishedWaves = true;
         if (!GameObject.FindGameObjectWithTag("Music"))
         {
             GameObject myMusicObject = Instantiate(new GameObject(), transform.position, transform.rotation);
@@ -71,12 +75,21 @@ public class GameHandler : MonoBehaviour
         gameEnded = false;
         if (stageName == "Beach")
         {
+            AudioSource gulls = gameAudioData.AddNewAudioSourceFromStandard("Game", gameObject, "Gulls");
+            gulls.Play();
+            gulls.loop = true;
             currentTimer = 0f;
             GenerateLevel();
             SpawnBeachEnd();
         }
         else if (stageName == "Reef")
         {
+            AudioSource seaAmb = gameAudioData.AddNewAudioSourceFromStandard("Game", gameObject, "Sea Amb");
+            seaAmb.Play();
+            seaAmb.loop = true;
+
+            playerSwim = gameAudioData.AddNewAudioSourceFromStandard("Game", gameObject, "Sea Swim");
+            playerSwim.loop = true;
             currentTimer = currentLevelData.currentTimer;
             for (int i = 0; i < initialSpawnNum; i++)
             {
@@ -129,9 +142,19 @@ public class GameHandler : MonoBehaviour
         Rigidbody reefRb = reefStage.GetComponent<Rigidbody>();
         if (isSpeed)
         {
+            if (!isPlayingSwim) 
+            {
+                playerSwim.Play();
+                isPlayingSwim = true;
+            }
             screenMove = new Vector3(0, 0, stageSpeed * speedUp * Time.fixedDeltaTime);
         } else
         {
+            if (isPlayingSwim)
+            {
+                playerSwim.Stop();
+                isPlayingSwim = false;
+            }
             screenMove = new Vector3(0, 0, stageSpeed * Time.fixedDeltaTime);
         }
         reefRb.MovePosition(reefRb.position + screenMove);
@@ -183,13 +206,12 @@ public class GameHandler : MonoBehaviour
         timerOn = false;
         if (stageName == "Beach")
         {
-            currentLevelData.currentTimer = currentTimer;
-            uiHandler.isLoading = true;
-            PlayerController.Instance.GetComponent<Rigidbody>().useGravity = true;
+            uiHandler.OnBeachEnd();
+            uiHandler.fadeImage.gameObject.SetActive(true);
         }
         else
         {
-            if (beatGame)
+            if (beatGame && stageName == "Reef")
             {
                 
                 EndGame(beatGame);

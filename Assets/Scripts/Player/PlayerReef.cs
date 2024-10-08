@@ -10,10 +10,12 @@ public class PlayerReef : PlayerController
     [Header("Reef Movement Variables")]
     public Vector3 moveInput;
     public GameObject oilOverlay;
+    private AudioSource oilSplat;
     public float fadeInkTimer;
 
     private void Start()
     {
+        oilSplat = gameHandler.gameAudioData.AddNewAudioSourceFromStandard("Player", gameObject, "Splat");
         SetHat();
     }
     private void FixedUpdate()
@@ -136,6 +138,7 @@ public class PlayerReef : PlayerController
     {
         if (!isSlowed)
         {
+            oilSplat.Play();
             Invoke(nameof(SlowTimer), slowTimer);
         }
         isSlowed = true;

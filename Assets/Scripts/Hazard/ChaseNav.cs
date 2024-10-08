@@ -28,12 +28,14 @@ public class ChaseNav : MonoBehaviour
     private Vector3 newRotation;
     private PatrolChange patrolLeftScript;
     private PatrolChange patrolRightScript;
+    private AudioSource chaseAudio;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         myState = ChaseState.Start;
 
+        chaseAudio = GameHandler.Instance.gameAudioData.AddNewAudioSourceFromGroup("Hazard", "Pig", gameObject, "Chase");
         // Cache PatrolChange components to avoid repeated GetComponent calls
         patrolLeftScript = patrolLeft.GetComponent<PatrolChange>();
         patrolRightScript = patrolRight.GetComponent<PatrolChange>();
@@ -48,6 +50,7 @@ public class ChaseNav : MonoBehaviour
             switch (myState)
         {
             case ChaseState.Chase:
+                chaseAudio.Play();
                 HandleChaseState();
                 break;
             case ChaseState.Patrolling:

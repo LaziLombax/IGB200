@@ -15,11 +15,33 @@ MonoBehaviour:
   masterMixer: {fileID: 24300002, guid: 208e4233cd2e0764890874a77974ba35, type: 2}
   myPlayerAudio:
   - clipName: Beach Move
-    clipFile: {fileID: 8300000, guid: 8c2e584b5d11270489702262176d2696, type: 3}
+    clipFile: {fileID: 8300000, guid: cd022d44d36b22644af14bc6e711f9d8, type: 3}
     volume: 0.506
+  - clipName: Splat
+    clipFile: {fileID: 8300000, guid: 1c3ea747359184c45a35a94ad38507fa, type: 3}
+    volume: 0.273
   myGameAudio:
   - clipName: Game Music
     clipFile: {fileID: 8300000, guid: 5b50a89d8b51ad146a02c4c092632c53, type: 3}
     volume: 0.1
+  - clipName: Sea Amb
+    clipFile: {fileID: 8300000, guid: 52eff3beac286d64e8a293cf4accc977, type: 3}
+    volume: 0.258
+  - clipName: Gulls
+    clipFile: {fileID: 8300000, guid: 11f0b3c6dbdc6da42b1db59367bef2be, type: 3}
+    volume: 0.346
+  - clipName: Sea Swim
+    clipFile: {fileID: 8300000, guid: be92b519cb60d4341a5eadadb59f8b68, type: 3}
+    volume: 1
   myUIAudio: []
-  myHazardAudio: []
+  myHazardAudio:
+  - groupName: Pig
+    groupEntries:
+    - clipName: Chase
+      clipFile: {fileID: 8300000, guid: d17bfe928e8c8064e8920030e395c08a, type: 3}
+      volume: 0.508
+  - groupName: Crab
+    groupEntries:
+    - clipName: Snap
+      clipFile: {fileID: 8300000, guid: 6f2c70bd69da9c44c8281142ea785eca, type: 3}
+      volume: 0.043

@@ -62,10 +62,14 @@ public abstract class PlayerController : Entity
         {
             gameHandler.uiHandler.factToDisplay = gameHandler.currentLevelData.HazardFact(gameHandler.stageName,other.GetComponent<Info>().hazardName);
             TakeDamage(1);
-            if (health != 0 && gameHandler.stageName == "Beach")
+            if (gameHandler.stageName == "Beach")
             {
-                gameHandler.uiHandler.hintText.text = gameHandler.currentLevelData.HazardHint(gameHandler.stageName, other.GetComponent<Info>().hazardName);
-                gameHandler.uiHandler.ShowHint();
+                gameObject.transform.position = spawnPoint;
+                if (health != 0)
+                {
+                    gameHandler.uiHandler.hintText.text = gameHandler.currentLevelData.HazardHint(gameHandler.stageName, other.GetComponent<Info>().hazardName);
+                    gameHandler.uiHandler.ShowHint();
+                }
             }
             gotHit = true;
             StartCoroutine(Flash());

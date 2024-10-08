@@ -14,7 +14,7 @@ public class CrabMove : MonoBehaviour
     {
         startPosition = transform.position; // Store the initial position
         movementTimer = Random.Range(0f, 5f); // Direct assignment, no need for increment
-
+        AudioSource crabAudio = GameHandler.Instance.gameAudioData.AddNewAudioSourceFromGroup("Hazard", "Crab", gameObject,"Snap");
         StartCoroutine(UpdateMovement());
     }
 

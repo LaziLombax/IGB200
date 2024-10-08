@@ -34,7 +34,7 @@ public class SharkSpawner : MonoBehaviour
     private void Update()
     {
         // Check if it's time to spawn objects
-        if (Time.time >= nextSpawnTime)
+        if (Time.time >= nextSpawnTime && GameHandler.Instance.timerOn)
         {
             SpawnObjectsInPattern();
             nextSpawnTime = Time.time + spawnInterval;
@@ -84,6 +84,7 @@ public class SharkSpawner : MonoBehaviour
         {
             for (int i = 0; i < objectsPerSet; i++)
             {
+                if (!GameHandler.Instance.timerOn) yield return null;
                 Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y + (i * spaceOffset) + (set * verticalOffset), transform.position.z);
 
                 GameObject spawnedObject = objectPool.GetFromPool(spawnPosition, transform.rotation);
@@ -146,6 +147,7 @@ public class SharkSpawner : MonoBehaviour
 
         while (Time.time < startTime + duration)
         {
+            if (!GameHandler.Instance.timerOn) yield return null;
             // Calculate the alpha value based on time
             float alpha = Mathf.PingPong(Time.time * 4f, 1f); // Adjust the speed of the flashing
             indicator.GetComponent<Image>().color = new Color(1f, 1f, 1f, alpha); // Update alpha
