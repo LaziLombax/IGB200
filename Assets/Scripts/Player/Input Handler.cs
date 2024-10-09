@@ -17,6 +17,7 @@ public class InputHandler : MonoBehaviour
 
     public PlayerControls playerControls;
     bool speedInput;
+    bool actionInProgress;
 
     private void Awake()
     {

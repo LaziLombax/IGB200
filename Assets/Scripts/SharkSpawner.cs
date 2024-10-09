@@ -108,6 +108,8 @@ public class SharkSpawner : MonoBehaviour
     }
     private void SpawnIndicator(Vector3 sharkPosition)
     {
+        if(GameHandler.Instance.gameEnded)
+            StopAllCoroutines();
         // Instantiate a new indicator on the canvas
         GameObject indicator = Instantiate(spawnIndicatorPrefab, canvasRectTransform);
 
@@ -151,6 +153,11 @@ public class SharkSpawner : MonoBehaviour
             // Calculate the alpha value based on time
             float alpha = Mathf.PingPong(Time.time * 4f, 1f); // Adjust the speed of the flashing
             indicator.GetComponent<Image>().color = new Color(1f, 1f, 1f, alpha); // Update alpha
+            if (GameHandler.Instance.gameEnded)
+            {
+                Destroy(indicator);
+                StopAllCoroutines();
+            }
             yield return null; // Wait for the next frame
         }
 

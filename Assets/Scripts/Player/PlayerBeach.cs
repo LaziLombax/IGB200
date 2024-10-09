@@ -13,7 +13,7 @@ public class PlayerBeach : PlayerController
     public AudioSource moveAudio;
     public bool canBuffer;
     public float bufferTime;
-    private bool isMoving, rotating;
+    public bool isMoving, rotating;
     private Vector3 initialPosition;
     private Vector3 targetPosition;
     private Quaternion targetRotation;
@@ -57,10 +57,11 @@ public class PlayerBeach : PlayerController
             SetMove(nextPosition, nextRotation);
         }
     }
-
     public override void MovePlayer()
     {
         float t = Mathf.SmoothStep(0f, 1f, moveTime * moveSpeed * Time.fixedDeltaTime); // Easing the movement
+        if (Vector3.Distance(transform.position, targetPosition) <= 0.6f)
+            canBuffer = true;
         Vector3 newPosition = Vector3.Lerp(transform.position, targetPosition, t);
         rb.MovePosition(newPosition);
 
@@ -84,6 +85,7 @@ public class PlayerBeach : PlayerController
         if (inputQueue.Count >= 1 && isMoving) return; // Avoid overfilling the queue
         if (plannedPos != currentPos)
         {
+            if (!canBuffer) return;
             Debug.Log(inputQueue.Count.ToString() + " " + currentPos.ToString() + " " + plannedPos.ToString());
             currentPos = plannedPos;
         }
@@ -110,6 +112,8 @@ public class PlayerBeach : PlayerController
             EnqueueMove(plannedPos + Vector3.back * moveDistance, Quaternion.Euler(0, 180, 0));
             plannedPos = currentPos + Vector3.back * moveDistance;
         }
+        if(plannedPos == transform.position && !isMoving)
+            plannedPos = transform.position;
         if(inputQueue.Count == 2)
             Debug.Log(inputQueue.Count.ToString());
     }

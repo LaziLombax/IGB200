@@ -983,7 +983,7 @@ public class UIHandler : MonoBehaviour
     {
         gameHandler.timerOn = false;
         isPaused = true;
-        Invoke(nameof(DisplayHint),0.6f);
+        Invoke(nameof(DisplayHint),0.3f);
     }
     public void DisplayHint()
     {
