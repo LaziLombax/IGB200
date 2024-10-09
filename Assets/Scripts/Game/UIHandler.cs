@@ -547,7 +547,6 @@ public class UIHandler : MonoBehaviour
             gameHandler.ResetGameState();
         }
 
-        Time.timeScale = 1f;
         StartFadeTransition("Beach");  // Replace "Beach" with the desired scene name
         startWave = true;
     }
@@ -667,9 +666,10 @@ public class UIHandler : MonoBehaviour
 
     private IEnumerator LoadSceneAsyncWithTransition(string sceneName)
     {
+        Debug.Log("Trying to Load");
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         asyncLoad.allowSceneActivation = false;
-        yield return new WaitForSeconds(lerpDuration);
+        //yield return new WaitForSeconds(lerpDuration);
         while (!asyncLoad.isDone)
         {
             if (asyncLoad.progress >= 0.9f && timeElapsed == 0)
@@ -756,7 +756,7 @@ public class UIHandler : MonoBehaviour
 
     public void RestartLevel()
     {
-        Time.timeScale = 1;
+        Debug.Log("Weird");
         StartFadeTransition("Beach");  // Replace "Beach" with the desired scene name
         startWave = true;
     }
