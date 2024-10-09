@@ -15,7 +15,7 @@ MonoBehaviour:
   levelName: Lady Musgrave Island (Tutorial)
   levelNum: 0
   description: Beach Description
-  levelGold: 180
+  levelGold: 0
   currentTimer: 0
   stageList:
   - name: Beach

@@ -75,6 +75,6 @@ Material:
     - _Core_Colour: {r: 0, g: 0.3244596, b: 0.754717, a: 1}
     - _Distortion_Speed: {r: -0.05, g: 0, b: 0, a: 0}
     - _Distortion_Tiling: {r: 1, g: 1, b: 0, a: 0}
-    - _Mask_Position: {r: 0, g: 0, b: 0, a: 0}
+    - _Mask_Position: {r: 1, g: 0, b: 0, a: 0}
     - _Outer_Colour: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
