@@ -93,7 +93,7 @@ MonoBehaviour:
         water.
       hint: I need to watch out for tire tracks, cars can come out of now where!
       upgradeCard:
-        cardName: Reduce traffic with awareness
+        cardName: Reduce traffic
         cardCost: 50
         cardDesc: Reduce the number of cars through posters and local action.
   - name: Reef
@@ -154,8 +154,8 @@ MonoBehaviour:
         cardDesc: Clean up oil-spills by containing the spill and using oil skimmers.
     - name: Net
       hazardObject: {fileID: 0}
-      maxChance: 0
-      chance: 0
+      maxChance: 4
+      chance: 4
       hazardSize: 40
       description: 'Worldwide, hundreds of thousands of sea turtles a year are accidentally
         caught in shrimp trawl nets, on longline hooks and in fishing gillnets. Sea

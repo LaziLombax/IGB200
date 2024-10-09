@@ -22,6 +22,8 @@ public class PlayerBeach : PlayerController
 
     private void Start()
     {
+        currentPos = transform.position;
+        plannedPos = currentPos;
         initialPosition = transform.position; // Store the player's starting position
 
         moveAudio = gameHandler.gameAudioData.AddNewAudioSourceFromStandard("Player", gameObject, "Beach Move");
@@ -67,42 +69,61 @@ public class PlayerBeach : PlayerController
             rb.MovePosition(targetPosition); // Snap to the target position
             isMoving = false; // Stop moving once the target is reached
             canBuffer = false;
+            currentPos = targetPosition;
             initialPosition = targetPosition;
+            //plannedPos = currentPos;
         }
 
         // Rotate player smoothly
         StartCoroutine(rotateObject(gameObject, targetRotation, rotationTime));
     }
-
+    private Vector3 currentPos;
+    public Vector3 plannedPos;
     public override void PlayerInput()
     {
-        if (isMoving && inputQueue.Count > 1) return; // Avoid overfilling the queue
-
-        Vector3 currentPos = targetPosition;
-        //initialPosition = targetPosition;
+        if (inputQueue.Count >= 1 && isMoving) return; // Avoid overfilling the queue
+        if (plannedPos != currentPos)
+        {
+            Debug.Log(inputQueue.Count.ToString() + " " + currentPos.ToString() + " " + plannedPos.ToString());
+            currentPos = plannedPos;
+        }
         if (inputHandler.BeachMoveForward())
         {
-            EnqueueMove(currentPos + Vector3.forward * moveDistance, Quaternion.Euler(0, 0, 0));
+            EnqueueMove(plannedPos + Vector3.forward * moveDistance, Quaternion.Euler(0, 0, 0));
+            plannedPos = currentPos + Vector3.forward * moveDistance;
         }
         if (inputHandler.BeachMoveLeft())
         {
             if (currentPos.x - horizontalSpaces < -9) return;
-            EnqueueMove(currentPos + Vector3.left * horizontalSpaces, Quaternion.Euler(0, -90, 0));
-        } 
+            EnqueueMove(plannedPos + Vector3.left * horizontalSpaces, Quaternion.Euler(0, -90, 0));
+            plannedPos = currentPos + Vector3.left * horizontalSpaces;
+        }
         if (inputHandler.BeachMoveRight())
         {
             if (currentPos.x + horizontalSpaces > 9) return;
-            EnqueueMove(currentPos + Vector3.right * horizontalSpaces, Quaternion.Euler(0, 90, 0));
-        } 
+            EnqueueMove(plannedPos + Vector3.right * horizontalSpaces, Quaternion.Euler(0, 90, 0));
+            plannedPos = currentPos + Vector3.right * horizontalSpaces;
+        }
         if (inputHandler.BeachMoveDown())
         {
             if (currentPos.z - moveDistance < 0) return;
-            EnqueueMove(currentPos + Vector3.back * moveDistance, Quaternion.Euler(0, 180, 0));
+            EnqueueMove(plannedPos + Vector3.back * moveDistance, Quaternion.Euler(0, 180, 0));
+            plannedPos = currentPos + Vector3.back * moveDistance;
         }
+        if(inputQueue.Count == 2)
+            Debug.Log(inputQueue.Count.ToString());
     }
+    private void OnDrawGizmosSelected()
+    {
 
+        Gizmos.DrawSphere(currentPos, 1);
+        Gizmos.DrawSphere(targetPosition, 1);
+        Gizmos.DrawSphere(initialPosition, 1);
+    }
     private void SetMove(Vector3 newPosition, Quaternion newRotation)
     {
+        //plannedPos = Vector3.zero;
+        initialPosition = transform.position;
         targetPosition = newPosition;
         targetRotation = newRotation;
         moveAudio.Play();
@@ -114,19 +135,11 @@ public class PlayerBeach : PlayerController
         inputQueue.Enqueue((newPosition, newRotation)); // Store input in the queue
     }
 
-    // Collision detection for rocks
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Rock")) // Assuming rocks have the tag "Rock"
-        {
-            ResetPlayerPosition(); // Reset to initial position when colliding with rocks
-        }
-    }
     public void ResetPlayerPosition()
     {
-        transform.position = initialPosition; // Reset to original position
+        plannedPos = initialPosition; // Reset to original position
         targetPosition = initialPosition; // Reset the target position as well
-        isMoving = false; // Stop the player from moving
+         // Stop the player from moving
         inputQueue.Clear(); // Clear the input queue
     }
 
@@ -154,6 +167,9 @@ public class PlayerBeach : PlayerController
     public override void Respawn()
     {
         transform.position = spawnPoint;
-        targetPosition = spawnPoint;
+        currentPos = spawnPoint;
+        plannedPos = spawnPoint;
+        isMoving = false;
+        inputQueue.Clear(); // Clear the input queue
     }
 }

@@ -371,18 +371,18 @@ public class UIHandler : MonoBehaviour
         }
 
         // Check Dialogue when Start
-        if (!gameData.CheckRead("Game Start"))
+        if (!gameData.CheckRead("Game Start") && finishedWaves)
         {
             StartDialogue("Game Start");
         }
-        if (gameHandler.stageName == "Beach")
+        if (gameHandler.stageName == "Beach" && finishedWaves)
         {
             if (!gameData.CheckRead("Stage Beach"))
             {
                 StartDialogue("Stage Beach");
             }
         }
-        if (gameHandler.stageName == "Reef")
+        if (gameHandler.stageName == "Reef" && finishedWaves)
         {
             if (!gameData.CheckRead("Stage Reef"))
             {
@@ -514,7 +514,7 @@ public class UIHandler : MonoBehaviour
     private void OnBackToMenuButtonClick()
     {
         ResumeGame(); // Ensure the game is resumed
-        StartFadeTransition("Beach");  // Replace "Beach" with the desired scene name
+        StartFadeTransition("Menu");  // Replace "Beach" with the desired scene name
         startWave = true;
     }
 
