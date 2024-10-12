@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f8a4ca9042c4d49af7a5a5f7b0da19, type: 3}
   m_Name: Bribie Island
   m_EditorClassIdentifier: 
-  levelName: Bribie Island (Level 1)
+  levelName: Bribie Island
   levelNum: 1
   description: Beach Description
   levelGold: 0
@@ -26,6 +26,7 @@ MonoBehaviour:
       chance: 4
       hazardSize: 4
       description: 
+      hint: Hazard Hint
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -38,6 +39,7 @@ MonoBehaviour:
       description: To protect some turtle species, feral animals like Wild Dogs,
         Foxes or Crabs were controlled to help increase the population of endagered
         turtles.
+      hint: Hazard Hint
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -50,6 +52,7 @@ MonoBehaviour:
       description: To protect some turtle species, feral animals like Wild Dogs,
         Foxes or Crabs were controlled to help increase the population of endagered
         turtles.
+      hint: Hazard Hint
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -62,6 +65,7 @@ MonoBehaviour:
       description: Seabirds are a protected species, which means that monitoring
         turtles should minimise the disturbance that it can cause on seabirds and
         other species.
+      hint: Hazard Hint
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -72,6 +76,7 @@ MonoBehaviour:
       chance: 10
       hazardSize: 4
       description: 
+      hint: Hazard Hint
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -85,6 +90,7 @@ MonoBehaviour:
       description: Hatchlings that do emerge are frequently disoriented by lights,
         disturbed by people and vehicles as they struggle to make it safely to the
         water.
+      hint: Hazard Hint
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -99,6 +105,7 @@ MonoBehaviour:
       description: Green Turtles will select habitats based on foraging rewards and
         predators like Tiger Sharks. Green Turtles that are in good condition, tend
         to avoid areas with sharks.
+      hint: Hazard Hint
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -111,6 +118,7 @@ MonoBehaviour:
       description: Green Turtles will select habitats based on foraging rewards and
         predators like Tiger Sharks. Green Turtles that are in good condition, tend
         to avoid areas with sharks.
+      hint: Hazard Hint
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -124,6 +132,7 @@ MonoBehaviour:
       description: 'Oil spills will drastically damage all marine. Green Turtles
         will accidentally inhale the oil, which can permanently affect their body,
         reducing their chance of survival. '
+      hint: Hazard Hint
       upgradeCard:
         cardName: 
         cardCost: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f8a4ca9042c4d49af7a5a5f7b0da19, type: 3}
   m_Name: Lady Musgrave Island
   m_EditorClassIdentifier: 
-  levelName: Lady Musgrave Island (Tutorial)
+  levelName: Lady Musgrave Island
   levelNum: 0
   description: Beach Description
   levelGold: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
       hint: I need to watch out for tire tracks, cars can come out of now where!
       upgradeCard:
         cardName: Reduce traffic
-        cardCost: 50
+        cardCost: 60
         cardDesc: Reduce the number of cars through posters and local action.
   - name: Reef
     naturalHazards:
@@ -150,7 +150,7 @@ MonoBehaviour:
       hint: Hazard Hint
       upgradeCard:
         cardName: Contain And Clean
-        cardCost: 50
+        cardCost: 103
         cardDesc: Clean up oil-spills by containing the spill and using oil skimmers.
     - name: Net
       hazardObject: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
       hint: I can get caught in these nets, making it hard to move.
       upgradeCard:
         cardName: Coastal Guards
-        cardCost: 50
+        cardCost: 103
         cardDesc: Contact local coast guards to protect the reef from illegal fishing.
   hatKey: Pirate
   hatUnlocked: 1

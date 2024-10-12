@@ -98,7 +98,7 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _FilterStrength: 0
-    - _GainPeriod: 100
+    - _GainPeriod: 200
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0

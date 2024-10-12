@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BirdSpawner : MonoBehaviour
@@ -10,36 +8,50 @@ public class BirdSpawner : MonoBehaviour
     public float maxSpawnTimer;
     private float spawnTime;
     public float AmountToSpawn;
+    public Transform player;  // Reference to the player's transform
+    public float activationDistance = 20f;  // Distance at which the spawner becomes active
 
-    void Start(){
+    void Start()
+    {
         StartCoroutine(SpawnTimer(2));
     }
+
     void SpawnBird()
     {
         if (!GameHandler.Instance.timerOn) return;
+
         float xspawn = 0;
-        //float roty = 0;
-        float random = Random.Range(0,1);
+        float random = Random.Range(0, 1);
         if (random == 0)
         {
             xspawn = 18;
-            //roty = -90;
         }
         else if (random == 1)
         {
             xspawn = -18;
-            //roty = 90;
         }
-        Vector3 offsetpos = new Vector3(xspawn,0,(4*Random.Range(-2,10)));
+        Vector3 offsetpos = new Vector3(xspawn, 0, (4 * Random.Range(-2, 10)));
         GameObject newObject = Instantiate(objectToSpawn, transform.position + offsetpos, objectToSpawn.transform.rotation);
     }
-    IEnumerator SpawnTimer(float WaitTime){
+
+    IEnumerator SpawnTimer(float WaitTime)
+    {
         yield return new WaitForSeconds(WaitTime);
-        for (float i = 0; i <= AmountToSpawn; i++){
-            SpawnBird();
-            yield return new WaitForSeconds(Random.Range(2,4));
+
+        // Check the distance between player and spawner
+        float distanceToPlayer = Vector3.Distance(PlayerController.Instance.transform.position, transform.position);
+
+        if (distanceToPlayer <= activationDistance)  // Only spawn if the player is within the set distance
+        {
+            for (float i = 0; i <= AmountToSpawn; i++)
+            {
+                SpawnBird();
+                yield return new WaitForSeconds(Random.Range(2, 4));
+            }
         }
+
         spawnTime = Random.Range(minSpawnTimer, maxSpawnTimer);
         StartCoroutine(SpawnTimer(spawnTime));
     }
 }
+

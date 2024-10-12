@@ -12,6 +12,7 @@ public class StandardAudioEntry
     public AudioClip clipFile;
     [Range(0f,1f)]
     public float volume = 1f;
+    public AudioMixerGroup mixerGroup;
 }
 
 [System.Serializable]
@@ -24,8 +25,6 @@ public class AudioEntryGroup
 [CreateAssetMenu]
 public class AudioData : ScriptableObject
 {
-    private AudioClip clipToUse;
-    private float currentClipVolume;
     public AudioMixerGroup masterMixer;
     public StandardAudioEntry[] myPlayerAudio;
     public StandardAudioEntry[] myGameAudio;
@@ -33,8 +32,6 @@ public class AudioData : ScriptableObject
     public AudioEntryGroup[] myHazardAudio;
     public AudioSource AddNewAudioSourceFromStandard(string audioTag, GameObject objectToUse, string clipName)
     {
-        currentClipVolume = 1f;
-        clipToUse = null;
         switch (audioTag)
         {
             case "Player":
@@ -48,7 +45,6 @@ public class AudioData : ScriptableObject
 
     public AudioSource AddNewAudioSourceFromGroup(string audioTag, string groupTag , GameObject objectToUse, string clipName)
     {
-        clipToUse = null;
         switch (audioTag)
         {
             case "UI":
@@ -65,9 +61,7 @@ public class AudioData : ScriptableObject
         {
             if (clipName == entry.clipName)
             {
-                currentClipVolume = entry.volume;
-                clipToUse = entry.clipFile;
-                return AddSourceComponent(clipToUse, objectToUse, currentClipVolume);
+                return AddSourceComponent(entry.clipFile, objectToUse, entry.volume, entry.mixerGroup);
             }
         }
         return null;
@@ -82,20 +76,18 @@ public class AudioData : ScriptableObject
                 {
                     if (entry.clipName == clipName)
                     {
-                        clipToUse = entry.clipFile;
-                        currentClipVolume = entry.volume;
-                        return AddSourceComponent(clipToUse, objectToUse, currentClipVolume);
+                        return AddSourceComponent(entry.clipFile, objectToUse, entry.volume, entry.mixerGroup);
                     }
                 }
             }
         }
         return null;
     }
-    public AudioSource AddSourceComponent(AudioClip clipToAdd, GameObject objectToUse, float clipVolume)
+    public AudioSource AddSourceComponent(AudioClip clipToAdd, GameObject objectToUse, float clipVolume, AudioMixerGroup mixerGroup)
     {
         var sourceControl = objectToUse.AddComponent<AudioSource>();
         sourceControl.clip = clipToAdd;
-        sourceControl.outputAudioMixerGroup = masterMixer;
+        sourceControl.outputAudioMixerGroup = mixerGroup;
         sourceControl.maxDistance = 100000f;
         sourceControl.volume = clipVolume;
         //Other Variables if need

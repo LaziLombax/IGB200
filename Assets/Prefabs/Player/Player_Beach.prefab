@@ -99,6 +99,7 @@ MonoBehaviour:
   health: 3
   gameHandler: {fileID: 0}
   moveSpeed: 6
+  spawnPoint: {x: 0, y: 0, z: 0}
   isSlowed: 0
   slowTimer: 0
   rb: {fileID: 0}
@@ -111,18 +112,16 @@ MonoBehaviour:
   hatList:
   - {fileID: 2936200563977744224}
   - {fileID: 3533493331298557631}
-  isMoving: 0
-  moveDir: {x: 0, y: 0, z: 0}
   moveTime: 4
   moveDistance: 4
   horizontalSpaces: 0
   rotationTime: 0
-  hitBarrier: 0
-  lastPosition: {x: 0, y: 0, z: 0}
   moveAudio: {fileID: 0}
-  inputOrder: []
-  rotationOrder: []
-  swipeThreshold: 50
+  canBuffer: 0
+  bufferTime: 0
+  isMoving: 0
+  rotating: 0
+  plannedPos: {x: 0, y: 0, z: 0}
 --- !u!1001 &1073084218746343390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -398,8 +397,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0.6132076, b: 0.06438506, a: 1}
   outlineWidth: 6
   precomputeOutline: 0
   bakeKeys: []

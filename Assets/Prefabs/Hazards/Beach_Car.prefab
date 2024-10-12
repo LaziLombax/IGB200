@@ -31370,6 +31370,14 @@ PrefabInstance:
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
+      propertyPath: returnDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
+      propertyPath: vfxToFollow
+      value: 
+      objectReference: {fileID: 5022460336097264351, guid: 259f1b40e9b1b114fa348d14c2179a87, type: 3}
+    - target: {fileID: 1621806953125643848, guid: dcc70bd7f6237ed428deec08dee04c72, type: 3}
       propertyPath: objectToSpawn
       value: 
       objectReference: {fileID: 7886052232293093865, guid: 604c8239714d20848a3033962515cc7b, type: 3}

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Wild Dog
-  m_Shader: {fileID: -6465566751694194690, guid: d0815b7fc014eaa4f97f78def5121781, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 7ad9d6ebbd1d1fc4496894de9dab07e8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -107,6 +107,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _HasShadow: 1
     - _IsUsingNoise: 0
     - _LightProbeContribution: 5
     - _Metallic: 0
@@ -129,7 +130,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 0.0107850125, b: 0, a: 1}
     - _Color: {r: 0.7924528, g: 0.41935793, b: 0.41491634, a: 1}
-    - _Colour: {r: 0.5566038, g: 0.4965457, b: 0.3964489, a: 0}
+    - _Colour: {r: 0.20754719, g: 0.19322936, b: 0.16936633, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainColor: {r: 0.7830189, g: 0.34349412, b: 0.34349412, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}

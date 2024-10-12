@@ -68,7 +68,7 @@ public class UIHandler : MonoBehaviour
     public Text locationName;
     public Button levelButton;
     public Button levelBackButton;
-    public List<Text> progressList = new List<Text>();
+    public List<GameObject> progressList = new List<GameObject>();
 
     [Header("Hover Interaction")]
     public GameObject greenTrashUI;  
@@ -347,10 +347,10 @@ public class UIHandler : MonoBehaviour
             {
                 if (gameData.levelDatas[i].CleanProgression() * 100 > 50)
                     levelUpto++;
-                if (progressList[i].text == gameData.levelDatas[i].levelName && gameData.levelDatas[i].levelNum <= levelUpto)
+                if (progressList[i].name == gameData.levelDatas[i].levelName && gameData.levelDatas[i].levelNum <= levelUpto)
                 {
                     progressList[i].gameObject.SetActive(true);
-                    progressList[i].text = (gameData.levelDatas[i].CleanProgression() * 100).ToString("F0") + "%";
+                    progressList[i].GetComponent<MapPin>().SetValueForBar(gameData.levelDatas[i].CleanProgression() * 100);
                 }
                 else
                 {

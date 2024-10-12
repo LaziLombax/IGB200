@@ -289,6 +289,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 59bdad5d4729831438741ae7cb8b4f6b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6548191746207033095}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 59bdad5d4729831438741ae7cb8b4f6b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1658553185363247429}
   m_SourcePrefab: {fileID: 100100000, guid: 59bdad5d4729831438741ae7cb8b4f6b, type: 3}
 --- !u!1 &8364029630825490151 stripped
 GameObject:
@@ -308,11 +311,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 1
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineColor: {r: 0.61, g: 0.42003432, b: 0, a: 1}
   outlineWidth: 6
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &1658553185363247429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8364029630825490151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824767bc44c552249809f1a414f6e88f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 15
+  frequency: 10
+  wiggleAxis: {x: 0, y: 1, z: 0}
 --- !u!4 &9176313003182767197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 59bdad5d4729831438741ae7cb8b4f6b, type: 3}

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,28 +28,37 @@ public class ChaseNav : MonoBehaviour
     private PatrolChange patrolLeftScript;
     private PatrolChange patrolRightScript;
     private AudioSource chaseAudio;
+    private Transform playerTransform;
+    private bool audioPlayed = false;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         myState = ChaseState.Start;
 
-        chaseAudio = GameHandler.Instance.gameAudioData.AddNewAudioSourceFromGroup("Hazard", "Pig", gameObject, "Chase");
+        // Cache player transform
+        playerTransform = GameHandler.Instance.playerPos;
+
         // Cache PatrolChange components to avoid repeated GetComponent calls
         patrolLeftScript = patrolLeft.GetComponent<PatrolChange>();
         patrolRightScript = patrolRight.GetComponent<PatrolChange>();
+
+        // Initialize audio
+        chaseAudio = GameHandler.Instance.gameAudioData.AddNewAudioSourceFromGroup("Hazard", "Pig", gameObject, "Chase");
     }
 
     void Update()
     {
         if (!GameHandler.Instance.timerOn || !IsPlayerWithinRange()) return;
 
-
-        // Check if the player is within the specified distance
-            switch (myState)
+        switch (myState)
         {
             case ChaseState.Chase:
-                chaseAudio.Play();
+                if (!audioPlayed)
+                {
+                    chaseAudio.Play();
+                    audioPlayed = true;
+                }
                 HandleChaseState();
                 break;
             case ChaseState.Patrolling:
@@ -64,20 +72,24 @@ public class ChaseNav : MonoBehaviour
                 break;
         }
     }
+
     bool IsPlayerWithinRange()
     {
-        Vector3 middle = gameObject.transform.position;
+        Vector3 middle = transform.position;
         middle.x = 0f;
-        float distanceToPlayer = Vector3.Distance(GameHandler.Instance.playerPos.position, middle);
+        float distanceToPlayer = Vector3.Distance(playerTransform.position, middle);
 
         return distanceToPlayer <= 28f;
     }
+
     private void HandleChaseState()
     {
         if (target == null) return;
 
         indicator.SetActive(true);
         agent.speed = chaseSpeed;
+
+        // Avoid creating new Vector3 every frame
         Vector3 targetXZ = new Vector3(target.position.x, 0, target.position.z);
         agent.SetDestination(targetXZ);
     }
@@ -92,6 +104,7 @@ public class ChaseNav : MonoBehaviour
         {
             agent.SetDestination(currentPatrolTarget.position);
         }
+
         if (Vector3.Distance(transform.position, currentPatrolTarget.position) < 0.1f)
         {
             newRotation = transform.eulerAngles + (reachRightEnd ? -180 : 180) * Vector3.up;
@@ -131,6 +144,7 @@ public class ChaseNav : MonoBehaviour
         if (target == null)
         {
             myState = ChaseState.Patrolling;
+            audioPlayed = false; // Reset audio playback state
         }
     }
 }

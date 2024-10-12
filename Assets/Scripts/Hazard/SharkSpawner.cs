@@ -61,15 +61,15 @@ public class SharkSpawner : MonoBehaviour
                 break;
             case 1:
                 // Set the number of sets and objects per set
-                numberOfSets = 3;
-                objectsPerSet = 3; // Adjust this range as necessary
+                numberOfSets = 4;
+                objectsPerSet = 2; // Adjust this range as necessary
                 setInterval = 1.0f; // Time interval between each set
                 verticalOffset = spawnOffset * 1f; // Adjust the spacing between sets
-                spaceing = 1f;
+                spaceing = 2f;
                 break;
             case 2:
                 // Set the number of sets and objects per set
-                numberOfSets = 5;
+                numberOfSets = 4;
                 objectsPerSet = 1; // Adjust this range as necessary
                 setInterval = 0.2f; // Time interval between each set
                 verticalOffset = spawnOffset * 1f; // Adjust the spacing between sets
@@ -98,10 +98,9 @@ public class SharkSpawner : MonoBehaviour
                     }
 
                     SpawnIndicator(spawnPosition);
-                    StartCoroutine(ReturnToPoolAfterDelay(spawnedObject, 5f));
+                    StartCoroutine(ReturnToPoolAfterDelay(spawnedObject, 6f));
                 }
             }
-
             // Wait for the interval before spawning the next set
             yield return new WaitForSeconds(setInterval);
         }
