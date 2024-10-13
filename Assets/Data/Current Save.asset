@@ -33,7 +33,7 @@ MonoBehaviour:
     - 'Hello, My name is Shelldon! '
     - I'm a Green Turtle! One of 6 marine turtle species found in Australia.
     - Unfortunatly, half of the turtle species are endangered and need your help!
-    - I'm here to help you understand how to play and leach you about turtles!
+    - I'm here to help you understand how to play and teach you about turtles!
     - When you're ready, press the start button.
   - callKey: Game Map
     hasRead: 0

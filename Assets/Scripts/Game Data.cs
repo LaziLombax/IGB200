@@ -45,7 +45,17 @@ public class GameData : ScriptableObject
         }
     }
 
-
+    public DialogueShelldon GetDialogueSet(string key)
+    {
+        foreach (DialogueShelldon gameDialogue in myDialogue)
+        {
+            if (key == gameDialogue.callKey)
+            {
+                return gameDialogue;
+            }
+        }
+        return null;
+    }
 
     // Dialogue bs
     public bool CheckRead(string callKey)
@@ -61,6 +71,7 @@ public class GameData : ScriptableObject
         }
         return false;
     }
+    
     public void ReadDialogue(string callKey)
     {
         foreach (DialogueShelldon gameDialogue in myDialogue)
@@ -72,6 +83,7 @@ public class GameData : ScriptableObject
             }
         }
     }
+    /*
     public string GetDialogue(string callKey, int index)
     {
         foreach (DialogueShelldon gameDialogue in myDialogue)
@@ -107,7 +119,7 @@ public class GameData : ScriptableObject
         }
         return null;
     }
-
+    */
 
     //hats
     public void CheckAllHats()

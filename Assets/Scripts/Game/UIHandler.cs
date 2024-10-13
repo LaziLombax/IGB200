@@ -185,19 +185,9 @@ public class UIHandler : MonoBehaviour
         }
 
         // Handle dialogue only when the dialogue box is active and LMB is pressed.
-        if (dialogueBox.activeInHierarchy && InputHandler.Instance.LMBDialogue())
+        if (dialogueHandler.dialogueBox.gameObject.activeSelf && InputHandler.Instance.LMBDialogue())
         {
-            if (dialogueText.text == gameData.ReturnCurrentIndex(currentDialogueKey, textIndex))
-            {
-                continueEnd.SetActive(false);
-                NextLine();
-            }
-            else
-            {
-                continueEnd.SetActive(true);
-                StopAllCoroutines();
-                dialogueText.text = gameData.ReturnCurrentIndex(currentDialogueKey, textIndex);
-            }
+            dialogueHandler.DisplayNextParagraph(currentDialogue);
         }
         if (startWave)
         {
@@ -260,6 +250,12 @@ public class UIHandler : MonoBehaviour
                 {
                     fadeImage.gameObject.SetActive(false);
                     finishedWaves = true;
+                    // Check Dialogue when Start
+                    if (!gameData.CheckRead("Game Start"))
+                    {
+                        currentDialogue = gameData.GetDialogueSet("Game Start");
+                        dialogueHandler.DisplayNextParagraph(currentDialogue);
+                    }
                     timeElapsed = 0f; // Stop the wave effect after the duration
                 }
             }
@@ -329,7 +325,7 @@ public class UIHandler : MonoBehaviour
         upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
         cleanProgress.value = Mathf.Round(gameHandler.currentLevelData.CleanProgression() * 100);
     }
-
+    
     // Separate method for updating the level timer
     private void UpdateLevelTimer()
     {
@@ -370,23 +366,20 @@ public class UIHandler : MonoBehaviour
             GenerateHats();
         }
 
-        // Check Dialogue when Start
-        if (!gameData.CheckRead("Game Start") && finishedWaves)
-        {
-            StartDialogue("Game Start");
-        }
         if (gameHandler.stageName == "Beach" && finishedWaves)
         {
             if (!gameData.CheckRead("Stage Beach"))
             {
-                StartDialogue("Stage Beach");
+                currentDialogue = gameData.GetDialogueSet("Stage Beach");
+                dialogueHandler.DisplayNextParagraph(currentDialogue);
             }
         }
         if (gameHandler.stageName == "Reef" && finishedWaves)
         {
             if (!gameData.CheckRead("Stage Reef"))
             {
-                StartDialogue("Stage Reef");
+                currentDialogue = gameData.GetDialogueSet("Stage Reef");
+                dialogueHandler.DisplayNextParagraph(gameData.GetDialogueSet("Stage Reef"));
             }
         }
     }
@@ -530,7 +523,7 @@ public class UIHandler : MonoBehaviour
         {
             if (!gameData.CheckRead("Game Map"))
             {
-                StartDialogue("Game Map");
+                dialogueHandler.DisplayNextParagraph(gameData.GetDialogueSet("Game Map"));
             }
             mapPanel.SetActive(true);
             CanvasGroup mapCanvasGroup = mapPanel.GetComponent<CanvasGroup>();
@@ -756,7 +749,6 @@ public class UIHandler : MonoBehaviour
 
     public void RestartLevel()
     {
-        Debug.Log("Weird");
         StartFadeTransition("Beach");  // Replace "Beach" with the desired scene name
         startWave = true;
     }
@@ -794,7 +786,7 @@ public class UIHandler : MonoBehaviour
                 upgradePanel.SetActive(true);
             if (!gameData.CheckRead("Upgrade Screen"))
             {
-                StartDialogue("Upgrade Screen");
+                dialogueHandler.DisplayNextParagraph(gameData.GetDialogueSet("Upgrade Screen"));
             }
             cleanProgress.value = Mathf.Round(GameHandler.Instance.currentLevelData.CleanProgression() * 100);
             upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();
@@ -817,7 +809,8 @@ public class UIHandler : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (!gameData.CheckRead(name))
         {
-            StartDialogue(name);
+            currentDialogue = gameData.GetDialogueSet(name);
+            dialogueHandler.DisplayNextParagraph(currentDialogue);
         }
         yield return null;
     }
@@ -827,12 +820,12 @@ public class UIHandler : MonoBehaviour
 
     public void LoseHealth()
     {
-        // 遍历蛋图标，找到下一个要减少的生命值
+        
         for (int i = healthIcons.Count - 1; i >= 0; i--)
         {
-            if (healthIcons[i].activeSelf) // 检查蛋是否仍然激活
+            if (healthIcons[i].activeSelf) 
             {
-                // 在减少图标前，执行闪烁动画
+                
                 StartCoroutine(FlashAndRemoveIcon(healthIcons[i]));
                 break;
             }
@@ -842,19 +835,16 @@ public class UIHandler : MonoBehaviour
     private IEnumerator FlashAndRemoveIcon(GameObject icon)
     {
         Image image = icon.GetComponent<Image>();
-        if (image == null) yield break; // 如果没有Image组件，跳出协程
+        if (image == null) yield break; 
 
-        // 创建一个闪烁的序列动画
-        DG.Tweening.Sequence sequence = DOTween.Sequence(); // 使用完整的命名空间
-        sequence.Append(image.DOFade(0, 0.2f)) // 渐隐
-                .Append(image.DOFade(1, 0.2f)) // 渐显
-                .SetLoops(2); // 设置闪烁两次
+        DG.Tweening.Sequence sequence = DOTween.Sequence();
+        sequence.Append(image.DOFade(0, 0.2f))
+                .Append(image.DOFade(1, 0.2f))
+                .SetLoops(2);
 
-        // 等待动画完成
         yield return sequence.WaitForCompletion();
 
-        // 移除或禁用图标
-        icon.SetActive(false); // 隐藏图标，或者可以选择销毁图标
+        icon.SetActive(false);
     }
 
     #region UpgradeUI
@@ -920,8 +910,14 @@ public class UIHandler : MonoBehaviour
 
     #region Dialogue
     [Header("Dialogue")]
-    public Text dialogueText;
+    public DialogueController dialogueHandler;
+    public GameData.DialogueShelldon currentDialogue;
+    /*
     public GameObject dialogueBox;
+    private Queue<string> textSets = new Queue<string>();
+    private string p;
+
+
     public int textIndex;
     public float textSpeed;
     public string currentDialogueKey;
@@ -934,10 +930,13 @@ public class UIHandler : MonoBehaviour
         if (gameHandler != null)
             if (gameHandler.timerOn)
                 gameHandler.timerOn = false;
-        textIndex = 0;
         dialogueText.text = string.Empty;
         isPaused = true;
         currentDialogueKey = callKey;
+        for (int i = 0; i < gameData.GetNumberOfLines(currentDialogueKey); i++)
+        {
+            
+        }
         StartCoroutine(TypeLine());
     }
 
@@ -972,6 +971,7 @@ public class UIHandler : MonoBehaviour
                     StartDialogue("End Explain");
         }
     }
+    */
     #endregion
     #region HintBubble
 
