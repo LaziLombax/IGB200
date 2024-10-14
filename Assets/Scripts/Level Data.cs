@@ -52,6 +52,7 @@ public class LevelData : ScriptableObject
     [Header("Hat Data")]
     public string hatKey;
     public bool hatUnlocked;
+    public bool nextLevel;
 
     public float CleanProgression()
     {
@@ -154,6 +155,8 @@ public class LevelData : ScriptableObject
                         int cost = Mathf.FloorToInt((hazard.maxChance - hazard.chance) * 1.20f * hazard.upgradeCard.cardCost);
                         levelGold -= cost;
                         hazard.chance--;
+                        if(CleanProgression() == 1f) hatUnlocked = true;
+                        if (CleanProgression() == 0.5f) nextLevel = true;
                         return;
                     }
                 }

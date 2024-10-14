@@ -61,7 +61,8 @@ public class UIHandler : MonoBehaviour
     public RectTransform upgradeCardSpawn;
     public GameObject upgradeCard;
     public float gapBetweenCards;
-
+    public GameObject hatUnlockable;
+    public GameObject levelUnlockable;
 
 
     [Header("Location Menu")]
