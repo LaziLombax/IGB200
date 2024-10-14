@@ -116,6 +116,7 @@ public class DialogueController : MonoBehaviour
     {
         if (!dialogueBox.gameObject.activeSelf)
         {
+            GameHandler.Instance.timerOn = false;
             dialogueBox.gameObject.SetActive(true);
             CanvasGroup dialogueCanvasGroup = dialogueBox.gameObject.GetComponent<CanvasGroup>();
             dialogueCanvasGroup.alpha = 0;
@@ -129,10 +130,13 @@ public class DialogueController : MonoBehaviour
     }
     private void EndConversation()
     {
+        GameHandler.Instance.timerOn = true;
         conversationEnded = false;
         if (dialogueBox.gameObject.activeSelf)
         {
-            dialogueBox.gameObject.SetActive(false);
+            CanvasGroup dialogueCanvasGroup = dialogueBox.gameObject.GetComponent<CanvasGroup>();
+            dialogueCanvasGroup.alpha = 0;
+            dialogueCanvasGroup.DOFade(0, 0.5f).OnComplete(() => dialogueBox.gameObject.SetActive(false));
         }
     }
     private IEnumerator TypeDialogueText(string p)

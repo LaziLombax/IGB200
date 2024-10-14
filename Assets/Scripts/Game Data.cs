@@ -51,6 +51,7 @@ public class GameData : ScriptableObject
         {
             if (key == gameDialogue.callKey)
             {
+                gameDialogue.hasRead = true;
                 return gameDialogue;
             }
         }

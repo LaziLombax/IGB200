@@ -98,6 +98,7 @@ public class UIHandler : MonoBehaviour
 
     [Header("Health")]
     public List<GameObject> healthIcons = new List<GameObject>();
+    public List<GameObject> faceIcons = new List<GameObject>();
     [Header("etc.")]
     public int levelUpto;
 
@@ -256,6 +257,22 @@ public class UIHandler : MonoBehaviour
                         currentDialogue = gameData.GetDialogueSet("Game Start");
                         dialogueHandler.DisplayNextParagraph(currentDialogue);
                     }
+                    if (gameHandler.stageName == "Beach")
+                    {
+                        if (!gameData.CheckRead("Stage Beach"))
+                        {
+                            currentDialogue = gameData.GetDialogueSet("Stage Beach");
+                            dialogueHandler.DisplayNextParagraph(currentDialogue);
+                        }
+                    }
+                    if (gameHandler.stageName == "Reef")
+                    {
+                        if (!gameData.CheckRead("Stage Reef"))
+                        {
+                            currentDialogue = gameData.GetDialogueSet("Stage Reef");
+                            dialogueHandler.DisplayNextParagraph(gameData.GetDialogueSet("Stage Reef"));
+                        }
+                    }
                     timeElapsed = 0f; // Stop the wave effect after the duration
                 }
             }
@@ -366,22 +383,7 @@ public class UIHandler : MonoBehaviour
             GenerateHats();
         }
 
-        if (gameHandler.stageName == "Beach" && finishedWaves)
-        {
-            if (!gameData.CheckRead("Stage Beach"))
-            {
-                currentDialogue = gameData.GetDialogueSet("Stage Beach");
-                dialogueHandler.DisplayNextParagraph(currentDialogue);
-            }
-        }
-        if (gameHandler.stageName == "Reef" && finishedWaves)
-        {
-            if (!gameData.CheckRead("Stage Reef"))
-            {
-                currentDialogue = gameData.GetDialogueSet("Stage Reef");
-                dialogueHandler.DisplayNextParagraph(gameData.GetDialogueSet("Stage Reef"));
-            }
-        }
+        
     }
 
     public void OnMouseEnter()
@@ -798,11 +800,17 @@ public class UIHandler : MonoBehaviour
 
     public void CheckLoseDialogue()
     {
-        StartCoroutine(CheckDialogue("Lose Screen"));
+        if (gameData.CheckRead("End Explain"))
+        {
+            StartCoroutine(CheckDialogue("Lose Screen"));
+        }
     }
     public void CheckWinDialogue()
     {
-        StartCoroutine(CheckDialogue("Win Screen"));
+        if (gameData.CheckRead("End Explain"))
+        {
+            StartCoroutine(CheckDialogue("Win Screen"));
+        }
     }
     IEnumerator CheckDialogue(string name)
     {
@@ -820,12 +828,10 @@ public class UIHandler : MonoBehaviour
 
     public void LoseHealth()
     {
-        
         for (int i = healthIcons.Count - 1; i >= 0; i--)
         {
-            if (healthIcons[i].activeSelf) 
+            if (healthIcons[i].activeSelf)
             {
-                
                 StartCoroutine(FlashAndRemoveIcon(healthIcons[i]));
                 break;
             }
@@ -890,12 +896,15 @@ public class UIHandler : MonoBehaviour
     {
         if (healthcount == 2)
         {
+            faceIcons[1].SetActive(true);
+
             healthIcons[2].SetActive(false);
             healthIcons[1].SetActive(true);
             healthIcons[0].SetActive(true);
         }
         else if (healthcount == 1)
         {
+            faceIcons[2].SetActive(true);
             healthIcons[2].SetActive(false);
             healthIcons[1].SetActive(false);
             healthIcons[0].SetActive(true);

@@ -151,10 +151,10 @@ public class LevelData : ScriptableObject
                 {
                     if (hazardName == hazard.name && hazard.chance != 0)
                     {
-                        levelGold -= hazard.upgradeCard.cardCost;
-                        float cost = hazard.upgradeCard.cardCost * 1.20f;
-                        hazard.upgradeCard.cardCost = Mathf.FloorToInt(cost);
+                        int cost = Mathf.FloorToInt((hazard.maxChance - hazard.chance) * 1.20f * hazard.upgradeCard.cardCost);
+                        levelGold -= cost;
                         hazard.chance--;
+                        return;
                     }
                 }
             }
@@ -271,7 +271,8 @@ public class LevelData : ScriptableObject
                 {
                     if (hazardName == hazard.name)
                     {
-                        return hazard.upgradeCard.cardCost;
+                        int cost = Mathf.FloorToInt((hazard.maxChance - hazard.chance) * 1.20f * hazard.upgradeCard.cardCost);
+                        return cost;
                     }
                 }
             }
@@ -360,7 +361,8 @@ public class LevelData : ScriptableObject
                 {
                     if (hazardName == hazard.name)
                     {
-                        return hazard.upgradeCard.cardCost.ToString();
+                        int cost = Mathf.FloorToInt(hazard.upgradeCard.cardCost + ((hazard.maxChance - hazard.chance) * 1.20f * hazard.upgradeCard.cardCost));
+                        return cost.ToString();
                     }
                 }
             }

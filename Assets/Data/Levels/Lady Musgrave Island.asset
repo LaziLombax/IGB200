@@ -94,7 +94,7 @@ MonoBehaviour:
       hint: I need to watch out for tire tracks, cars can come out of now where!
       upgradeCard:
         cardName: Reduce traffic
-        cardCost: 60
+        cardCost: 50
         cardDesc: Reduce the number of cars through posters and local action.
   - name: Reef
     naturalHazards:
@@ -150,7 +150,7 @@ MonoBehaviour:
       hint: Hazard Hint
       upgradeCard:
         cardName: Contain And Clean
-        cardCost: 103
+        cardCost: 50
         cardDesc: Clean up oil-spills by containing the spill and using oil skimmers.
     - name: Net
       hazardObject: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
       hint: I can get caught in these nets, making it hard to move.
       upgradeCard:
         cardName: Coastal Guards
-        cardCost: 103
+        cardCost: 50
         cardDesc: Contact local coast guards to protect the reef from illegal fishing.
   hatKey: Pirate
   hatUnlocked: 1

@@ -174,6 +174,7 @@ public class GameHandler : MonoBehaviour
 
     public void EndGame(bool beatGame)
     {
+        if (gameEnded) return;
         if (beatGame)
         {
             uiHandler.gameOverText.SetActive(false);
