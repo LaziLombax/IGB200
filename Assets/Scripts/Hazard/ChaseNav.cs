@@ -22,6 +22,7 @@ public class ChaseNav : MonoBehaviour
     public float patrollingSpeed = 4f;
     public float chaseSpeed = 6f;
     public GameObject indicator;
+    public Animator animator;
 
     private NavMeshAgent agent;
     private Vector3 newRotation;
@@ -30,6 +31,7 @@ public class ChaseNav : MonoBehaviour
     private AudioSource chaseAudio;
     private Transform playerTransform;
     private bool audioPlayed = false;
+    
 
     void Start()
     {
@@ -50,7 +52,14 @@ public class ChaseNav : MonoBehaviour
     void Update()
     {
         if (!GameHandler.Instance.timerOn || !IsPlayerWithinRange()) return;
-
+        if(myState == ChaseState.Start || myState == ChaseState.Reach)
+        {
+            animator.SetBool("IsWalking", false);
+        }
+        else
+        {
+            animator.SetBool("IsWalking", true);
+        }
         switch (myState)
         {
             case ChaseState.Chase:

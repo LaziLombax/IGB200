@@ -16,7 +16,7 @@ public class MoveDecor : MonoBehaviour
     // This will be called when the player hits a trigger collider
     void Update()
     {
-        if (GameHandler.Instance.playerPos.position.z > decorations[0].transform.position.z + endPositionZ) // Make sure the collider belongs to the player
+        if (Camera.main.transform.position.z > decorations[0].transform.position.z + endPositionZ) // Make sure the collider belongs to the player
         {
             if(numberOfShifts == 0) return;
                 // Move the first decoration to the front

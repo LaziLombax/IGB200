@@ -17,6 +17,7 @@ public class PlayerBeach : PlayerController
     private Vector3 initialPosition;
     private Vector3 targetPosition;
     private Quaternion targetRotation;
+    public Animator animator;
 
     private Queue<(Vector3, Quaternion)> inputQueue = new Queue<(Vector3, Quaternion)>(); // Queue to store input
 
@@ -25,7 +26,7 @@ public class PlayerBeach : PlayerController
         currentPos = transform.position;
         plannedPos = currentPos;
         initialPosition = transform.position; // Store the player's starting position
-
+        animator.speed = 1f;
         moveAudio = gameHandler.gameAudioData.AddNewAudioSourceFromStandard("Player", gameObject, "Beach Move");
         SetHat();
     }
@@ -86,7 +87,6 @@ public class PlayerBeach : PlayerController
         if (plannedPos != currentPos)
         {
             if (!canBuffer) return;
-            Debug.Log(inputQueue.Count.ToString() + " " + currentPos.ToString() + " " + plannedPos.ToString());
             currentPos = plannedPos;
         }
         if (inputHandler.BeachMoveForward())
@@ -120,14 +120,15 @@ public class PlayerBeach : PlayerController
     private void OnDrawGizmosSelected()
     {
 
-        Gizmos.DrawSphere(currentPos, 1);
-        Gizmos.DrawSphere(targetPosition, 1);
-        Gizmos.DrawSphere(initialPosition, 1);
+        //Gizmos.DrawSphere(currentPos, 1);
+       // Gizmos.DrawSphere(targetPosition, 1);
+       // Gizmos.DrawSphere(initialPosition, 1);
     }
     private void SetMove(Vector3 newPosition, Quaternion newRotation)
     {
         //plannedPos = Vector3.zero;
         initialPosition = transform.position;
+        animator.SetTrigger("Jump");
         targetPosition = newPosition;
         targetRotation = newRotation;
         moveAudio.Play();

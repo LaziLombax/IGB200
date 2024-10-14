@@ -1,18 +1,19 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UpgradeCard : MonoBehaviour
 {
-    public Text upgradeTextTitle;
+    public TextMeshProUGUI upgradeTextTitle;
     public string upgradeName;
     public string upgradeStage;
     public GameObject starIcon;
     public RectTransform starPos;
     public List<GameObject> starList = new List<GameObject>();
-    public Text upgradeDesc;
+    public TextMeshProUGUI upgradeDesc;
     public string myDesc;
-    public Text upgradeCost;
+    public TextMeshProUGUI upgradeCost;
     public string myCost;
 
     // Start is called before the first frame update

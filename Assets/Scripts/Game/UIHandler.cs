@@ -17,13 +17,13 @@ public class UIHandler : MonoBehaviour
     [Header("UI Data")]
     public GameHandler gameHandler;
     public GameData gameData;
-    public Text levelTimer;
-    public Text levelGold;
-    public Text goldGained;
+    public TextMeshProUGUI levelTimer;
+    public TextMeshProUGUI levelGold;
+    public TextMeshProUGUI goldGained;
     public float goldCount;
-    public Text factText;
+    public TextMeshProUGUI factText;
     public string factToDisplay;
-    public Text goldDisplay;
+    public TextMeshProUGUI goldDisplay;
 
     [Header("Start Menu")]
     public GameObject startMenuPanel;
@@ -55,7 +55,7 @@ public class UIHandler : MonoBehaviour
     public GameObject upgradePanel;
     public Button homeButtonInUpgrade;
     public Slider cleanProgress;
-    public Text upgradeLevelGold;
+    public TextMeshProUGUI upgradeLevelGold;
     public Button upgradeRestartButton;
 
     public RectTransform upgradeCardSpawn;
@@ -65,7 +65,7 @@ public class UIHandler : MonoBehaviour
 
 
     [Header("Location Menu")]
-    public Text locationName;
+    public TextMeshProUGUI locationName;
     public Button levelButton;
     public Button levelBackButton;
     public List<GameObject> progressList = new List<GameObject>();
@@ -299,7 +299,7 @@ public class UIHandler : MonoBehaviour
                 goldCount += Time.deltaTime * 0.5f;
             }
             float gold = Mathf.Lerp(0, gameHandler.goldGained, goldCount);
-            goldGained.text = "Gained: " + gold.ToString("F0");
+            goldGained.text = "Speed Bonus: " + gold.ToString("F0");
         }
 
         // Game ended handling
@@ -985,7 +985,7 @@ public class UIHandler : MonoBehaviour
     #region HintBubble
 
     [Header("Hint")]
-    public Text hintText;
+    public TextMeshProUGUI hintText;
     public GameObject hintBox;
 
     public void ShowHint()

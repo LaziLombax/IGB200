@@ -35,7 +35,7 @@ public class DialogueController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(!conversationEnded && dialogueBox.gameObject.activeSelf)
+        if(dialogueBox.gameObject.activeSelf)
         {
             dialogueTextUI.ForceMeshUpdate();
             mesh = dialogueTextUI.mesh;

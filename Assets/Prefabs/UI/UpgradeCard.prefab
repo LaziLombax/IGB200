@@ -92,15 +92,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa8cff75f3088642a90dde1dd442a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeTextTitle: {fileID: 0}
+  upgradeTextTitle: {fileID: 7440700302761846971}
   upgradeName: 
   upgradeStage: 
   starIcon: {fileID: 6463297732663445634, guid: 0dfff313261618a409ba7e1ccaa4cce6, type: 3}
   starPos: {fileID: 9186410557730482715}
   starList: []
-  upgradeDesc: {fileID: 0}
+  upgradeDesc: {fileID: 3517403530234578674}
   myDesc: 
-  upgradeCost: {fileID: 0}
+  upgradeCost: {fileID: 1884006117507798478}
   myCost: 
   starImage: {fileID: 6463297732663445634, guid: fa0c97beb6e4d2149a8658860a9d6ec0, type: 3}
 --- !u!1 &652747632944115760
@@ -272,8 +272,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
-  m_fontSizeBase: 34
+  m_fontSize: 37
+  m_fontSizeBase: 37
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: -50
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: -29.42456, z: 0, w: 92.73834}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CARS
+  m_text: CARS Testing Size of Text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3e9dd4f0476ea414d98a1db240078a48, type: 2}
   m_sharedMaterial: {fileID: 4515508282332840067, guid: 3e9dd4f0476ea414d98a1db240078a48, type: 2}
@@ -648,7 +648,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 22.759949}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 2325409916074124108}
   - component: {fileID: 1884006117507798478}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -12,9 +12,12 @@ public class PlayerReef : PlayerController
     public GameObject oilOverlay;
     private AudioSource oilSplat;
     public float fadeInkTimer;
+    public Animator animator;
 
     private void Start()
     {
+        animator.speed = 1.5f;
+        animator.SetBool("HasMoved", true);
         oilSplat = gameHandler.gameAudioData.AddNewAudioSourceFromStandard("Player", gameObject, "Splat");
         SetHat();
     }
@@ -102,13 +105,14 @@ public class PlayerReef : PlayerController
         {
             playerMovement.x = 0;
         }
-        if (transform.position.z - gameHandler.reefStage.transform.position.z >= 8 && playerMovement.x > 0)
+        if (transform.position.z - gameHandler.reefStage.transform.position.z >= 6 && playerMovement.x > 0)
         {
             playerMovement.x = 0;
         }
 
         if (inputHandler.GetSpeedInput())
         {
+            animator.speed = 2f;
             gameHandler.isSpeed = true;
         }
         else
