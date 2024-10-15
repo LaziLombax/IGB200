@@ -63,5 +63,5 @@ MonoBehaviour:
     groupEntries:
     - clipName: Bite
       clipFile: {fileID: 8300000, guid: 6139dcd666a945541857e3ef126b9e54, type: 3}
-      volume: 0.5
+      volume: 0.39
       mixerGroup: {fileID: 24300002, guid: 208e4233cd2e0764890874a77974ba35, type: 2}
