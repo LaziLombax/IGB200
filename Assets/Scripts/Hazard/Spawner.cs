@@ -19,9 +19,11 @@ public class Spawner : MonoBehaviour
     public float returnDelay = 5f;
     // List to hold available obstacle spots
     public List<int> ObstacleSpots = new List<int>();
+    private AudioSource spawnSound;
 
     private void Start()
     {
+        spawnSound = GameHandler.Instance.gameAudioData.AddNewAudioSourceFromGroup("Hazard", "Car", gameObject, "Horn");
         poolManager = GameHandler.Instance.GetComponent<ObjectPoolManager>();
         objectPool = poolManager.GetPoolByPrefab(objectToSpawn);
         if (Obstacles)
@@ -74,6 +76,7 @@ public class Spawner : MonoBehaviour
         if (hazard != null)
         {
             vfx = Instantiate(vfxToFollow, transform.position, transform.rotation);
+            spawnSound.Play();
             hazard.GetComponent<Rigidbody>().velocity = Vector3.zero;
             hazard.GetComponent<Rigidbody>().AddForce(transform.forward * objectSpeed, ForceMode.VelocityChange);
             vfx.AddComponent<Rigidbody>().useGravity = false;

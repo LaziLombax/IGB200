@@ -103,7 +103,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Core_Height: 2
     - _Core_Mask_Height: 0.88
-    - _Core_Mask_Width: 0.88
+    - _Core_Mask_Width: 0.948
     - _Core_Width: 2
     - _Cull: 2
     - _Cutoff: 0.5
@@ -120,7 +120,7 @@ Material:
     - _Height: 1
     - _IsBackground: 0
     - _IsBorder: 0
-    - _Mask_Distortion: 0.136
+    - _Mask_Distortion: 0.088
     - _Mask_Distortion_Scale: 25
     - _Mask_Height: 0.72
     - _Mask_Width: 0.816

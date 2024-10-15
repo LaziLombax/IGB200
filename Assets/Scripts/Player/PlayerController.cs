@@ -38,6 +38,8 @@ public abstract class PlayerController : Entity
         }
     }
 
+    private AudioSource sharkBite;
+    private AudioSource crabSnap;
     #endregion
     private void Awake()
     {
@@ -45,6 +47,12 @@ public abstract class PlayerController : Entity
         gameHandler.playerPos = gameObject.transform;
         inputHandler = InputHandler.Instance;
         rb = GetComponent<Rigidbody>();
+        sharkBite = gameHandler.gameAudioData.AddNewAudioSourceFromGroup("Hazard", "Shark", gameObject, "Bite");
+        crabSnap = gameHandler.gameAudioData.AddNewAudioSourceFromGroup("Hazard", "Crab", gameObject, "Snap");
+        if (gameHandler.stageName == "Reef")
+        {
+
+        }
     }
 
     private void Update()
@@ -62,6 +70,10 @@ public abstract class PlayerController : Entity
         {
             gameHandler.uiHandler.factToDisplay = gameHandler.currentLevelData.HazardFact(gameHandler.stageName,other.GetComponent<Info>().hazardName);
             TakeDamage(1);
+            if (other.GetComponent<Info>().hazardName == "Crab")
+            {
+                crabSnap.Play();
+            }
             if (gameHandler.stageName == "Beach")
             {
                 Respawn();
@@ -69,6 +81,13 @@ public abstract class PlayerController : Entity
                 {
                     gameHandler.uiHandler.hintText.text = gameHandler.currentLevelData.HazardHint(gameHandler.stageName, other.GetComponent<Info>().hazardName);
                     gameHandler.uiHandler.ShowHint();
+                }
+            }
+            else
+            {
+                if (other.GetComponent<Info>().hazardName == "Shark")
+                {
+                    sharkBite.Play();
                 }
             }
             gotHit = true;

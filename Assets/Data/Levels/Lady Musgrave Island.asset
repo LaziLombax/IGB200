@@ -15,7 +15,7 @@ MonoBehaviour:
   levelName: Lady Musgrave Island
   levelNum: 0
   description: Beach Description
-  levelGold: 50
+  levelGold: 0
   currentTimer: 0
   stageList:
   - name: Beach
@@ -168,3 +168,4 @@ MonoBehaviour:
         cardDesc: Contact local coast guards to protect the reef from illegal fishing.
   hatKey: Pirate
   hatUnlocked: 1
+  nextLevel: 0
