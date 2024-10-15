@@ -23,22 +23,15 @@ public class SettingsMenu : MonoBehaviour
         List<string> options = new List<string>();
 
         int currentResolutionIndex = 0;
-
         for (int i = 0; i < resolutions.Length; i++)
         {
+            string option = resolutions[i].width + "x" + resolutions[i].height;
+            options.Add(option);
 
-            if ((resolutions[i].width == 1280 && resolutions[i].height == 720) ||
-                (resolutions[i].width == 1920 && resolutions[i].height == 1080) ||
-                (resolutions[i].width == 2560 && resolutions[i].height == 1440))
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                resolutions[i].height == Screen.currentResolution.height)
             {
-                string option = resolutions[i].width + "x" + resolutions[i].height;
-                options.Add(option);
-
-                if (resolutions[i].width == Screen.currentResolution.width &&
-                    resolutions[i].height == Screen.currentResolution.height)
-                {
-                    currentResolutionIndex = i;
-                }
+                currentResolutionIndex = i;
             }
         }
 
@@ -47,18 +40,18 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
-    public void SetVolume (float volume)
+    public void SetVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
     }
 
-    public void SetResolution (int resolutionIndex)
+    public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-    public void SetFullscreen (bool isFullscreen)
+    public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
     }
