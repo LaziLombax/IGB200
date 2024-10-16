@@ -8,12 +8,13 @@ public class BirdSpawner : MonoBehaviour
     public float maxSpawnTimer;
     private float spawnTime;
     public float AmountToSpawn;
-    public Transform player;  // Reference to the player's transform
+    public GameObject player;  // Reference to the player's transform
     public float activationDistance = 20f;  // Distance at which the spawner becomes active
 
     void Start()
     {
         StartCoroutine(SpawnTimer(2));
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void SpawnBird()
@@ -30,8 +31,8 @@ public class BirdSpawner : MonoBehaviour
         {
             xspawn = -18;
         }
-        Vector3 offsetpos = new Vector3(xspawn, 0, (4 * Random.Range(-2, 10)));
-        GameObject newObject = Instantiate(objectToSpawn, transform.position + offsetpos, objectToSpawn.transform.rotation);
+        Vector3 offsetpos = new Vector3(xspawn, 10, player.transform.position.z + (4 * Random.Range(-2, 5)));
+        GameObject newObject = Instantiate(objectToSpawn, offsetpos, objectToSpawn.transform.rotation);
     }
 
     IEnumerator SpawnTimer(float WaitTime)
