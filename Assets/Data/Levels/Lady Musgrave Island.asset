@@ -15,15 +15,15 @@ MonoBehaviour:
   levelName: Lady Musgrave Island
   levelNum: 0
   description: Beach Description
-  levelGold: 5110
+  levelGold: 5150
   currentTimer: 0
   stageList:
   - name: Beach
     naturalHazards:
     - name: Safe
       hazardObject: {fileID: 5984137651008251359, guid: 1d958795612c9c04a82a1cdcc72cc85c, type: 3}
-      maxChance: 15
-      chance: 15
+      maxChance: 10
+      chance: 10
       hazardSize: 4
       description: 
       hint: Hazard Hint
@@ -73,8 +73,8 @@ MonoBehaviour:
         cardDesc: Description of Effor
     - name: Rock
       hazardObject: {fileID: 3200868662483362531, guid: e48f37719fb035840b92a6f54a360040, type: 3}
-      maxChance: 5
-      chance: 5
+      maxChance: 10
+      chance: 10
       hazardSize: 4
       description: 
       hint: Hazard Hint
