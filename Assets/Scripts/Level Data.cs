@@ -54,6 +54,19 @@ public class LevelData : ScriptableObject
     public bool hatUnlocked;
     public bool nextLevel;
 
+    public void ResetHazardData()
+    {
+        foreach (var stage in stageList)
+        {
+            foreach (var hazard in stage.humanHazards)
+            {
+                hazard.chance = hazard.maxChance;
+            }
+        }
+        hatUnlocked = false;
+        nextLevel = false;
+    }
+
     public float CleanProgression()
     {
         float totalMaxChances = 0f;

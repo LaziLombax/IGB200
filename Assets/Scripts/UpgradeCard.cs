@@ -15,18 +15,20 @@ public class UpgradeCard : MonoBehaviour
     public string myDesc;
     public TextMeshProUGUI upgradeCost;
     public string myCost;
+    public Unlockable levelNext;
+    public Unlockable getHat;
 
     // Start is called before the first frame update
     void Start()
     {
         upgradeStage = GameHandler.Instance.currentLevelData.GetUpgradeCardStage(upgradeName);
         GenerateStars();
-        for (int i = 0; i < GameHandler.Instance.currentLevelData.UpgradeCount(upgradeStage,upgradeName); i++)
+        for (int i = 0; i < GameHandler.Instance.currentLevelData.UpgradeCount(upgradeStage, upgradeName); i++)
         {
             starList[i].GetComponent<Image>().color = Color.white;
         }
 
-        upgradeTextTitle.text = GameHandler.Instance.currentLevelData.GetUpgradeCardTitle(upgradeStage,upgradeName);
+        upgradeTextTitle.text = GameHandler.Instance.currentLevelData.GetUpgradeCardTitle(upgradeStage, upgradeName);
         upgradeDesc.text = GameHandler.Instance.currentLevelData.GetUpgradeCardDesc(upgradeStage, upgradeName);
         upgradeCost.text = GameHandler.Instance.currentLevelData.GetUpgradeCardCost(upgradeStage, upgradeName);
     }
@@ -41,6 +43,18 @@ public class UpgradeCard : MonoBehaviour
         {
             starList[i].GetComponent<Image>().color = Color.white;
         }
+        float progress = GameHandler.Instance.currentLevelData.CleanProgression();
+        Debug.Log(progress);
+        if (progress >= 0.5f)
+        {
+            GameHandler.Instance.currentLevelData.nextLevel = true;
+        }
+        if (progress == 1f)
+        {
+            GameHandler.Instance.currentLevelData.hatUnlocked = true;
+        }
+        levelNext.CheckUnlockable();
+        getHat.CheckUnlockable();
         upgradeCost.text = GameHandler.Instance.currentLevelData.GetUpgradeCardCost(upgradeStage, upgradeName);
         GameHandler.Instance.uiHandler.UpdateGold();
     }
@@ -50,7 +64,7 @@ public class UpgradeCard : MonoBehaviour
     {
 
         float gapBetweenStars = 10f;
-        int starCount = Mathf.FloorToInt(GameHandler.Instance.currentLevelData.UpgradesBuyTotal(upgradeStage,upgradeName));
+        int starCount = Mathf.FloorToInt(GameHandler.Instance.currentLevelData.UpgradesBuyTotal(upgradeStage, upgradeName));
         float totalGap = gapBetweenStars + starImage.GetComponent<RectTransform>().rect.width;
         // Calculate the starting point to spawn UI objects
         float totalCardAndGapSize = totalGap * (starCount - 1) + gapBetweenStars;

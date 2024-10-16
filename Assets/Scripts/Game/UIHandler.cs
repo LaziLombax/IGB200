@@ -375,6 +375,7 @@ public class UIHandler : MonoBehaviour
 
         if (upgradePanel != null)
         {
+            gameHandler.currentLevelData.ResetHazardData();
             GenerateUpgrades();
         }
 
@@ -384,7 +385,6 @@ public class UIHandler : MonoBehaviour
             GenerateHats();
         }
 
-        
     }
 
     public void OnMouseEnter()
@@ -871,6 +871,8 @@ public class UIHandler : MonoBehaviour
             // Create a new UI object
             GameObject newUIObject = Instantiate(upgradeCard, upgradeCardSpawn);
             UpgradeCard cardComp = newUIObject.GetComponent<UpgradeCard>();
+            cardComp.levelNext = levelUnlockable.GetComponent<Unlockable>();
+            cardComp.getHat = hatUnlockable.GetComponent<Unlockable>();
             cardComp.upgradeName = GameHandler.Instance.currentLevelData.GetUpgradeCardName(i);
             // Set the anchored position for the UI element
             RectTransform uiRect = newUIObject.GetComponent<RectTransform>();
