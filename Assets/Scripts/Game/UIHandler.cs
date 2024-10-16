@@ -375,7 +375,6 @@ public class UIHandler : MonoBehaviour
 
         if (upgradePanel != null)
         {
-            gameHandler.currentLevelData.ResetHazardData();
             GenerateUpgrades();
         }
 
