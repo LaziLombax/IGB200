@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BirdDive : MonoBehaviour
@@ -15,9 +16,34 @@ public class BirdDive : MonoBehaviour
     {
         startPosition = transform.position;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        DivePosition = new Vector3((3 * Random.Range(-4, 4)), 0.2f, gameObject.transform.position.z);
+        CheckDive();
         savedTarget = Instantiate(myIndicator, DivePosition, Quaternion.identity);
         StartCoroutine(MoveRoutine());
+    }
+
+    public void CheckDive(){
+        Vector3[] AvailablePositions = new Vector3[7]; 
+        List<Vector3> SetPositions = new List<Vector3>();
+        SetPositions.Clear();
+        for (int i = 0; i < 7; i++){
+            AvailablePositions[i] = new Vector3(-9.0f+(i*3), 0.3f, gameObject.transform.position.z);
+            if(isObjectHere(AvailablePositions[i]) == false){
+                SetPositions.Add(AvailablePositions[i]);
+            }
+        }
+        Debug.Log(SetPositions[0]);
+        DivePosition = SetPositions[Random.Range(0,SetPositions.Count)];
+    }
+
+    bool isObjectHere(Vector3 position){
+        Collider[] intersecting = Physics.OverlapSphere(position, 0.01f);
+        foreach (var hitcolliders in intersecting){
+            if (hitcolliders.gameObject.GetComponent<Barrier>() != null){
+                Debug.Log(hitcolliders.gameObject.name);
+                return true;
+            }
+        }
+        return false;
     }
 
     private IEnumerator MoveRoutine()
