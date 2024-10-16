@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f8a4ca9042c4d49af7a5a5f7b0da19, type: 3}
+  m_Name: Ningaloo Coast
+  m_EditorClassIdentifier: 
+  levelName: Ningaloo Coast
+  levelNum: 0
+  description: Beach Description
+  levelGold: 5150
+  currentTimer: 0
+  stageList:
+  - name: Beach
+    naturalHazards:
+    - name: Safe
+      hazardObject: {fileID: 5984137651008251359, guid: 1d958795612c9c04a82a1cdcc72cc85c, type: 3}
+      maxChance: 10
+      chance: 10
+      hazardSize: 4
+      description: 
+      hint: Hazard Hint
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
+    - name: Dog
+      hazardObject: {fileID: 3200868662483362531, guid: c6187b7dfb0ea19438b2277022c3fd60, type: 3}
+      maxChance: 4
+      chance: 4
+      hazardSize: 16
+      description: To protect some turtle species, feral animals like Wild Pigs,
+        Foxes or Crabs were controlled to help increase the population of endagered
+        turtles.
+      hint: I should create distance, before I try to pass the pigs
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
+    - name: Crab
+      hazardObject: {fileID: 3146694958185421144, guid: dc57f109c01a80e4eafcd096eb8c9b7c, type: 3}
+      maxChance: 3
+      chance: 3
+      hazardSize: 4
+      description: To protect some turtle species, feral animals like Wild Dogs,
+        Foxes or Crabs were controlled to help increase the population of endagered
+        turtles.
+      hint: Crabs can hide in the sand, so I should wait for the right moment when
+        it's safe, or use the rocks to avoid them.
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
+    - name: Bird
+      hazardObject: {fileID: 3146694958185421144, guid: afab4767bc4aa9343b1ee19b27e87a89, type: 3}
+      maxChance: 3
+      chance: 3
+      hazardSize: 4
+      description: Seabirds are a protected species, which means that monitoring
+        turtles should minimise the disturbance that it can cause on seabirds and
+        other species.
+      hint: I need to watch out for those birds and where they might land.
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
+    - name: Rock
+      hazardObject: {fileID: 3200868662483362531, guid: e48f37719fb035840b92a6f54a360040, type: 3}
+      maxChance: 10
+      chance: 10
+      hazardSize: 4
+      description: 
+      hint: Hazard Hint
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
+    humanHazards:
+    - name: Car
+      hazardObject: {fileID: 3200868662483362531, guid: cee494e92333d994bbbeb09711efb373, type: 3}
+      maxChance: 6
+      chance: 6
+      hazardSize: 4
+      description: Hatchlings that do emerge are frequently disoriented by lights,
+        disturbed by people and vehicles as they struggle to make it safely to the
+        water.
+      hint: I need to watch out for tire tracks, cars can come out of now where!
+      upgradeCard:
+        cardName: Reduce traffic
+        cardCost: 50
+        cardDesc: Reduce the number of cars through posters and local action.
+  - name: Reef
+    naturalHazards:
+    - name: Nothing
+      hazardObject: {fileID: 8544290037611543314, guid: e2542618554fbee499b61a844f79eb92, type: 3}
+      maxChance: 5
+      chance: 5
+      hazardSize: 40
+      description: Green Turtles will select habitats based on foraging rewards and
+        predators like Tiger Sharks. Green Turtles that are in good condition, tend
+        to avoid areas with sharks.
+      hint: Hazard Hint
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
+    - name: Shark
+      hazardObject: {fileID: 107635318230043208, guid: 0fcc4f1ad380c3f44b053dbbb40489d4, type: 3}
+      maxChance: 0
+      chance: 0
+      hazardSize: 40
+      description: Green Turtles will select habitats based on foraging rewards and
+        predators like Tiger Sharks. Green Turtles that are in good condition, tend
+        to avoid areas with sharks.
+      hint: I hate sharks, but I can move between them, I just need to watch where
+        they're going.
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
+    - name: Crab
+      hazardObject: {fileID: 783753377506269430, guid: fe221dc780e6dfe4bb4005fa80c7dffa, type: 3}
+      maxChance: 5
+      chance: 5
+      hazardSize: 40
+      description: To protect some turtle species, feral animals like Wild Dogs,
+        Foxes or Crabs were controlled to help increase the population of endagered
+        turtles.
+      hint: Crabs can catch me if I stick to the floor,
+      upgradeCard:
+        cardName: 
+        cardCost: 0
+        cardDesc: Description of Effor
+    humanHazards:
+    - name: Oil
+      hazardObject: {fileID: 783753377506269430, guid: 341c2651b736cf940845736bce809b7c, type: 3}
+      maxChance: 8
+      chance: 8
+      hazardSize: 40
+      description: 'Oil spills will drastically damage all marine. Green Turtles
+        will accidentally inhale the oil, which can permanently affect their body,
+        reducing their chance of survival. '
+      hint: Hazard Hint
+      upgradeCard:
+        cardName: Contain And Clean
+        cardCost: 50
+        cardDesc: Clean up oil-spills by containing the spill and using oil skimmers.
+    - name: Net
+      hazardObject: {fileID: 8544290037611543314, guid: e2542618554fbee499b61a844f79eb92, type: 3}
+      maxChance: 4
+      chance: 4
+      hazardSize: 20
+      description: 'Worldwide, hundreds of thousands of sea turtles a year are accidentally
+        caught in shrimp trawl nets, on longline hooks and in fishing gillnets. Sea
+        turtles need to reach the surface to breathe, and therefore many drown once
+        caught '
+      hint: I can get caught in these nets, making it hard to move.
+      upgradeCard:
+        cardName: Coastal Guards
+        cardCost: 50
+        cardDesc: Contact local coast guards to protect the reef from illegal fishing.
+  hatKey: Pirate
+  hatUnlocked: 0
+  nextLevel: 0
