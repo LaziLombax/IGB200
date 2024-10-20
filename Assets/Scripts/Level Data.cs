@@ -165,7 +165,7 @@ public class LevelData : ScriptableObject
                 {
                     if (hazardName == hazard.name && hazard.chance != 0)
                     {
-                        int cost = Mathf.FloorToInt((hazard.maxChance - hazard.chance) * 1.20f * hazard.upgradeCard.cardCost);
+                        int cost = Mathf.FloorToInt(((hazard.maxChance - hazard.chance) * 1.20f * hazard.upgradeCard.cardCost) + hazard.upgradeCard.cardCost);
                         levelGold -= cost;
                         hazard.chance--;
                         if(CleanProgression() == 1f) hatUnlocked = true;
@@ -287,7 +287,7 @@ public class LevelData : ScriptableObject
                 {
                     if (hazardName == hazard.name)
                     {
-                        int cost = Mathf.FloorToInt((hazard.maxChance - hazard.chance) * 1.20f * hazard.upgradeCard.cardCost);
+                        int cost = Mathf.FloorToInt(((hazard.maxChance - hazard.chance) * 1.20f * hazard.upgradeCard.cardCost) + hazard.upgradeCard.cardCost);
                         return cost;
                     }
                 }

@@ -54,7 +54,10 @@ public class GameHandler : MonoBehaviour
     public GameObject reefEnd;
     public int levelSize = 9;
 
-
+    private void Awake()
+    {
+        currentLevelData = gameData.currentLevel;
+    }
     #endregion
     private void Start()
     {
@@ -70,7 +73,6 @@ public class GameHandler : MonoBehaviour
         }
         if (gameData == null) return;
         
-        currentLevelData = gameData.currentLevel;
         gameEnded = false;
         if (stageName == "Beach")
         {
@@ -204,6 +206,7 @@ public class GameHandler : MonoBehaviour
         timerOn = false;
         if (stageName == "Beach")
         {
+            currentLevelData.currentTimer = currentTimer;
             uiHandler.OnBeachEnd();
             uiHandler.fadeImage.gameObject.SetActive(true);
         }

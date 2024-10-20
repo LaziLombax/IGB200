@@ -15,15 +15,15 @@ MonoBehaviour:
   levelDatas:
   - {fileID: 11400000, guid: af658ced7c1478b41a05e624c75f7f9f, type: 2}
   - {fileID: 11400000, guid: fa2a0f54295082b42a2fcb1ab3185aa2, type: 2}
-  currentLevel: {fileID: 11400000, guid: fa2a0f54295082b42a2fcb1ab3185aa2, type: 2}
+  currentLevel: {fileID: 11400000, guid: af658ced7c1478b41a05e624c75f7f9f, type: 2}
   myHats:
   - hatKey: Pirate
-    canUse: 1
-    inUse: 1
+    canUse: 0
+    inUse: 0
     icon: {fileID: 21300000, guid: 8dc5fb124d40dab4087934f8187347ef, type: 3}
   - hatKey: Jetpack
-    canUse: 1
-    inUse: 1
+    canUse: 0
+    inUse: 0
     icon: {fileID: 21300000, guid: 7621ce433adf2c448971392b119097c2, type: 3}
   myHatKeys: []
   myDialogue:
