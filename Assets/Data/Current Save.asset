@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelDatas:
   - {fileID: 11400000, guid: af658ced7c1478b41a05e624c75f7f9f, type: 2}
-  - {fileID: 11400000, guid: eb64d017ffd2c074ca61ee583c4fa763, type: 2}
+  - {fileID: 11400000, guid: fa2a0f54295082b42a2fcb1ab3185aa2, type: 2}
   currentLevel: {fileID: 11400000, guid: af658ced7c1478b41a05e624c75f7f9f, type: 2}
   myHats:
   - hatKey: Pirate
@@ -28,7 +28,7 @@ MonoBehaviour:
   myHatKeys: []
   myDialogue:
   - callKey: Game Start
-    hasRead: 1
+    hasRead: 0
     dialogueList:
     - 'Hello, My name is Shelldon! '
     - I'm a Green Turtle! One of 6 marine turtle species found in Australia.
@@ -44,7 +44,7 @@ MonoBehaviour:
     - When you clean more than half of the level, you will unlock a new level!
     - But enough talking, select the first level, then jump right in!
   - callKey: Stage Beach
-    hasRead: 1
+    hasRead: 0
     dialogueList:
     - Welcome to the first stage of every level, the beach!
     - You goal is to move up and reach the water at the end.
@@ -71,7 +71,7 @@ MonoBehaviour:
     hasRead: 0
     dialogueList:
     - You're Amazing!
-    - For beating the level, you've unlocked a new hat!
+    - Try to beat the level in 90 seconds to earn bonus stars!
   - callKey: End Explain
     hasRead: 0
     dialogueList:
@@ -80,7 +80,7 @@ MonoBehaviour:
     - If you beat the level under a minute, you will be rewarded with extra starfishes.
     - You can open the upgrades menu to use your starfishes to clean-up the level.
   - callKey: Upgrade Screen
-    hasRead: 1
+    hasRead: 0
     dialogueList:
     - Welcome to the clean-up crew!
     - Here, you can trade your starfishes to help remove man made hazards.

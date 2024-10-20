@@ -39,7 +39,7 @@ public class BirdDive : MonoBehaviour
         Collider[] intersecting = Physics.OverlapSphere(position, 0.01f);
         foreach (var hitcolliders in intersecting){
             if (hitcolliders.gameObject.GetComponent<Barrier>() != null){
-                Debug.Log(hitcolliders.gameObject.name);
+                //Debug.Log(hitcolliders.gameObject.name);
                 return true;
             }
         }

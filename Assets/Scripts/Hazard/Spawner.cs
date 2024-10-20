@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
         objectPool = poolManager.GetPoolByPrefab(objectToSpawn);
         if (Obstacles)
         {
-            for (int i = 0; i < Random.Range(1, 5); i++)
+            for (int i = 0; i < Random.Range(2, 4); i++)
             {
                 int index = Random.Range(0, ObstacleSpots.Count);
                 // Use object pooling instead of Instantiate

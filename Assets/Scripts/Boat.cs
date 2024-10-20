@@ -22,7 +22,7 @@ public class Boat : MonoBehaviour
     void Start(){
         float newz = Mathf.Abs(Random.Range(Player.gameObject.transform.position.z-20,gameObject.transform.position.z-20));
         TargetSpot = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, newz);
-        NetSpot = new Vector3(gameObject.transform.position.x, Random.Range(-5f, 3f), gameObject.transform.position.z);
+        NetSpot = new Vector3(gameObject.transform.position.x, Player.transform.position.y, gameObject.transform.position.z);
         newNet = Instantiate(Net, NetSpot, Net.transform.rotation);
         newNet.transform.parent = gameObject.transform;
     }

@@ -57,7 +57,7 @@ MonoBehaviour:
     groupEntries:
     - clipName: Horn
       clipFile: {fileID: 8300000, guid: 176dd5f0fbf68c94191686caf49af5b5, type: 3}
-      volume: 0.398
+      volume: 0.305
       mixerGroup: {fileID: 24300002, guid: 208e4233cd2e0764890874a77974ba35, type: 2}
   - groupName: Shark
     groupEntries:

@@ -135,7 +135,6 @@ public class DialogueController : MonoBehaviour
         if (dialogueBox.gameObject.activeSelf)
         {
             CanvasGroup dialogueCanvasGroup = dialogueBox.gameObject.GetComponent<CanvasGroup>();
-            dialogueCanvasGroup.alpha = 0;
             dialogueCanvasGroup.DOFade(0, 0.5f).OnComplete(() => dialogueBox.gameObject.SetActive(false));
         }
     }

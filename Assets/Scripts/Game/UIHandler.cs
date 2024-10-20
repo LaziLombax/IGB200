@@ -760,6 +760,18 @@ public class UIHandler : MonoBehaviour
         isPaused = true;
         panelWaves = true;
         finishedWaves = false;
+        if (gameData.CheckRead("End Explain"))
+        {
+            if (GameHandler.Instance.hasWon)
+            {
+                CheckWinDialogue();
+            }
+            else
+            {
+                CheckLoseDialogue();
+            }
+        }
+        StartCoroutine(CheckDialogue("End Explain"));
         StartCoroutine(ActivatePanel(endgamePanel, 1.5f));
     }
     IEnumerator ActivatePanel(GameObject panel, float delay)
@@ -800,14 +812,14 @@ public class UIHandler : MonoBehaviour
 
     public void CheckLoseDialogue()
     {
-        if (gameData.CheckRead("End Explain"))
+        if (!gameData.CheckRead("Lose Screen"))
         {
             StartCoroutine(CheckDialogue("Lose Screen"));
         }
     }
     public void CheckWinDialogue()
     {
-        if (gameData.CheckRead("End Explain"))
+        if (!gameData.CheckRead("Win Screen"))
         {
             StartCoroutine(CheckDialogue("Win Screen"));
         }
@@ -992,13 +1004,21 @@ public class UIHandler : MonoBehaviour
 
     public void ShowHint()
     {
-        gameHandler.timerOn = false;
-        isPaused = true;
-        Invoke(nameof(DisplayHint),0.3f);
+        if(hintBox.activeInHierarchy) return;
+        hintBox.SetActive(true);
+        CanvasGroup hintCanvasGroup = hintBox.GetComponent<CanvasGroup>();
+        hintCanvasGroup.DOFade(0.9f, 0.5f);
+        Invoke(nameof(DisplayHint),5f);
     }
     public void DisplayHint()
     {
-        hintBox.SetActive(true);
+        CanvasGroup hintCanvasGroup = hintBox.GetComponent<CanvasGroup>();
+        hintCanvasGroup.DOFade(0, 0.5f);
+        Invoke(nameof(HintOff),1f);
+    }
+    void HintOff()
+    {
+        hintBox.SetActive(false);
     }
     #endregion
     #region Hats

@@ -8,6 +8,7 @@ TagManager:
   - Music
   - Oil
   - CheckPoint
+  - Obstacles
   layers:
   - Default
   - TransparentFX

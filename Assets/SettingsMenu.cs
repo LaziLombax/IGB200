@@ -12,14 +12,18 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
+    private List<Resolution> filteredResolutions;
+    private float currentRefreshRate;
+    private int currentResolutionIndex = 0;
 
 
     void Start()
     {
         resolutions = Screen.resolutions;
+        filteredResolutions = new List<Resolution>();
 
         resolutionDropdown.ClearOptions();
-
+        /*
         List<string> options = new List<string>();
 
         int currentResolutionIndex = 0;
@@ -33,6 +37,28 @@ public class SettingsMenu : MonoBehaviour
             {
                 currentResolutionIndex = i;
             }
+        }
+        */
+
+        currentRefreshRate = (float)Screen.currentResolution.refreshRateRatio.value;
+
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            if (Mathf.Round((float)resolutions[i].refreshRateRatio.value) == Mathf.Round(currentRefreshRate))
+            {
+                filteredResolutions.Add(resolutions[i]);
+            }
+        }
+        List<string> options = new List<string>();
+        for (int i = 0; i < filteredResolutions.Count; i++)
+        {
+            string resolutionOption = filteredResolutions[i].width + "x" + filteredResolutions[i].height + ", " + Mathf.Round((float)filteredResolutions[i].refreshRateRatio.value) + " Hz";
+            options.Add(resolutionOption);
+            if (filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height)
+            {
+                currentResolutionIndex = i;
+            }
+
         }
 
         resolutionDropdown.AddOptions(options);
@@ -48,6 +74,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
+        Debug.Log(resolution.ToString());
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 

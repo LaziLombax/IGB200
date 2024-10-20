@@ -15,7 +15,7 @@ MonoBehaviour:
   levelName: Lady Musgrave Island
   levelNum: 0
   description: Beach Description
-  levelGold: 5150
+  levelGold: 0
   currentTimer: 0
   stageList:
   - name: Beach
@@ -31,19 +31,6 @@ MonoBehaviour:
         cardName: 
         cardCost: 0
         cardDesc: Description of Effor
-    - name: Dog
-      hazardObject: {fileID: 3200868662483362531, guid: c6187b7dfb0ea19438b2277022c3fd60, type: 3}
-      maxChance: 4
-      chance: 4
-      hazardSize: 16
-      description: To protect some turtle species, feral animals like Wild Pigs,
-        Foxes or Crabs were controlled to help increase the population of endagered
-        turtles.
-      hint: I should create distance, before I try to pass the pigs
-      upgradeCard:
-        cardName: 
-        cardCost: 0
-        cardDesc: Description of Effor
     - name: Crab
       hazardObject: {fileID: 3146694958185421144, guid: dc57f109c01a80e4eafcd096eb8c9b7c, type: 3}
       maxChance: 3
@@ -53,7 +40,7 @@ MonoBehaviour:
         Foxes or Crabs were controlled to help increase the population of endagered
         turtles.
       hint: Crabs can hide in the sand, so I should wait for the right moment when
-        it's safe, or use the rocks to avoid them.
+        it's safe, or use the rocks.
       upgradeCard:
         cardName: 
         cardCost: 0
@@ -82,20 +69,7 @@ MonoBehaviour:
         cardName: 
         cardCost: 0
         cardDesc: Description of Effor
-    humanHazards:
-    - name: Car
-      hazardObject: {fileID: 3200868662483362531, guid: cee494e92333d994bbbeb09711efb373, type: 3}
-      maxChance: 4
-      chance: 4
-      hazardSize: 4
-      description: Hatchlings that do emerge are frequently disoriented by lights,
-        disturbed by people and vehicles as they struggle to make it safely to the
-        water.
-      hint: I need to watch out for tire tracks, cars can come out of now where!
-      upgradeCard:
-        cardName: Reduce traffic
-        cardCost: 50
-        cardDesc: Reduce the number of cars through posters and local action.
+    humanHazards: []
   - name: Reef
     naturalHazards:
     - name: Nothing

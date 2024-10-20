@@ -2782,7 +2782,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+  m_text: ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssRight
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6bdebbe571df0fa42bdaba29803ec10e, type: 2}
   m_sharedMaterial: {fileID: -5858586614226498671, guid: 6bdebbe571df0fa42bdaba29803ec10e, type: 2}
@@ -2817,7 +2817,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -8914,6 +8914,8 @@ GameObject:
   - component: {fileID: 3699848585795596786}
   - component: {fileID: 4295963064390914074}
   - component: {fileID: 1302307657653569083}
+  - component: {fileID: 7188742242549667198}
+  - component: {fileID: 7257219020041531433}
   m_Layer: 5
   m_Name: HintBox
   m_TagString: Untagged
@@ -8979,6 +8981,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7188742242549667198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6172525317003623536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fa219316ade67469213f22aa5b90a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  thoughtBubble: {fileID: 3699848585795596786}
+  mainCamera: {fileID: 0}
+  offset: {x: 0, y: 1, z: -2}
+--- !u!225 &7257219020041531433
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6172525317003623536}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6232112341255763693
 GameObject:
   m_ObjectHideFlags: 0

@@ -85,6 +85,11 @@ public abstract class PlayerController : Entity
             }
             else
             {
+                if (health != 0)
+                {
+                    gameHandler.uiHandler.hintText.text = gameHandler.currentLevelData.HazardHint(gameHandler.stageName, other.GetComponent<Info>().hazardName);
+                    gameHandler.uiHandler.ShowHint();
+                }
                 if (other.GetComponent<Info>().hazardName == "Shark")
                 {
                     sharkBite.Play();

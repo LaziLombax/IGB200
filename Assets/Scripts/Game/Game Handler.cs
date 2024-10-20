@@ -32,6 +32,7 @@ public class GameHandler : MonoBehaviour
     public int goldGained;
     public bool gameEnded;
     public Transform playerPos;
+    public bool hasWon;
     [Space(10)]
     [Header("Beach")]
     public int beachSize;
@@ -177,9 +178,9 @@ public class GameHandler : MonoBehaviour
         if (gameEnded) return;
         if (beatGame)
         {
+            hasWon = true;
             uiHandler.gameOverText.SetActive(false);
             uiHandler.completeText.SetActive(true);
-            uiHandler.CheckWinDialogue();
             if (currentTimer < 90)
             {
                 goldGained += Mathf.FloorToInt((90 - currentTimer) * 5);
@@ -190,12 +191,10 @@ public class GameHandler : MonoBehaviour
         {
             uiHandler.gameOverText.SetActive(true);
             uiHandler.completeText.SetActive(false);
-            uiHandler.CheckLoseDialogue();
         }
-
+        hasWon = false;
         timerOn = false;
         currentLevelGold = currentLevelData.levelGold;
-        currentTimer = 0f;
         gameEnded = true;
         uiHandler.EndGameScreen();
         //Time.timeScale = 0;

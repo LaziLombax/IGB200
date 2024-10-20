@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3806765967812931520}
   - component: {fileID: 1785902075617259978}
   - component: {fileID: 7031327052920084980}
+  - component: {fileID: 4625270285940046268}
+  - component: {fileID: 5593413269900754646}
   m_Layer: 0
   m_Name: Star_Collect_Beach
   m_TagString: Untagged
@@ -68,6 +70,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d2a0c434a26a54a97844ef2c490bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4625270285940046268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499793715187805644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824767bc44c552249809f1a414f6e88f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 15
+  frequency: 2
+  wiggleAxis: {x: 0, y: 0, z: 1}
+--- !u!54 &5593413269900754646
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499793715187805644}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &7905729269003640770
 GameObject:
   m_ObjectHideFlags: 0

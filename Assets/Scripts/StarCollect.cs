@@ -8,8 +8,18 @@ public class StarCollect : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            GameHandler.Instance.currentLevelData.levelGold += 10;
+            GameHandler.Instance.currentLevelData.levelGold += 5;
             Destroy(gameObject);
+        } else if (other.gameObject.tag == "Obstacles")
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Obstacles")
+        {
+            //Destroy(gameObject);
         }
     }
 }

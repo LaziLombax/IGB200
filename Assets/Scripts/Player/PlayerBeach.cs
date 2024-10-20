@@ -114,8 +114,8 @@ public class PlayerBeach : PlayerController
         }
         if(plannedPos == transform.position && !isMoving)
             plannedPos = transform.position;
-        if(inputQueue.Count == 2)
-            Debug.Log(inputQueue.Count.ToString());
+        //if(inputQueue.Count == 2)
+            //Debug.Log(inputQueue.Count.ToString());
     }
     private void OnDrawGizmosSelected()
     {

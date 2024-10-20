@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2433697626397608696}
   - component: {fileID: 4417231625652198334}
   - component: {fileID: 6369230942232738425}
+  - component: {fileID: 200504442185802853}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +107,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 11db3064b040f224bbee962d29c560c2, type: 3}
+--- !u!114 &200504442185802853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5334950367138731774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91ff5c4beaaab3e46b5f355871a666f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hazardName: Net
 --- !u!1 &9138556148552503502
 GameObject:
   m_ObjectHideFlags: 0
