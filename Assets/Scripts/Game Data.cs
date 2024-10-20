@@ -32,7 +32,6 @@ public class GameData : ScriptableObject
 
     public List<DialogueShelldon> myDialogue = new List<DialogueShelldon>();
 
-
     public void SetCurrentLevel(string levelName)
     {
         foreach (LevelData levelData in levelDatas)

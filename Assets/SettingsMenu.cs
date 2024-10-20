@@ -12,11 +12,20 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
-    private List<Resolution> filteredResolutions;
+    public List<Resolution> filteredResolutions;
     private float currentRefreshRate;
     private int currentResolutionIndex = 0;
 
 
+    private static SettingsMenu _instance;
+    public static SettingsMenu Instance
+    {
+        get
+        {
+            _instance = FindObjectOfType<SettingsMenu>();
+            return _instance;
+        }
+    }
     void Start()
     {
         resolutions = Screen.resolutions;
@@ -62,7 +71,7 @@ public class SettingsMenu : MonoBehaviour
         }
 
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.value = filteredResolutions.Count;
         resolutionDropdown.RefreshShownValue();
     }
 

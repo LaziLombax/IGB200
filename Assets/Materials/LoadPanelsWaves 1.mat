@@ -55,8 +55,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Core_Height: 5.31
-    - _Core_Mask_Height: 0.546
-    - _Core_Mask_Width: 0.773
+    - _Core_Mask_Height: 0.829
+    - _Core_Mask_Width: 0.802
     - _Core_Width: 1.79
     - _Distortion: 0.54
     - _Distortion_Scale: 25
