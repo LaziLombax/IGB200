@@ -525,7 +525,8 @@ public class UIHandler : MonoBehaviour
         {
             if (!gameData.CheckRead("Game Map"))
             {
-                dialogueHandler.DisplayNextParagraph(gameData.GetDialogueSet("Game Map"));
+                currentDialogue = gameData.GetDialogueSet("Game Map");
+                dialogueHandler.DisplayNextParagraph(currentDialogue);
             }
             mapPanel.SetActive(true);
             CanvasGroup mapCanvasGroup = mapPanel.GetComponent<CanvasGroup>();
@@ -800,7 +801,8 @@ public class UIHandler : MonoBehaviour
                 upgradePanel.SetActive(true);
             if (!gameData.CheckRead("Upgrade Screen"))
             {
-                dialogueHandler.DisplayNextParagraph(gameData.GetDialogueSet("Upgrade Screen"));
+                currentDialogue = gameData.GetDialogueSet("Upgrade Screen");
+                dialogueHandler.DisplayNextParagraph(currentDialogue);
             }
             cleanProgress.value = Mathf.Round(GameHandler.Instance.currentLevelData.CleanProgression() * 100);
             upgradeLevelGold.text = "Owned: " + gameHandler.currentLevelData.levelGold.ToString();

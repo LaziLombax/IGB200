@@ -70,8 +70,8 @@ public class SettingsMenu : MonoBehaviour
 
         }
 
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = filteredResolutions.Count;
+        resolutionDropdown.AddOptions(options); 
+        resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
 
@@ -82,9 +82,11 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetResolution(int resolutionIndex)
     {
-        Resolution resolution = resolutions[resolutionIndex];
-        Debug.Log(resolution.ToString());
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        if (resolutionIndex >= 0 && resolutionIndex < filteredResolutions.Count)
+        {
+            Resolution resolution = filteredResolutions[resolutionIndex];
+            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        }
     }
 
     public void SetFullscreen(bool isFullscreen)

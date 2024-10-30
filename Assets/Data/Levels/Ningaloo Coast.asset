@@ -86,7 +86,7 @@ MonoBehaviour:
     - name: Car
       hazardObject: {fileID: 3200868662483362531, guid: cee494e92333d994bbbeb09711efb373, type: 3}
       maxChance: 5
-      chance: 4
+      chance: 5
       hazardSize: 4
       description: Hatchlings that do emerge are frequently disoriented by lights,
         disturbed by people and vehicles as they struggle to make it safely to the

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class DialogueController : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private float typeSpeed;
     [SerializeField] private float wobbleSpeed = 1f;
 
-    private Queue<string> paragraphs = new Queue<string>();
+    public Queue<string> paragraphs = new Queue<string>();
 
     private bool conversationEnded;
     private bool isTyping;
@@ -94,7 +95,7 @@ public class DialogueController : MonoBehaviour
                 return;
             }
         }
-        if (!isTyping)
+        if (!isTyping && GameHandler.Instance.uiHandler.currentDialogue !=  null)
         {
             p = paragraphs.Dequeue();
             typeDialogueCoroutine = StartCoroutine(TypeDialogueText(p));
@@ -122,16 +123,19 @@ public class DialogueController : MonoBehaviour
             dialogueCanvasGroup.alpha = 0;
             dialogueCanvasGroup.DOFade(1, 0.5f);
         }
-
-        for (int i = 0; i < dialogueText.dialogueList.Count; i++)
+        if (dialogueText != null)
         {
-            paragraphs.Enqueue(dialogueText.dialogueList[i]);
+            for (int i = 0; i < dialogueText.dialogueList.Count; i++)
+            {
+                paragraphs.Enqueue(dialogueText.dialogueList[i]);
+            }
         }
     }
     private void EndConversation()
     {
         GameHandler.Instance.timerOn = true;
         conversationEnded = false;
+        GameHandler.Instance.uiHandler.currentDialogue = null;
         if (dialogueBox.gameObject.activeSelf)
         {
             CanvasGroup dialogueCanvasGroup = dialogueBox.gameObject.GetComponent<CanvasGroup>();
